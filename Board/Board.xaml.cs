@@ -12,25 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Battleship.Board;
-using Battleship.Ships;
 
-namespace Battleship
+namespace Battleship.Board
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Board.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Board : UserControl
     {
-
-        public MainWindow()
+        Field[,] cells = new Field[10, 10];
+        public Board()
         {
             InitializeComponent();
-        }
-        protected override void OnInitialized(EventArgs e)
-        {
-            base.OnInitialized(e);
-            
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Field field = new Field();
+                    this.field.Children.Add(field);
+                    cells[i, j] = field;
+                }
+            }
         }
     }
 }

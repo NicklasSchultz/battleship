@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\users\nicke\documents\visual studio 2013\Projects\Battleship\Battleship\obj\Debug\
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\
 Battleship
 none
 false
 DEBUG;TRACE
-c:\users\nicke\documents\visual studio 2013\Projects\Battleship\Battleship\App.xaml
-4483897758
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\App.xaml
+5-1375488626
 
-131746511402
+141278877888
 12-1401562060
-Board\Field.xaml;Board\FieldView.xaml;MainWindow.xaml;Ships\shipView.xaml;
+Board\Board.xaml;Board\Field.xaml;Board\FieldView.xaml;MainWindow.xaml;Ships\shipView.xaml;
 
 True
 
