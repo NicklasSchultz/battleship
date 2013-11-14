@@ -1,0 +1,14 @@
+﻿<Window x:Class="Battleship.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ship="clr-namespace:Battleship.Ships"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <UniformGrid DockPanel.Dock="Top" DataContext="{Binding Path=Field}" Name="field" Columns="10" Rows="10" Height="400" Width="400" />
+        <Canvas DockPanel.Dock="Bottom" >
+            <Viewbox>
+                <ship:shipView Width="{Binding ElementName=field,Path=ActualWidth}"/>
+            </Viewbox>
+        </Canvas>
+    </DockPanel>
+</Window>
