@@ -42,3 +42,7 @@ C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Battles
 C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Battleship.csproj.GenerateResource.Cache
 C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\Board.baml
 C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\Board.g.cs
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\ShipMenuItem.baml
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\ShipMenu.g.cs
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\ShipMenuItem.g.cs
+C:\Users\Eric\Documents\Visual Studio 2012\Projects\battleship\obj\Debug\Board\ShipMenu.baml

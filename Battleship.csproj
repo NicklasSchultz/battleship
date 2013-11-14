@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +58,12 @@
     <Compile Include="Board\Board.xaml.cs">
       <DependentUpon>Board.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Board\ShipMenu.xaml.cs">
+      <DependentUpon>ShipMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Board\ShipMenuItem.xaml.cs">
+      <DependentUpon>ShipMenuItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\shipView.xaml.cs">
       <DependentUpon>shipView.xaml</DependentUpon>
@@ -69,6 +77,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Board\FieldView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Board\ShipMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Board\ShipMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
