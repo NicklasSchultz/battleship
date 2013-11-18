@@ -7,14 +7,14 @@
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
+Debug/
 [Dd]ebugPublic/
 [Rr]elease/
 x64/
 build/
 bld/
 [Bb]in/
-[Oo]bj/
+obj/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
@@ -178,4 +178,3 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-obj/*
