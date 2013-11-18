@@ -2,9 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Board="clr-namespace:Battleship.Board"
-        Title="MainWindow" Height="350" Width="525">
-    <DockPanel>
-        <Board:Board DockPanel.Dock="Left"/>
-        <Board:ShipMenu DockPanel.Dock="Right" />
+        xmlns:ships="clr-namespace:Battleship.Ships"
+        Title="MainWindow">
+    <DockPanel LastChildFill="True">
+        <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200"/>
+        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400"  Width="{Binding Height, ElementName=field}"/>
     </DockPanel>
 </Window>

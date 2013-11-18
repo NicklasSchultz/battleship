@@ -69,6 +69,9 @@
     <Compile Include="Ships\shipView.xaml.cs">
       <DependentUpon>shipView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ships\Destroyer.xaml.cs">
+      <DependentUpon>Destroyer.xaml</DependentUpon>
+    </Compile>
     <Page Include="Board\Board.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +104,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Ships\shipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ships\Destroyer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
