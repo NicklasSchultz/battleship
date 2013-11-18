@@ -64,6 +64,7 @@
     <Compile Include="Board\ShipMenuItem.xaml.cs">
       <DependentUpon>ShipMenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Session\Player.cs" />
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\shipView.xaml.cs">
       <DependentUpon>shipView.xaml</DependentUpon>
@@ -73,10 +74,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Board\Field.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Board\FieldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,9 +95,6 @@
     </Compile>
     <Compile Include="Board\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Board\FieldView.xaml.cs">
-      <DependentUpon>FieldView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
