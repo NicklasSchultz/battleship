@@ -6,6 +6,6 @@
         Title="MainWindow">
     <DockPanel LastChildFill="True">
         <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200"/>
-        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400"  Width="{Binding Height, ElementName=field}"/>
+        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400" MinWidth="400"/>
     </DockPanel>
 </Window>

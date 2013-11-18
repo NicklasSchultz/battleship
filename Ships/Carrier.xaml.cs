@@ -12,26 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Battleship.Ships;
-namespace Battleship.Board
+
+namespace Battleship.Ships
 {
     /// <summary>
-    /// Interaction logic for Field.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class Field : UserControl
+    public partial class Carrier : UserControl
     {
 
-        public Ship s{get;set;}
-
-        public Field()
+        public Carrier()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = (Button)sender;
-            b.Background = Brushes.LightGreen;
         }
     }
 }

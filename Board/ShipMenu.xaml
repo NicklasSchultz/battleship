@@ -8,7 +8,7 @@
              xmlns:Board="clr-namespace:Battleship.Board">
         
     <StackPanel MinWidth="250">
-        <ship:shipView Margin="10"/>
+        <ship:Carrier Margin="10"/>
         <ship:Destroyer Margin="10"/>
     </StackPanel>
 </UserControl>

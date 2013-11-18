@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Battleship.Ships;
 
 namespace Battleship.Board
 {
@@ -20,19 +21,30 @@ namespace Battleship.Board
     /// </summary>
     public partial class Board : UserControl
     {
-        Field[,] cells = new Field[10, 10];
         public Board()
         {
             InitializeComponent();
+
             for (int i = 0; i < 10; i++)
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    Field field = new Field();
-                    this.field.Children.Add(field);
-                    cells[i, j] = field;
-                }
+                mainGrid.RowDefinitions.Add(new RowDefinition());
+                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+            PlaceBoats();
+            
+        }
+        public void PlaceBoats()
+        {
+            Destroyer d = new Destroyer();
+            Carrier c = new Carrier();
+            Grid.SetColumn(d, 4);
+            Grid.SetRow(d, 4);
+            Grid.SetColumnSpan(d, 4);
+            Grid.SetColumn(c, 2);
+            Grid.SetRow(c, 6);
+            Grid.SetColumnSpan(c, 5);
+            mainGrid.Children.Add(d);
+            mainGrid.Children.Add(c);
         }
     }
 }
