@@ -55,16 +55,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Board\Board.xaml.cs">
-      <DependentUpon>Board.xaml</DependentUpon>
+    <Compile Include="Model\Board.cs" />
+    <Compile Include="Model\Cell.cs" />
+    <Compile Include="Model\Content.cs" />
+    <Compile Include="Model\Hit.cs" />
+    <Compile Include="Model\Ship.cs" />
+    <Compile Include="Model\Water.cs" />
+    <Compile Include="Views\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Board\Cell.xaml.cs">
-      <DependentUpon>Cell.xaml</DependentUpon>
+    <Compile Include="Views\CellView.xaml.cs">
+      <DependentUpon>CellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Board\ShipMenu.xaml.cs">
+    <Compile Include="Views\ContentView.xaml.cs">
+      <DependentUpon>ContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Board\ShipMenuItem.xaml.cs">
+    <Compile Include="Views\ShipMenuItem.xaml.cs">
       <DependentUpon>ShipMenuItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ships\Carrier.xaml.cs">
@@ -73,22 +82,29 @@
     <Compile Include="Ships\Destroyer.xaml.cs">
       <DependentUpon>Destroyer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\CellViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Ships\water.xaml.cs">
       <DependentUpon>water.xaml</DependentUpon>
     </Compile>
-    <Page Include="Board\Board.xaml">
+    <Page Include="Views\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Board\Cell.xaml">
+    <Page Include="Views\CellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Board\ShipMenu.xaml">
+    <Page Include="Views\ContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Board\ShipMenuItem.xaml">
+    <Page Include="Views\ShipMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShipMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

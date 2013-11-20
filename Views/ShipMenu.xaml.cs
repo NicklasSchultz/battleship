@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Board
+namespace Battleship.Views
 {
     /// <summary>
-    /// Interaction logic for ShipMenuItem.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class ShipMenuItem : UserControl
+    public partial class ShipMenu : UserControl
     {
-        public ShipMenuItem()
+        public ShipMenu()
         {
             InitializeComponent();
         }

@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Board
+namespace Battleship.Views
 {
     /// <summary>
-    /// Interaction logic for Cell.xaml
+    /// Interaction logic for ContentView.xaml
     /// </summary>
-    public partial class Cell : UserControl
+    public partial class ContentView : UserControl
     {
-        public Cell()
+        public ContentView()
         {
             InitializeComponent();
         }
-
-        public int index { get; set; }
     }
 }

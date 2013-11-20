@@ -1,11 +1,10 @@
 ﻿<Window x:Class="Battleship.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Board="clr-namespace:Battleship.Board"
-        xmlns:ships="clr-namespace:Battleship.Ships"
+        xmlns:Views="clr-namespace:Battleship.Views"
         Title="MainWindow">
     <DockPanel LastChildFill="True">
-        <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200" Background="CadetBlue"/>
-        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400" MinWidth="400" Background="LightBlue"/>
+        <Views:BoardView DataContext="{Binding Path=BoardViewModel}">
+        </Views:BoardView>
     </DockPanel>
 </Window>
