@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.Ships;
+using Battleship.Board;
 
 namespace Battleship.Board
 {
@@ -21,6 +22,9 @@ namespace Battleship.Board
     /// </summary>
     public partial class Board : UserControl
     {
+
+        int current = 2;
+
         public Board()
         {
             InitializeComponent();
@@ -30,21 +34,49 @@ namespace Battleship.Board
                 mainGrid.RowDefinitions.Add(new RowDefinition());
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
-            PlaceBoats();
+            for (int i = 0; i < 100; i++)
+            {
+                    var r = new Cell();
+                    r.SetBinding(DataContextProperty, "[" + i + "]");
+                    r.index = i;
+                    r.MouseLeftButtonUp += new MouseButtonEventHandler(mouse_click);
+                    Grid.SetColumn(r, i%10);
+                    Grid.SetRow(r, (int)i/10);
+                    mainGrid.Children.Add(r);
+                }
             
         }
-        public void PlaceBoats()
+        private void mouse_click(object sender, EventArgs e)
         {
-            Destroyer d = new Destroyer();
-            Carrier c = new Carrier();
-            Grid.SetColumn(d, 4);
-            Grid.SetRow(d, 4);
-            Grid.SetColumnSpan(d, 4);
-            Grid.SetColumn(c, 2);
-            Grid.SetRow(c, 6);
-            Grid.SetColumnSpan(c, 5);
-            mainGrid.Children.Add(d);
-            mainGrid.Children.Add(c);
+            var r = (Cell)sender;
+            int i = r.index;
+
+            if (current == 2)
+            {
+                Destroyer d = new Destroyer();
+                Grid.SetRow(d, getRow(i));
+                Grid.SetColumn(d, getColumn(i));
+                Grid.SetColumnSpan(d, d.getSize());
+                mainGrid.Children.Add(d);
+            }
+            else if (current == 1)
+            {
+                Carrier d = new Carrier();
+                Grid.SetRow(d, getRow(i));
+                Grid.SetColumn(d, getColumn(i));
+                Grid.SetColumnSpan(d, d.getSize());
+                mainGrid.Children.Add(d);
+            }
+            current--;
+        }
+
+        private int getColumn(int i)
+        {
+            return i%10;
+        }
+        private int getRow(int i)
+        {
+            return i/10;
         }
     }
 }

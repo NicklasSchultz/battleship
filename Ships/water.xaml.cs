@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Battleship.Ships
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for water.xaml
     /// </summary>
-    public partial class Destroyer : UserControl
+    public partial class water : UserControl
     {
-        public Destroyer()
+        public water()
         {
             InitializeComponent();
-        }
-
-        public int getSize()
-        {
-            return 4;
         }
     }
 }

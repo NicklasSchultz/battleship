@@ -13,21 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Ships
+namespace Battleship.Board
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for Cell.xaml
     /// </summary>
-    public partial class Destroyer : UserControl
+    public partial class Cell : UserControl
     {
-        public Destroyer()
+        public Cell()
         {
             InitializeComponent();
         }
 
-        public int getSize()
-        {
-            return 4;
-        }
+        public int index { get; set; }
     }
 }

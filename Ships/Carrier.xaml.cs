@@ -25,5 +25,10 @@ namespace Battleship.Ships
         {
             InitializeComponent();
         }
+
+        public int getSize()
+        {
+            return 5;
+        }
     }
 }

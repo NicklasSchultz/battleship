@@ -5,7 +5,7 @@
         xmlns:ships="clr-namespace:Battleship.Ships"
         Title="MainWindow">
     <DockPanel LastChildFill="True">
-        <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200"/>
-        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400" MinWidth="400"/>
+        <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200" Background="CadetBlue"/>
+        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400" MinWidth="400" Background="LightBlue"/>
     </DockPanel>
 </Window>

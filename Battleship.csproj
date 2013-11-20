@@ -58,22 +58,29 @@
     <Compile Include="Board\Board.xaml.cs">
       <DependentUpon>Board.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\GridControl.cs" />
+    <Compile Include="Board\Cell.xaml.cs">
+      <DependentUpon>Cell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Board\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Board\ShipMenuItem.xaml.cs">
       <DependentUpon>ShipMenuItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Session\Player.cs" />
-    <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\Carrier.xaml.cs">
       <DependentUpon>Carrier.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ships\Destroyer.xaml.cs">
       <DependentUpon>Destroyer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ships\water.xaml.cs">
+      <DependentUpon>water.xaml</DependentUpon>
+    </Compile>
     <Page Include="Board\Board.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Board\Cell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ships\Destroyer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ships\water.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
