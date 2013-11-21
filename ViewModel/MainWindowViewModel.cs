@@ -14,6 +14,7 @@ namespace Battleship.ViewModel
     {
         UserControl _menu=new ShipMenu();
         UserControl _content=new BoardView();
+
         public UserControl Menu { get { return _menu; }
             set { _menu = value;
             RaisPropertyChangedEvent("Menu");

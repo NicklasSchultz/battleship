@@ -5,7 +5,7 @@
         xmlns:ViewModels="clr-namespace:Battleship.ViewModel"
         Title="MainWindow">
     <Window.DataContext>
-        <ViewModels:MainWindowViewModel/>
+        <ViewModels:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
@@ -20,6 +20,6 @@
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}"></ContentControl>
-        <ContentControl Content="{Binding Content}"></ContentControl>
+         <ContentControl Content="{Binding Content}"></ContentControl> 
     </DockPanel>
 </Window>

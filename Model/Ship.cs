@@ -13,9 +13,5 @@ namespace Battleship.Model
         {
 
         }
-        public Ship(Cell cell, int size) :base(cell, size)
-        {
-
-        }
     }
 }

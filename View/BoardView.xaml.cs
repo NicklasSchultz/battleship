@@ -35,6 +35,7 @@ namespace Battleship.View
             for (int i = 0; i < 100; i++)
             {
                 var cellView = new CellView();
+                cellView.SetBinding(DataContextProperty, "[" + i + "]");
                 this.mainGrid.Children.Add(cellView);
                 }
         }

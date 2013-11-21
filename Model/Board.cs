@@ -20,9 +20,7 @@ namespace Battleship.Model
 
                 _cells.Add(new Cell(row, column));
             }
-            System.Windows.MessageBox.Show("EHHEH");
-            this[2,2].Content = new Water(this[2,2]);
-            this[1, 5].Content = new Ship(this[1, 5]);
+            InitializeBoard();
         }
         public Cell this[int hor, int vert]
         {
@@ -38,6 +36,13 @@ namespace Battleship.Model
             get
             {
                 return _cells;
+            }
+        }
+        private void InitializeBoard()
+        {
+            foreach (Cell cell in _cells)
+            {
+                cell.Content = new Water(cell);
             }
         }
     }
