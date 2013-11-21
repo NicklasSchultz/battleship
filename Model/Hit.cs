@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Battleship.ViewModel
+namespace Battleship.Model
 {
-    class MainMenuViewModel:BaseViewModel
+    public class Hit : Content
     {
+        public Hit(Cell cell)
+            : base(cell)
+        {
+
+        }
     }
 }

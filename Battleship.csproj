@@ -56,13 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ShipMenuViewModel.cs" />
-    <Compile Include="View\Board.xaml.cs">
-      <DependentUpon>Board.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>
@@ -78,6 +74,21 @@
     <Compile Include="View\Ships\BattleShip.xaml.cs">
       <DependentUpon>BattleShip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Board.cs" />
+    <Compile Include="Model\Cell.cs" />
+    <Compile Include="Model\Content.cs" />
+    <Compile Include="Model\Hit.cs" />
+    <Compile Include="Model\Ship.cs" />
+    <Compile Include="Model\Water.cs" />
+    <Compile Include="View\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CellView.xaml.cs">
+      <DependentUpon>CellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ContentView.xaml.cs">
+      <DependentUpon>ContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Ships\Cruiser.xaml.cs">
       <DependentUpon>Cruiser.xaml</DependentUpon>
     </Compile>
@@ -87,6 +98,23 @@
     <Compile Include="View\Ships\Submarine.xaml.cs">
       <DependentUpon>Submarine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="ViewModel\CellViewModel.cs" />
+    <Compile Include="Ships\water.xaml.cs">
+      <DependentUpon>water.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,10 +127,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Board.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Field.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -135,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Ships\water.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -163,7 +191,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Battleship.Board
+namespace Battleship.ViewModel
 {
-    class BaseViewModel :INotifyPropertyChanged
+    public class BaseViewModel :INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

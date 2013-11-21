@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Ships
+namespace Battleship.View.Ships
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml
@@ -23,6 +23,11 @@ namespace Battleship.Ships
         public Destroyer()
         {
             InitializeComponent();
+        }
+
+        public int getSize()
+        {
+            return 4;
         }
     }
 }

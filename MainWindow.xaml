@@ -1,21 +1,21 @@
 ﻿<Window x:Class="Battleship.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Board="clr-namespace:Battleship.Board"
-        xmlns:ships="clr-namespace:Battleship.Ships"
+        xmlns:Views="clr-namespace:Battleship.View"
+        xmlns:ViewModels="clr-namespace:Battleship.ViewModel"
         Title="MainWindow">
     <Window.DataContext>
-        <Board:MainWindowViewModel/>
+        <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type Board:MainMenuViewModel}">
-            <Board:MainMenu/>
+        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
+            <Views:MainMenu/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type Board:ShipMenuViewModel}">
-            <Board:ShipMenu/>
+        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}">
+            <Views:ShipMenu/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type Board:BoardViewModel}">
-            <Board:Board/>
+        <DataTemplate DataType="{x:Type ViewModels:BoardViewModel}">
+            <Views:BoardView/>
         </DataTemplate>
     </Window.Resources>
     <DockPanel LastChildFill="True">

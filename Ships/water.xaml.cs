@@ -13,30 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.View
+namespace Battleship.View.Ships
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for water.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class water : UserControl
     {
-        public MainMenu()
+        public water()
         {
             InitializeComponent();
-        }
-
-        private void StartNewGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void LoadGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        private void Exit(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

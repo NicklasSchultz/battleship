@@ -12,31 +12,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Battleship.View.Ships;
+using Battleship.Model;
+using Battleship.View;
 
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for Board.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class BoardView : UserControl
     {
-        public MainMenu()
+        public BoardView()
         {
             InitializeComponent();
-        }
-
-        private void StartNewGame(object sender, MouseButtonEventArgs e)
-        {
 
         }
-
-        private void LoadGame(object sender, MouseButtonEventArgs e)
+        protected override void OnInitialized(EventArgs e)
         {
+            base.OnInitialized(e);
 
-        }
-        private void Exit(object sender, MouseButtonEventArgs e)
-        {
-
+            for (int i = 0; i < 100; i++)
+            {
+                var cellView = new CellView();
+                this.mainGrid.Children.Add(cellView);
+                }
         }
     }
 }

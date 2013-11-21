@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Battleship.Ships;
-namespace Battleship.Board
+using Battleship.View.Ships;
+namespace Battleship.View
 {
     /// <summary>
     /// Interaction logic for Field.xaml

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Battleship.ViewModel
+namespace Battleship.Model
 {
-    class MainMenuViewModel:BaseViewModel
+    public class Water : Content
     {
+        public Water(Cell cell) :base(cell)
+        {
+
+        }
     }
 }

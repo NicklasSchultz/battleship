@@ -16,27 +16,13 @@ using System.Windows.Shapes;
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for ContentView.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class ContentView : UserControl
     {
-        public MainMenu()
+        public ContentView()
         {
             InitializeComponent();
-        }
-
-        private void StartNewGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void LoadGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        private void Exit(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Ships
+namespace Battleship.View.Ships
 {
     /// <summary>
     /// Interaction logic for BattleShip.xaml

@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Board
+namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for Board.xaml
+    /// Interaction logic for Cell.xaml
     /// </summary>
-    public partial class Board : UserControl
+    public partial class CellView : UserControl
     {
-        Field[,] cells = new Field[10, 10];
-        public Board()
+        public CellView()
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    Field field = new Field();
-                    this.field.Children.Add(field);
-                    cells[i, j] = field;
-                }
-            }
         }
     }
 }

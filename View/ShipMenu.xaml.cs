@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.Board
+namespace Battleship.View
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml
