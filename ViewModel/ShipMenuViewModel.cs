@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Battleship.Session
+namespace Battleship.Board
 {
-    class Player
+    class ShipMenuViewModel:BaseViewModel
     {
-        public Player()
-        {
-            
-        }
     }
 }

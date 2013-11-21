@@ -12,20 +12,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Battleship.Board;
-using Battleship.Ships;
 
-namespace Battleship
+namespace Battleship.Board
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainMenu : UserControl
     {
-        
-        public MainWindow()
+        public MainMenu()
         {
             InitializeComponent();
+        }
+
+        private void StartNewGame(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void LoadGame(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void Exit(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

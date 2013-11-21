@@ -4,8 +4,22 @@
         xmlns:Board="clr-namespace:Battleship.Board"
         xmlns:ships="clr-namespace:Battleship.Ships"
         Title="MainWindow">
+    <Window.DataContext>
+        <Board:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type Board:MainMenuViewModel}">
+            <Board:MainMenu/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Board:ShipMenuViewModel}">
+            <Board:ShipMenu/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type Board:BoardViewModel}">
+            <Board:Board/>
+        </DataTemplate>
+    </Window.Resources>
     <DockPanel LastChildFill="True">
-        <Board:ShipMenu DockPanel.Dock="Right" MinWidth="200"/>
-        <Board:Board x:Name="field" DockPanel.Dock="Left" MinHeight="400"  Width="{Binding Height, ElementName=field}"/>
+        <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}"></ContentControl>
+        <ContentControl Content="{Binding Content}"></ContentControl>
     </DockPanel>
 </Window>

@@ -55,39 +55,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Board\Board.xaml.cs">
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ShipMenuViewModel.cs" />
+    <Compile Include="View\Board.xaml.cs">
       <DependentUpon>Board.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Board\ShipMenu.xaml.cs">
+    <Compile Include="View\Field.xaml.cs">
+      <DependentUpon>Field.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Board\ShipMenuItem.xaml.cs">
-      <DependentUpon>ShipMenuItem.xaml</DependentUpon>
+    <Compile Include="View\Ships\AircraftCarrier.xaml.cs">
+      <DependentUpon>AircraftCarrier.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Session\Player.cs" />
-    <Compile Include="Ships\Ship.cs" />
-    <Compile Include="Ships\shipView.xaml.cs">
-      <DependentUpon>shipView.xaml</DependentUpon>
+    <Compile Include="View\Ships\BattleShip.xaml.cs">
+      <DependentUpon>BattleShip.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ships\Destroyer.xaml.cs">
+    <Compile Include="View\Ships\Cruiser.xaml.cs">
+      <DependentUpon>Cruiser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ships\Destroyer.xaml.cs">
       <DependentUpon>Destroyer.xaml</DependentUpon>
     </Compile>
-    <Page Include="Board\Board.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Board\Field.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Board\ShipMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Board\ShipMenuItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="View\Ships\Submarine.xaml.cs">
+      <DependentUpon>Submarine.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,20 +95,45 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Board\Field.xaml.cs">
-      <DependentUpon>Field.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Ships\shipView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Board.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ships\Destroyer.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Field.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ShipMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Ships\AircraftCarrier.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Ships\BattleShip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Ships\Cruiser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Ships\Destroyer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Ships\Submarine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +163,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

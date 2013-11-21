@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Battleship.Board.ShipMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:ship="clr-namespace:Battleship.Ships"
+             xmlns:Board="clr-namespace:Battleship.Board">
+        
+    <Grid MinHeight="200" MinWidth="200">
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ship:AircraftCarrier Margin="10" Grid.Row="0"/>
+        <ship:Submarine Margin="10" Grid.Row="1"/>
+        <ship:Destroyer Margin="10" Grid.Row="2"/>
+        <ship:Cruiser Margin="10" Grid.Row="3"/>
+        <ship:BattleShip Margin="10" Grid.Row="4"/>
+    </Grid>
+</UserControl>
