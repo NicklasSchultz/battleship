@@ -12,15 +12,13 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type content:Ship}" >
             <Viewbox>
-                <Canvas Height="80" Width="80">
-                    <Path Stroke="Black" StrokeThickness="2" Stretch="Fill" Fill="Black" Data="M80,89 L20,89 Q20,69 43,55 C30,48 30,35 43,28 A11,11,0,1,1,57,28 C70,35 70,48 57,55 Q80,69 80,89 z" Height="70" Width="70" Margin="5,10,0,0"></Path>
-                </Canvas>
+                <Rectangle Fill="LightGray"  Height="30" Width="30"></Rectangle>
             </Viewbox>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type content:Water}" >
             <Viewbox>
-                <Rectangle Fill="LightBlue" Stroke="Black" Height="30" Width="30"/>
+                <Rectangle Fill="LightBlue" Stroke="Black"  StrokeThickness="0.5" Height="30" Width="30"/>
             </Viewbox>
         </DataTemplate>
     </UserControl.Resources>

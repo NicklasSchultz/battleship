@@ -8,8 +8,8 @@ namespace Battleship.Model
 {
     public sealed class Cell
     {
-        public int HorPosition { get; private set; }
-        public int VertPosition { get; private set; }
+        public int HorPosition;
+        public int VertPosition;
 
         public Content Content { get; set; }
 
@@ -17,6 +17,15 @@ namespace Battleship.Model
         {
             VertPosition = vertPosition;
             HorPosition = horPosition;
+        }
+
+        public int GetHorPosition()
+        {
+            return HorPosition;
+        }
+        public int GetVerPosition()
+        {
+            return VertPosition;
         }
     }
 }

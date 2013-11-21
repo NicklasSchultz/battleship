@@ -26,7 +26,7 @@ namespace Battleship.Model
         {
             get
             {
-                Cell cell = _cells[vert + hor * 8];
+                Cell cell = _cells[vert + hor * 10];
                 return cell;
             }
             set { this[hor, vert] = value; }
@@ -38,12 +38,23 @@ namespace Battleship.Model
                 return _cells;
             }
         }
+
         private void InitializeBoard()
         {
             foreach (Cell cell in _cells)
             {
                 cell.Content = new Water(cell);
+            
             }
+            Ship s = new Ship(this[2, 4], 4);
+            for (int i = 0; i < s.getSize(); i++)
+            {
+                Cell c = s.getStartCell();
+                this[c.GetHorPosition(), c.GetVerPosition()+i].Content = s;
+            }
+                this[5, 5].Content = new Ship(this[5, 5]);
+            this[5, 6].Content = new Ship(this[5, 7]);
+            this[5, 7].Content = new Ship(this[5, 7]);
         }
     }
 }
