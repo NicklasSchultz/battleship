@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
+             xmlns:ViewModel="clr-namespace:Battleship.ViewModel"
              xmlns:ship="clr-namespace:Battleship.View.Ships"
              xmlns:Board="clr-namespace:Battleship.View">
-        
-    <Grid MinHeight="200" MinWidth="200">
+        <UserControl.DataContext>
+        <ViewModel:ShipMenuViewModel/>
+    </UserControl.DataContext>
+        <Grid MinHeight="200" MinWidth="200">
         <Grid.ColumnDefinitions>
             
         </Grid.ColumnDefinitions>
