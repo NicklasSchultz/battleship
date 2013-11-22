@@ -59,6 +59,15 @@
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ShipMenuViewModel.cs" />
+    <Compile Include="View\AirCraftCarrier.xaml.cs">
+      <DependentUpon>AirCraftCarrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cell.xaml.cs">
+      <DependentUpon>Cell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Destroyer.xaml.cs">
+      <DependentUpon>Destroyer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>
@@ -67,12 +76,6 @@
     </Compile>
     <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ships\AircraftCarrier.xaml.cs">
-      <DependentUpon>AircraftCarrier.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ships\BattleShip.xaml.cs">
-      <DependentUpon>BattleShip.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Board.cs" />
     <Compile Include="Model\Cell.cs" />
@@ -89,21 +92,20 @@
     <Compile Include="View\ContentView.xaml.cs">
       <DependentUpon>ContentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Ships\Cruiser.xaml.cs">
-      <DependentUpon>Cruiser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ships\Destroyer.xaml.cs">
-      <DependentUpon>Destroyer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Ships\Submarine.xaml.cs">
-      <DependentUpon>Submarine.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\CellViewModel.cs" />
     <Compile Include="Ships\water.xaml.cs">
       <DependentUpon>water.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AirCraftCarrier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Cell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +129,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Destroyer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Field.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,26 +142,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ShipMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Ships\AircraftCarrier.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Ships\BattleShip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Ships\Cruiser.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Ships\Destroyer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Ships\Submarine.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
