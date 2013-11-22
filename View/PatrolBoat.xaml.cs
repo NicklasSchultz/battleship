@@ -16,14 +16,15 @@ using System.Windows.Shapes;
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for AirCraftCarrier.xaml
+    /// Interaction logic for PatrolBoat.xaml
     /// </summary>
-    public partial class AirCraftCarrier : UserControl
+    public partial class PatrolBoat : UserControl
     {
 
-        public static int size = 5;
+        public bool orientiation = true;
+        public static int size = 2;
 
-        public AirCraftCarrier()
+        public PatrolBoat()
         {
             InitializeComponent();
         }
@@ -34,12 +35,14 @@ namespace Battleship.View
             {
                 // Package the data.
                 DataObject data = new DataObject();
-                data.SetData(airCraftCarrier);
+                data.SetData(patrol);
                 data.SetData("Object", this);
-                data.SetData("Size", 5);
+                data.SetData("Size", size);
+                data.SetData("Orientation", orientiation);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+                orientiation = !orientiation;
             }
         }
     }

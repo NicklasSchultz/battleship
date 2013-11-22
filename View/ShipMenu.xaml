@@ -16,11 +16,12 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Board:Destroyer Grid.Row="0"/>
         <Board:AirCraftCarrier Grid.Row="1"/>
         <Board:Submarine Grid.Row="2"/>
+        <Board:PatrolBoat Grid.Row="3"/>
     </Grid>
 </UserControl>

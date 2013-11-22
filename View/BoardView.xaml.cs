@@ -21,6 +21,8 @@ namespace Battleship.View
     /// </summary>
     public partial class BoardView : UserControl
     {
+
+        public bool orientation = true;
         public BoardView()
         {
             InitializeComponent();
@@ -75,13 +77,68 @@ namespace Battleship.View
                 UIElement _element = (UIElement)e.Data.GetData("Object");
                 UserControl d = (UserControl)_element;
                 int size = (int)e.Data.GetData("Size");
+                
                 Grid g = (Grid) VisualTreeHelper.GetParent(_element);
                 g.Children.Remove(_element);
                 Grid.SetColumn(d, x);
                 Grid.SetRow(d, y);
-                Grid.SetColumnSpan(d, size);
+
+                d.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
+
+                if (orientation)
+                {
+                    Grid.SetColumnSpan(d, size);
+                    Grid.SetRowSpan(d, 1);
+                }
+                else
+                {
+                    Grid.SetRowSpan(d, size);
+                    Grid.SetColumnSpan(d, 1);
+                }
+                
                 _grid.Children.Add(d);
             }
+        }
+
+        private void flipBoat(object o , MouseButtonEventArgs a)
+        {
+            UserControl u = (UserControl)o;
+            mainGrid.Children.Remove(u);
+
+            orientation = !orientation;
+
+            if (orientation)
+            {
+                Grid.SetColumnSpan(u, getBoatSize(o));
+                Grid.SetRowSpan(u, 1);
+            }
+            else
+            {
+                Grid.SetRowSpan(u, getBoatSize(o));
+                Grid.SetColumnSpan(u, 1);
+            }
+
+            mainGrid.Children.Add(u);
+        }
+
+        private int getBoatSize(object o)
+        {
+            if (o.GetType() == typeof(PatrolBoat)){
+                return PatrolBoat.size;
+            }
+            if (o.GetType() == typeof(Submarine))
+            {
+                return Submarine.size;
+            }
+            if (o.GetType() == typeof(AirCraftCarrier))
+            {
+                return AirCraftCarrier.size;
+            }
+            if (o.GetType() == typeof(Destroyer))
+            {
+                return Destroyer.size;
+            }
+            return 0;
         }
     }
 }

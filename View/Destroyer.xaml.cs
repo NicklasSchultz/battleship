@@ -20,6 +20,9 @@ namespace Battleship.View
     /// </summary>
     public partial class Destroyer : UserControl
     {
+
+        public static int size = 4;
+
         public Destroyer()
         {
             InitializeComponent();
@@ -34,8 +37,7 @@ namespace Battleship.View
                 DataObject data = new DataObject();
                 data.SetData(destroyer);
                 data.SetData("Object", this);
-                data.SetData("Size", 4);
-
+                data.SetData("Size", size);
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
             }

@@ -20,6 +20,7 @@ namespace Battleship.View
     /// </summary>
     public partial class Submarine : UserControl
     {
+        public static int size = 3;
         public Submarine()
         {
             InitializeComponent();
@@ -33,10 +34,11 @@ namespace Battleship.View
                 DataObject data = new DataObject();
                 data.SetData(sub);
                 data.SetData("Object", this);
-                data.SetData("Size", 3);
+                data.SetData("Size", size);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+                
             }
         }
     }

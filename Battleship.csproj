@@ -74,6 +74,9 @@
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PatrolBoat.xaml.cs">
+      <DependentUpon>PatrolBoat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     <Page Include="View\MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PatrolBoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShipMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
