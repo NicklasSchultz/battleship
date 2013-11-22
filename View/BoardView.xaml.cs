@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Battleship.Model;
 using Battleship.View;
 
 namespace Battleship.View
@@ -75,11 +74,12 @@ namespace Battleship.View
 
                 UIElement _element = (UIElement)e.Data.GetData("Object");
                 UserControl d = (UserControl)_element;
+                int size = (int)e.Data.GetData("Size");
                 Grid g = (Grid) VisualTreeHelper.GetParent(_element);
                 g.Children.Remove(_element);
                 Grid.SetColumn(d, x);
                 Grid.SetRow(d, y);
-                Grid.SetColumnSpan(d, 3);
+                Grid.SetColumnSpan(d, size);
                 _grid.Children.Add(d);
             }
         }

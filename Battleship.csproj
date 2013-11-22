@@ -77,25 +77,12 @@
     <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Board.cs" />
-    <Compile Include="Model\Cell.cs" />
-    <Compile Include="Model\Content.cs" />
-    <Compile Include="Model\Hit.cs" />
-    <Compile Include="Model\Ship.cs" />
-    <Compile Include="Model\Water.cs" />
     <Compile Include="View\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CellView.xaml.cs">
-      <DependentUpon>CellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ContentView.xaml.cs">
-      <DependentUpon>ContentView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\BoardViewModel.cs" />
-    <Compile Include="ViewModel\CellViewModel.cs" />
-    <Compile Include="Ships\water.xaml.cs">
-      <DependentUpon>water.xaml</DependentUpon>
+    <Compile Include="View\Submarine.xaml.cs">
+      <DependentUpon>Submarine.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AirCraftCarrier.xaml">
       <SubType>Designer</SubType>
@@ -106,14 +93,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Cell.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\CellView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,7 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ships\water.xaml">
+    <Page Include="View\Submarine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
