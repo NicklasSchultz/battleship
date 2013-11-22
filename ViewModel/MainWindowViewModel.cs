@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Battleship.Model;
 
 namespace Battleship.ViewModel
 {

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="180">
-    <Grid x:Name="Carrier">
-        <Border Grid.Row="0" x:Name="airCraftCarrier" Background="#FF0027C6" CornerRadius="90" BorderThickness="2" BorderBrush="#FFE3ED2E">
+    <Grid>
+        <Border Grid.Row="0" x:Name="airCraftCarrier" Background="#FF0027C6" CornerRadius="90" BorderThickness="2" BorderBrush="#FFE3ED2E" >
             <StackPanel Orientation="Horizontal" Background="#FF626262" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Rectangle Fill="#FF521687" Stroke="#FF858585" RenderTransformOrigin="2.667,0.573" VerticalAlignment="Center" HorizontalAlignment="Center" Width="35" Height="35" StrokeThickness="5"/>
             </StackPanel>

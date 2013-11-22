@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for Destroyer.xaml
+    /// Interaction logic for Submarine.xaml
     /// </summary>
-    public partial class Destroyer : UserControl
+    public partial class Submarine : UserControl
     {
-        public Destroyer()
+        public Submarine()
         {
             InitializeComponent();
         }
-
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -32,9 +31,9 @@ namespace Battleship.View
             {
                 // Package the data.
                 DataObject data = new DataObject();
-                data.SetData(destroyer);
+                data.SetData(sub);
                 data.SetData("Object", this);
-                data.SetData("Size", 4);
+                data.SetData("Size", 3);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
