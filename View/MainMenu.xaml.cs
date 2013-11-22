@@ -24,19 +24,5 @@ namespace Battleship.View
         {
             InitializeComponent();
         }
-
-        private void StartNewGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void LoadGame(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-        private void Exit(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }
