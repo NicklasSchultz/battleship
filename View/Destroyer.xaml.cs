@@ -13,10 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship.View.Ships
+namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for Destroyer.xaml
     /// </summary>
     public partial class Destroyer : UserControl
     {
@@ -25,9 +25,19 @@ namespace Battleship.View.Ships
             InitializeComponent();
         }
 
-        public int getSize()
+        protected override void OnMouseMove(MouseEventArgs e)
         {
-            return 4;
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                // Package the data.
+                DataObject data = new DataObject();
+                data.SetData(destroyer);
+                data.SetData("Object", this);
+
+                // Inititate the drag-and-drop operation.
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
         }
     }
 }

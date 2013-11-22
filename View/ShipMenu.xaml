@@ -15,16 +15,13 @@
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ship:AircraftCarrier Margin="10" Grid.Row="0"/>
-        <ship:Submarine Margin="10" Grid.Row="1"/>
-        <ship:Destroyer Margin="10" Grid.Row="2"/>
-        <ship:Cruiser Margin="10" Grid.Row="3"/>
-        <ship:BattleShip Margin="10" Grid.Row="4"/>
+        <Board:Destroyer  Grid.Row="0"/>
+        <Board:AirCraftCarrier Grid.Row="1"/>
     </Grid>
 </UserControl>

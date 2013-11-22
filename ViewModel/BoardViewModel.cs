@@ -12,6 +12,7 @@ namespace Battleship.ViewModel
     {
 
         private Board _board;
+        public Board Board { get { return _board; } set { _board = value; RaisPropertyChangedEvent("Board"); } }
 
         public List<CellViewModel> Cells { get; private set; }
 

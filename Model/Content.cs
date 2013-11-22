@@ -18,7 +18,6 @@ namespace Battleship.Model
 
         protected Content(Cell cell, int size)
         {
-            Cell = cell;
             Size = size;
         }
     }

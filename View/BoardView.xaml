@@ -3,11 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:V="clr-namespace:Battleship.ViewModel"
       mc:Ignorable="d"
-      d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
-        <Viewbox DockPanel.Dock="Left">
-            <UniformGrid DataContext="{Binding Path=Cells}" Name="mainGrid" Columns="10" Rows="10" Height="300" Width="300" />
-        </Viewbox>
+             xmlns:Cell="clr-namespace:Battleship.View"
+      d:DesignHeight="300" d:DesignWidth="300"
+             AllowDrop="True">
+    <UserControl.DataContext>
+        <V:BoardViewModel></V:BoardViewModel>
+    </UserControl.DataContext>
+    <Grid Name="mainGrid"  AllowDrop="True"
+            DragOver="panel_DragOver"
+            Drop="panel_Drop">
     </Grid>
 </UserControl>

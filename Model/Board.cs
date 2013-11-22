@@ -20,15 +20,13 @@ namespace Battleship.Model
 
                 _cells.Add(new Cell(row, column));
             }
-            System.Windows.MessageBox.Show("EHHEH");
-            this[2,2].Content = new Water(this[2,2]);
-            this[1, 5].Content = new Ship(this[1, 5]);
+            InitializeBoard();
         }
         public Cell this[int hor, int vert]
         {
             get
             {
-                Cell cell = _cells[vert + hor * 8];
+                Cell cell = _cells[vert + hor * 10];
                 return cell;
             }
             set { this[hor, vert] = value; }
@@ -39,6 +37,24 @@ namespace Battleship.Model
             {
                 return _cells;
             }
+        }
+
+        private void InitializeBoard()
+        {
+            foreach (Cell cell in _cells)
+            {
+                cell.Content = new Water(cell);
+            
+            }
+            Ship s = new Ship(this[2, 4], 4);
+            for (int i = 0; i < s.getSize(); i++)
+            {
+                Cell c = s.getStartCell();
+                this[c.GetHorPosition(), c.GetVerPosition()+i].Content = s;
+            }
+                this[5, 5].Content = new Ship(this[5, 5]);
+            this[5, 6].Content = new Ship(this[5, 7]);
+            this[5, 7].Content = new Ship(this[5, 7]);
         }
     }
 }

@@ -12,8 +12,8 @@
             <MouseBinding Command="{Binding Path=MakeSelected}" Gesture="LeftClick"></MouseBinding>
         </Grid.InputBindings>
         <Border BorderThickness="0.5" BorderBrush="Black"
-                Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualWidth}"
-                Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualHeight}">
+                Width="30"
+                Height="30">
             <C:ContentView DataContext="{Binding Path=Content}"></C:ContentView>
         </Border>
     </Grid>
