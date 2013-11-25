@@ -38,7 +38,6 @@ namespace Battleship.View
                 data.SetData(patrol);
                 data.SetData("Object", this);
                 data.SetData("Size", size);
-                data.SetData("Orientation", orientiation);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);

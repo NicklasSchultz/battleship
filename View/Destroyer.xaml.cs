@@ -38,6 +38,7 @@ namespace Battleship.View
                 data.SetData(destroyer);
                 data.SetData("Object", this);
                 data.SetData("Size", size);
+
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
             }

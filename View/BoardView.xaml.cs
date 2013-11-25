@@ -22,6 +22,7 @@ namespace Battleship.View
     public partial class BoardView : UserControl
     {
 
+        public bool donePlaceing = false;
         public bool orientation = true;
         public BoardView()
         {
@@ -40,11 +41,33 @@ namespace Battleship.View
             for (int i = 0; i < 100; i++)
             {
                     var cellView = new Cell();
+                    cellView.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(clickListner);
                     Grid.SetColumn(cellView, i%10);
                     Grid.SetRow(cellView, i/10);
                     cellView.SetBinding(DataContextProperty, "[" + i + "]");
                    this.mainGrid.Children.Add(cellView);
             }
+        }
+
+        private void clickListner(object s, MouseButtonEventArgs a)
+        {
+            Point pos = a.GetPosition(this);
+
+            int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
+            int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
+            UserControl u;
+            if (getBoatSize(s) == 0)
+            {
+                u = new Miss();
+            }
+            else
+            {
+                u = new Hit();
+            }
+            Grid.SetColumn(u, x);
+            Grid.SetRow(u, y);
+            mainGrid.Children.Add(u);
         }
 
         private void panel_DragOver(object sender, DragEventArgs e)
@@ -75,14 +98,15 @@ namespace Battleship.View
                 int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
 
                 UIElement _element = (UIElement)e.Data.GetData("Object");
-                UserControl d = (UserControl)_element;
                 int size = (int)e.Data.GetData("Size");
+
+                UserControl d = (UserControl)_element;
                 
                 Grid g = (Grid) VisualTreeHelper.GetParent(_element);
                 g.Children.Remove(_element);
+                
                 Grid.SetColumn(d, x);
                 Grid.SetRow(d, y);
-
                 d.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
 
                 if (orientation)
@@ -97,28 +121,55 @@ namespace Battleship.View
                 }
                 
                 _grid.Children.Add(d);
+
+                if (g.Children.Count == 0)
+                {
+                    donePlaceing = true;
+                }
             }
         }
 
         private void flipBoat(object o , MouseButtonEventArgs a)
         {
-            UserControl u = (UserControl)o;
-            mainGrid.Children.Remove(u);
-
-            orientation = !orientation;
-
-            if (orientation)
+            if (donePlaceing)
             {
-                Grid.SetColumnSpan(u, getBoatSize(o));
-                Grid.SetRowSpan(u, 1);
+                Point pos = a.GetPosition(this);
+
+                int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
+                int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
+                UserControl u;
+                if (getBoatSize(o) == 0)
+                {
+                    u = new Miss();
+                }
+                else
+                {
+                    u = new Hit();
+                }
+                Grid.SetColumn(u, x);
+                Grid.SetRow(u, y);
+                mainGrid.Children.Add(u);
             }
             else
             {
-                Grid.SetRowSpan(u, getBoatSize(o));
-                Grid.SetColumnSpan(u, 1);
-            }
+                UserControl u = (UserControl)o;
+                mainGrid.Children.Remove(u);
 
-            mainGrid.Children.Add(u);
+                orientation = !orientation;
+
+                if (orientation)
+                {
+                    Grid.SetColumnSpan(u, getBoatSize(o));
+                    Grid.SetRowSpan(u, 1);
+                }
+                else
+                {
+                    Grid.SetRowSpan(u, getBoatSize(o));
+                    Grid.SetColumnSpan(u, 1);
+                }
+                mainGrid.Children.Add(u);
+            }
         }
 
         private int getBoatSize(object o)
