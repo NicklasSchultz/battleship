@@ -23,5 +23,6 @@
         <Board:AirCraftCarrier Grid.Row="1"/>
         <Board:Submarine Grid.Row="2"/>
         <Board:PatrolBoat Grid.Row="3"/>
+        <Button Grid.Row="4" Click="Button_Click" ></Button>
     </Grid>
 </UserControl>
