@@ -23,6 +23,25 @@ namespace Battleship.View
         public ShipMenu()
         {
             InitializeComponent();
+
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            ContentPresenter parent = (ContentPresenter)VisualTreeHelper.GetParent(this);
+
+            var contentPresenter = parent as ContentPresenter;
+            if (contentPresenter != null)
+            {
+                if (contentPresenter.Content == this)
+                {
+                    contentPresenter.Content = null;
+                    contentPresenter.Content = new MainMenu();
+                }
+                return;
+            }
         }
     }
 }

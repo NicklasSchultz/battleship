@@ -16,29 +16,13 @@ using System.Windows.Shapes;
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for Hit.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class Hit : UserControl
     {
-        public MainMenu()
+        public Hit()
         {
             InitializeComponent();
-
-        }
-
-        private void StartNewGame(object sender, RoutedEventArgs e)
-        {
-            e.RoutedEvent.RoutingStrategy(RoutingStrategy.Bubble);
-            this.RaiseEvent();
-        }
-
-        private void LoadGame(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

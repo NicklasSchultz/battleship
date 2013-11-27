@@ -1,16 +1,17 @@
-﻿<UserControl x:Class="Battleship.View.Destroyer"
+﻿<local:Ship x:Class="Battleship.View.Destroyer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Battleship.View"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="150"
              AllowDrop="True">
-    <Grid x:Name="DestroyerName">
+    <Grid x:Name="DestroyerName" Margin="5">
         <Border Grid.Row="0" x:Name="destroyer" Background="#FF0027C6" CornerRadius="90" BorderThickness="2" BorderBrush="#FFE3ED2E">
             <StackPanel Orientation="Horizontal" Background="#FF626262" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Rectangle Fill="#FF521687" Stroke="#FF858585" RenderTransformOrigin="2.667,0.573" VerticalAlignment="Center" HorizontalAlignment="Center" Width="35" Height="35" StrokeThickness="5"/>
             </StackPanel>
         </Border>
     </Grid>
-</UserControl>
+</local:Ship>

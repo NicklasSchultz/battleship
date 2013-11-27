@@ -29,5 +29,18 @@ namespace Battleship
 
 
         }
+        private void StartNewGame(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("start");
+        }
+
+        private void LoadGame(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("load");
+        }
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

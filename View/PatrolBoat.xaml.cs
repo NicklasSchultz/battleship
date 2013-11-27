@@ -16,12 +16,14 @@ using System.Windows.Shapes;
 namespace Battleship.View
 {
     /// <summary>
-    /// Interaction logic for Submarine.xaml
+    /// Interaction logic for PatrolBoat.xaml
     /// </summary>
-    public partial class Submarine : Ship
+    public partial class PatrolBoat : Ship
     {
-        public static int size = 3;
-        public Submarine()
+
+        public static int size = 2;
+
+        public PatrolBoat()
         {
             InitializeComponent();
         }
@@ -32,13 +34,12 @@ namespace Battleship.View
             {
                 // Package the data.
                 DataObject data = new DataObject();
-                data.SetData(sub);
+                data.SetData(patrol);
                 data.SetData("Object", this);
                 data.SetData("Size", size);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
-                
             }
         }
     }

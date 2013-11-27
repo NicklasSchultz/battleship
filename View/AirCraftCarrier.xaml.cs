@@ -18,8 +18,10 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for AirCraftCarrier.xaml
     /// </summary>
-    public partial class AirCraftCarrier : UserControl
+    public partial class AirCraftCarrier : Ship
     {
+
+        public static int size = 5;
 
         public AirCraftCarrier()
         {
@@ -34,7 +36,7 @@ namespace Battleship.View
                 DataObject data = new DataObject();
                 data.SetData(airCraftCarrier);
                 data.SetData("Object", this);
-                data.SetData("Size", 5);
+                data.SetData("Size", size);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);

@@ -11,7 +11,7 @@ namespace Battleship.ViewModel
 {
     class MainWindowViewModel:BaseViewModel
     {
-        UserControl _menu=new ShipMenu();
+        UserControl _menu=new MainMenu();
         UserControl _content=new BoardView();
 
         public UserControl Menu { get { return _menu; }

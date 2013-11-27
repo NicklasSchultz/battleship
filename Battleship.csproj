@@ -71,9 +71,19 @@
     <Compile Include="View\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Hit.xaml.cs">
+      <DependentUpon>Hit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Miss.xaml.cs">
+      <DependentUpon>Miss.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PatrolBoat.xaml.cs">
+      <DependentUpon>PatrolBoat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShipControl.cs" />
     <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
@@ -81,6 +91,7 @@
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="View\Ship.cs" />
     <Compile Include="View\Submarine.xaml.cs">
       <DependentUpon>Submarine.xaml</DependentUpon>
     </Compile>
@@ -116,9 +127,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Hit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Miss.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PatrolBoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShipMenu.xaml">
       <Generator>MSBuild:Compile</Generator>

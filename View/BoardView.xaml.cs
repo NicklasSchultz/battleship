@@ -16,72 +16,194 @@ using Battleship.View;
 
 namespace Battleship.View
 {
-    /// <summary>
-    /// Interaction logic for Board.xaml
-    /// </summary>
-    public partial class BoardView : UserControl
+/// <summary>
+/// Interaction logic for Board.xaml
+/// </summary>
+public partial class BoardView : UserControl
+{
+
+    public bool donePlaceing = false;
+    public Orientation orientation = Orientation.Horizontal;
+    private bool[,] isOccupied = new bool[10,10];
+    private ShipControl control;
+
+    public BoardView()
     {
-        public BoardView()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
+    }
+    protected override void OnInitialized(EventArgs e)
+    {
+        base.OnInitialized(e);
+        control = new ShipControl();
+
+        for (int i = 0; i < 10; i++)
+        {
+            mainGrid.RowDefinitions.Add(new RowDefinition());
+            mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
         }
-        protected override void OnInitialized(EventArgs e)
+        for (int i = 0; i < 100; i++)
         {
-            base.OnInitialized(e);
-
-            for (int i = 0; i < 10; i++)
-            {
-                mainGrid.RowDefinitions.Add(new RowDefinition());
-                mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                    var cellView = new Cell();
-                    Grid.SetColumn(cellView, i%10);
-                    Grid.SetRow(cellView, i/10);
-                    cellView.SetBinding(DataContextProperty, "[" + i + "]");
-                   this.mainGrid.Children.Add(cellView);
-            }
+                var cellView = new Cell();
+                cellView.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(clickListner);
+                Grid.SetColumn(cellView, i%10);
+                Grid.SetRow(cellView, i/10);
+                cellView.SetBinding(DataContextProperty, "[" + i + "]");
+                this.mainGrid.Children.Add(cellView);
         }
+    }
 
-        private void panel_DragOver(object sender, DragEventArgs e)
+       
+
+    private void clickListner(object s, MouseButtonEventArgs a)
+    {
+        Point pos = a.GetPosition(this);
+
+        int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
+        int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
+        UserControl u;
+        if (getBoatSize(s) == 0)
         {
-            if (e.Data.GetDataPresent("Object"))
-            {
-                // These Effects values are used in the drag source's 
-                // GiveFeedback event handler to determine which cursor to display. 
-                if (e.KeyStates == DragDropKeyStates.ControlKey)
-                {
-                    e.Effects = DragDropEffects.Copy;
-                }
-                else
-                {
-                    e.Effects = DragDropEffects.Move;
-                }
-            }
+            u = new Miss();
         }
-
-        private void panel_Drop(object sender, DragEventArgs e)
+        else
         {
-            if (e.Handled == false)
+            u = new Hit();
+        }
+        Grid.SetColumn(u, x);
+        Grid.SetRow(u, y);
+        mainGrid.Children.Add(u);
+    }
+
+    private void panel_DragOver(object sender, DragEventArgs e)
+    {
+        if (e.Data.GetDataPresent("Object"))
+        {
+            if (e.KeyStates == DragDropKeyStates.ControlKey)
             {
-                Grid _grid = (Grid)sender;
-                Point pos = e.GetPosition(this);
-
-                int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
-                int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
-
-                UIElement _element = (UIElement)e.Data.GetData("Object");
-                UserControl d = (UserControl)_element;
-                int size = (int)e.Data.GetData("Size");
-                Grid g = (Grid) VisualTreeHelper.GetParent(_element);
-                g.Children.Remove(_element);
-                Grid.SetColumn(d, x);
-                Grid.SetRow(d, y);
-                Grid.SetColumnSpan(d, size);
-                _grid.Children.Add(d);
+                e.Effects = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effects = DragDropEffects.Move;
             }
         }
     }
+
+    private void panel_Drop(object sender, DragEventArgs e)
+    {
+        if (e.Handled == false)
+        {
+            Grid _grid = (Grid)sender;
+            Point pos = e.GetPosition(this);
+
+            int column = (int)((pos.X / mainGrid.ActualWidth) * 10);
+            int row = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
+            UIElement _element = (UIElement)e.Data.GetData("Object");
+            int size = (int)e.Data.GetData("Size");
+
+            Ship ship = (Ship)_element;
+                
+            Grid g = (Grid) VisualTreeHelper.GetParent(_element);
+            if (!control.isOccupied(row, column, orientation, size))
+            { 
+                g.Children.Remove(_element);
+
+                Grid.SetColumn(ship, column);
+                Grid.SetRow(ship, row);
+                ship.startX = column;
+                ship.startY = row;
+                
+                ship.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
+
+                if (orientation.Equals(Orientation.Horizontal))
+                {
+                    Grid.SetColumnSpan(ship, size);
+                    Grid.SetRowSpan(ship, 1);
+                    
+                }
+                else
+                {
+                    Grid.SetRowSpan(ship, size);
+                    Grid.SetColumnSpan(ship, 1);
+                }
+
+                control.setOccupied(row, column, orientation, size);
+                _grid.Children.Add(ship);
+
+                if (g.Children.Count == 1)
+                {
+                    donePlaceing = true;
+                }
+            }
+        }
+    }
+
+        
+
+    private void flipBoat(object o , MouseButtonEventArgs a)
+    {
+        if (donePlaceing)
+        {
+            Point pos = a.GetPosition(this);
+
+            int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
+            int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
+            UserControl u;
+            if (getBoatSize(o) == 0)
+            {
+                u = new Miss();
+            }
+            else
+            {
+                u = new Hit();
+            }
+            Grid.SetColumn(u, x);
+            Grid.SetRow(u, y);
+            mainGrid.Children.Add(u);
+        }
+        else
+        {
+            Ship u = (Ship)o;
+            mainGrid.Children.Remove(u);
+
+            if (orientation.Equals(Orientation.Vertical))
+            {
+                Grid.SetColumnSpan(u, getBoatSize(o));
+                Grid.SetRowSpan(u, 1);
+                orientation = Orientation.Horizontal;
+            }
+            else
+            {
+                Grid.SetRowSpan(u, getBoatSize(o));
+                Grid.SetColumnSpan(u, 1);
+                orientation = Orientation.Vertical;
+            }
+            mainGrid.Children.Add(u);
+        }
+    }
+
+    private int getBoatSize(object o)
+    {
+        if (o.GetType() == typeof(PatrolBoat)){
+            return PatrolBoat.size;
+        }
+        if (o.GetType() == typeof(Submarine))
+        {
+            return Submarine.size;
+        }
+        if (o.GetType() == typeof(AirCraftCarrier))
+        {
+            return AirCraftCarrier.size;
+        }
+        if (o.GetType() == typeof(Destroyer))
+        {
+            return Destroyer.size;
+        }
+        return 0;
+    }
+}
 }
