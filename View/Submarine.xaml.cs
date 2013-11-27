@@ -18,7 +18,7 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for Submarine.xaml
     /// </summary>
-    public partial class Submarine : UserControl
+    public partial class Submarine : Ship
     {
         public static int size = 3;
         public Submarine()

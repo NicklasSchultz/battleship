@@ -18,7 +18,7 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for AirCraftCarrier.xaml
     /// </summary>
-    public partial class AirCraftCarrier : UserControl
+    public partial class AirCraftCarrier : Ship
     {
 
         public static int size = 5;

@@ -23,7 +23,7 @@ namespace Battleship.View
         public MainMenu()
         {
             InitializeComponent();
-            MessageBox.Show("HEsajsdf");
+
         }
 
         private void StartNewGame(object sender, MouseButtonEventArgs e)

@@ -23,6 +23,7 @@ namespace Battleship.View
         public ShipMenu()
         {
             InitializeComponent();
+
             
         }
 

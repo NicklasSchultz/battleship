@@ -18,7 +18,7 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for Destroyer.xaml
     /// </summary>
-    public partial class Destroyer : UserControl
+    public partial class Destroyer : Ship
     {
 
         public static int size = 4;

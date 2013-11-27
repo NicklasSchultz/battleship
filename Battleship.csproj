@@ -83,6 +83,7 @@
     <Compile Include="View\PatrolBoat.xaml.cs">
       <DependentUpon>PatrolBoat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ShipControl.cs" />
     <Compile Include="View\ShipMenu.xaml.cs">
       <DependentUpon>ShipMenu.xaml</DependentUpon>
     </Compile>
@@ -90,6 +91,7 @@
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="View\Ship.cs" />
     <Compile Include="View\Submarine.xaml.cs">
       <DependentUpon>Submarine.xaml</DependentUpon>
     </Compile>

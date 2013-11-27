@@ -18,10 +18,9 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for PatrolBoat.xaml
     /// </summary>
-    public partial class PatrolBoat : UserControl
+    public partial class PatrolBoat : Ship
     {
 
-        public bool orientiation = true;
         public static int size = 2;
 
         public PatrolBoat()
@@ -41,7 +40,6 @@ namespace Battleship.View
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
-                orientiation = !orientiation;
             }
         }
     }
