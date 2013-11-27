@@ -23,8 +23,6 @@ namespace Battleship.View
         public ShipMenu()
         {
             InitializeComponent();
-
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

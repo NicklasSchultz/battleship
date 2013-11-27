@@ -18,7 +18,7 @@ namespace Battleship.View
     /// <summary>
     /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class MainMenu : EveneHandler
     {
         public MainMenu()
         {
@@ -26,8 +26,10 @@ namespace Battleship.View
 
         }
 
-        private void StartNewGame(object sender, MouseButtonEventArgs e)
+        private void StartNewGame(object sender, RoutedEventArgs e)
         {
+            var newEventArgs = new RoutedEventArgs(MyCustomEvent);
+            RaiseEvent(newEventArgs);
         }
 
         private void LoadGame(object sender, MouseButtonEventArgs e)

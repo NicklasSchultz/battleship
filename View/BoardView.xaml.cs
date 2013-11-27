@@ -27,6 +27,8 @@ public partial class BoardView : UserControl
     private bool[,] isOccupied = new bool[10,10];
     private ShipControl control;
 
+    private List<Ship> ships = new List<Ship>();
+
     public BoardView()
     {
         InitializeComponent();

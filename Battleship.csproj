@@ -68,6 +68,7 @@
     <Compile Include="View\Destroyer.xaml.cs">
       <DependentUpon>Destroyer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EveneHandler.cs" />
     <Compile Include="View\Field.xaml.cs">
       <DependentUpon>Field.xaml</DependentUpon>
     </Compile>

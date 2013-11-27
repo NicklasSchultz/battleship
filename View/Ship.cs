@@ -16,7 +16,9 @@ namespace Battleship.View
 
         public Ship()
         {
-
+     
         }
+
+
     }
 }

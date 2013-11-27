@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.ViewModel;
+using Battleship.View;
 
 namespace Battleship
 {
@@ -29,5 +30,11 @@ namespace Battleship
 
 
         }
+        private void HandleChildEvent(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("HENRJENK");
+            e.Handled = true;
+        }
+
     }
 }
