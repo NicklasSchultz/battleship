@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.ViewModel;
+using Battleship.View;
 
 namespace Battleship
 {
@@ -29,18 +30,9 @@ namespace Battleship
 
 
         }
-        private void StartNewGame(object sender, RoutedEventArgs e)
+        private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("start");
-        }
-
-        private void LoadGame(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("load");
-        }
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-
+            e.Handled = true;
         }
     }
 }
