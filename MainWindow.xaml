@@ -21,8 +21,9 @@
             <Views:BoardView/>
         </DataTemplate>
     </Window.Resources>
-    <DockPanel LastChildFill="True" x:Name="Dock">
-        <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}" x:Name="menu"></ContentControl>
-         <ContentControl x:Name="Content" Content="{Binding Content}" Width="{Binding ElementName=Content, Path=ActualHeight}"></ContentControl> 
+
+    <DockPanel LastChildFill="True">
+        <ContentControl x:Name="menu" DockPanel.Dock="Right" Content="{Binding Menu}" ></ContentControl>
+        <ContentControl x:Name="content" Content="{Binding Content}" Width="{Binding ElementName=Content, Path=ActualHeight}"></ContentControl>
     </DockPanel>
 </Window>
