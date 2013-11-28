@@ -32,6 +32,15 @@ namespace Battleship
         }
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
+            Button b=e.OriginalSource as Button;
+            if (b.Name.Equals("new"))
+            {
+                menu.Content = new ShipMenu();
+            }
+            else if (b.Name.Equals("load"))
+            {
+                menu.Content = new MainMenu();
+            }
             e.Handled = true;
         }
     }

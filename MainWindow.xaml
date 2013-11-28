@@ -4,7 +4,9 @@
         xmlns:Views="clr-namespace:Battleship.View"
         xmlns:ViewModels="clr-namespace:Battleship.ViewModel"
         xmlns:local="clr-namespace:Battleship.View"
-        Title="MainWindow">
+        Title="MainWindow"
+        Button.Click="HandleChildEvent"
+        >
     <Window.DataContext>
         <ViewModels:MainWindowViewModel />
     </Window.DataContext>
@@ -19,9 +21,8 @@
             <Views:BoardView/>
         </DataTemplate>
     </Window.Resources>
-    <DockPanel LastChildFill="True" 
-               local:EveneHandler.MyCustom="HandleChildEvent">
-        <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}" ></ContentControl>
+    <DockPanel LastChildFill="True">
+        <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}" x:Name="menu"></ContentControl>
          <ContentControl x:Name="Content" Content="{Binding Content}" Width="{Binding ElementName=Content, Path=ActualHeight}"></ContentControl> 
     </DockPanel>
 </Window>

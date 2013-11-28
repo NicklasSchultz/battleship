@@ -1,15 +1,14 @@
-﻿<local:EveneHandler x:Class="Battleship.View.MainMenu"
+﻿<UserControl x:Class="Battleship.View.MainMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ViewModel="clr-namespace:Battleship.ViewModel"
-                    xmlns:local="clr-namespace:Battleship.View"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <local:EveneHandler.DataContext>
+    <UserControl.DataContext>
         <ViewModel:MainMenuViewModel/>
-    </local:EveneHandler.DataContext>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
 
@@ -19,8 +18,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="Start new game" Width="auto" Height="auto" Click="StartNewGame" />
-        <Button Grid.Row="1" Content="Load game" Width="auto" Height="auto" Click="LoadGame"/>
-        <Button Grid.Row="2" Content="Exit" Width="auto" Height="auto" Click="Exit"/>
+        <Button x:Name="new" Grid.Row="0" Content="Start new game" Width="auto" Height="auto" Click="StartNewGame" />
+        <Button x:Name="load" Grid.Row="1" Content="Load game" Width="auto" Height="auto" Click="LoadGame"/>
+        <Button x:Name="exit" Grid.Row="2" Content="Exit" Width="auto" Height="auto" Click="Exit"/>
     </Grid>
-</local:EveneHandler>
+</UserControl>
