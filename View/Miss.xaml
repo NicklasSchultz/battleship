@@ -10,17 +10,6 @@
             <Rectangle.Fill>
                 <SolidColorBrush Color="LightGray"/>
             </Rectangle.Fill>
-            <Rectangle.Triggers>
-                <EventTrigger RoutedEvent="Window.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="myrect" 
-                        Storyboard.TargetProperty="Opacity" From="0" To="1" 
-                        Duration="0:0:1" BeginTime="0:0:0" RepeatBehavior="2x" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Rectangle.Triggers>
         </Rectangle>
     </Grid>
 </UserControl>

@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.View;
 using Battleship.ViewModel;
+using System.ComponentModel;
+using Battleship.Model;
 
 namespace Battleship.View
 {
@@ -39,6 +41,7 @@ namespace Battleship.View
         {
             base.OnInitialized(e);
             model = this.DataContext as BoardViewModel;
+            model.PropertyChanged += new PropertyChangedEventHandler(boardChanged);
 
             for (int i = 0; i < 10; i++)
             {
@@ -54,7 +57,27 @@ namespace Battleship.View
             }
         }
 
-
+        private void boardChanged(object sender, PropertyChangedEventArgs e)
+        {
+            
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    UserControl c ;
+                    if (model.Board.Model[i,j] == 0){
+                      c = new Cell();
+                    } else if(model.Board.Model[i,j] == BoardConstants.ship){
+                        c = new Hit();
+                    } else {
+                        c = new Miss();
+                    }
+                    Grid.SetRow(c,j); 
+                    Grid.SetColumn(c,i);
+                    mainGrid.Children.Add(c);
+                }
+            }
+        }
 
         private void clickListner(object s, MouseButtonEventArgs a)
         {

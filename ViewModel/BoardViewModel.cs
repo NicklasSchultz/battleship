@@ -16,24 +16,27 @@ namespace Battleship.ViewModel
             get { return _board; }
             set
             {
-                _board = value;
-                RaisPropertyChangedEvent("Board");
+                this._board = value;
+                this.RaisPropertyChangedEvent("Board");
             }
         }
 
 
         public void coordinateClicked(int x, int y)
         {
-            System.Windows.Forms.MessageBox.Show("hejsans ");
             if (_board.Model[x, y] == BoardConstants.water || _board.Model[x, y] == BoardConstants.ship)
             {
                 if (_board.Model[x, y] == BoardConstants.ship)
                 {
-                    _board.modifyCoordinate(x, y, BoardConstants.hit);
+                   _board.modifyCoordinate(x, y, BoardConstants.hit);
+                   Board = _board;
+                    RaisPropertyChangedEvent("Board");
                 }
                 else
                 {
-                    _board.modifyCoordinate(x, y, BoardConstants.miss);
+                   this._board.modifyCoordinate(x, y, BoardConstants.miss);
+                   Board = _board;
+                   this.RaisPropertyChangedEvent("Board");
                 }
             }
         }
