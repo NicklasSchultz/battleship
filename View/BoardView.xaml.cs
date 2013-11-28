@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.View;
+using Battleship.ViewModel;
 
 namespace Battleship.View
 {
@@ -24,9 +25,6 @@ namespace Battleship.View
 
         public bool donePlaceing = false;
         public Orientation orientation = Orientation.Horizontal;
-        private bool[,] isOccupied = new bool[10, 10];
-
-        private List<Ship> ships = new List<Ship>();
 
         public BoardView()
         {
@@ -201,6 +199,15 @@ namespace Battleship.View
                 return Destroyer.size;
             }
             return 0;
+        }
+
+        private void gridClicked(object sender, MouseButtonEventArgs e)
+        {
+            Point pos = e.GetPosition(this);
+            int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
+                int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+            BoardViewModel model = this.DataContext as BoardViewModel;
+            model.coordinateClicked(x,y);
         }
     }
 }
