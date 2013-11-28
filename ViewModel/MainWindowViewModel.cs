@@ -9,20 +9,26 @@ using System.Windows.Controls;
 
 namespace Battleship.ViewModel
 {
-    class MainWindowViewModel:BaseViewModel
+    class MainWindowViewModel : BaseViewModel
     {
-        UserControl _menu=new MainMenu();
-        UserControl _content=new BoardView();
+        UserControl _menu = new MainMenu();
+        UserControl _content=new UserControl();
 
-        public UserControl Menu { get { return _menu; }
-            set { _menu = value;
-            RaisPropertyChangedEvent("Menu");
+        public UserControl Menu
+        {
+            get { return _menu; }
+            set
+            {
+                _menu = value;
+                RaisPropertyChangedEvent("Menu");
             }
         }
         public UserControl Content
         {
-            get {
-                return _content; }
+            get
+            {
+                return _content;
+            }
             set
             {
                 _content = value;

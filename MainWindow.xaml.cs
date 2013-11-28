@@ -33,9 +33,15 @@ namespace Battleship
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b=e.OriginalSource as Button;
+            MainWindowViewModel m = this.DataContext as MainWindowViewModel;
             if (b.Name.Equals("new"))
             {
-                menu.Content = new ShipMenu();
+                m.Menu = new ShipMenu();
+                m.Content = new BoardView();
+            }
+            else if (b.Name.Equals("next"))
+            {
+                MessageBox.Show("next");
             }
             else if (b.Name.Equals("load"))
             {
