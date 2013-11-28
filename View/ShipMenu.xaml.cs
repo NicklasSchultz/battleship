@@ -35,7 +35,6 @@ namespace Battleship.View
             {
                 if (contentPresenter.Content == this)
                 {
-                    contentPresenter.Content = null;
                     contentPresenter.Content = new MainMenu();
                 }
                 return;
