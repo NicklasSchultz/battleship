@@ -40,11 +40,17 @@ namespace Battleship.View
                 {
                     if (Orientation.Equals(Orientation.Horizontal))
                     {
-                        return occupied[row, column + i];
+                        if (occupied[row, column + i])
+                        {
+                            return true;
+                        }
                     }
                     else
                     {
-                        return occupied[row + i, column];
+                        if (occupied[row + i, column])
+                        {
+                            return true;
+                        }
                     }
                 }
                 return false;

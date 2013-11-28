@@ -25,7 +25,7 @@ namespace Battleship.View
 
         public bool donePlaceing = false;
         public Orientation orientation = Orientation.Horizontal;
-        public ShipControl control;
+        public ShipControl control = new ShipControl();
 
         public BoardView()
         {
