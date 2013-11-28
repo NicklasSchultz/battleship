@@ -24,6 +24,7 @@ namespace Battleship.ViewModel
 
         public void coordinateClicked(int x, int y)
         {
+            System.Windows.Forms.MessageBox.Show("hejsans ");
             if (_board.Model[x, y] == BoardConstants.water || _board.Model[x, y] == BoardConstants.ship)
             {
                 if (_board.Model[x, y] == BoardConstants.ship)

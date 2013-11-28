@@ -44,10 +44,8 @@ namespace Battleship.View
             for (int i = 0; i < 100; i++)
             {
                 var cellView = new Cell();
-                cellView.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(clickListner);
                 Grid.SetColumn(cellView, i % 10);
                 Grid.SetRow(cellView, i / 10);
-                cellView.SetBinding(DataContextProperty, "[" + i + "]");
                 this.mainGrid.Children.Add(cellView);
             }
         }
