@@ -36,7 +36,6 @@ namespace Battleship.View
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            control = new ShipControl();
 
             for (int i = 0; i < 10; i++)
             {
