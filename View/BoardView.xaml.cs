@@ -26,15 +26,19 @@ namespace Battleship.View
         public bool donePlaceing = false;
         public Orientation orientation = Orientation.Horizontal;
         public ShipControl control = new ShipControl();
+        BoardViewModel model;
 
         public BoardView()
         {
+           
+
             InitializeComponent();
 
         }
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+            model = this.DataContext as BoardViewModel;
 
             for (int i = 0; i < 10; i++)
             {
@@ -211,8 +215,8 @@ namespace Battleship.View
         {
             Point pos = e.GetPosition(this);
             int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
-                int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
-            BoardViewModel model = this.DataContext as BoardViewModel;
+            int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
+
             model.coordinateClicked(x,y);
         }
     }
