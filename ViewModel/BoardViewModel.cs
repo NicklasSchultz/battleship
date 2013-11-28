@@ -24,13 +24,16 @@ namespace Battleship.ViewModel
 
         public void coordinateClicked(int x, int y)
         {
-            if (_board.Model[x, y] == BoardConstants.ship)
+            if (_board.Model[x, y] == BoardConstants.water || _board.Model[x, y] == BoardConstants.ship)
             {
-                _board.modifyCoordinate(x, y, BoardConstants.hit);
-            }
-            else
-            {
-                _board.modifyCoordinate(x, y, BoardConstants.miss);
+                if (_board.Model[x, y] == BoardConstants.ship)
+                {
+                    _board.modifyCoordinate(x, y, BoardConstants.hit);
+                }
+                else
+                {
+                    _board.modifyCoordinate(x, y, BoardConstants.miss);
+                }
             }
         }
     }
