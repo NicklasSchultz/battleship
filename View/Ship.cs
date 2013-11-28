@@ -13,6 +13,7 @@ namespace Battleship.View
         public int startX { get; set; }
         public int startY { get; set; }
         public Orientation Orientation{get ;  set;}
+        public int size { get; set; }
 
         public Ship()
         {

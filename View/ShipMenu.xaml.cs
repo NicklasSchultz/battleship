@@ -27,18 +27,10 @@ namespace Battleship.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            ContentControl cc = (ContentControl)sender;
             ContentPresenter parent = (ContentPresenter)VisualTreeHelper.GetParent(this);
-
-            var contentPresenter = parent as ContentPresenter;
-            if (contentPresenter != null)
-            {
-                if (contentPresenter.Content == this)
-                {
-                    contentPresenter.Content = new MainMenu();
-                }
-                return;
-            }
+            MessageBox.Show(" "+parent.Content);
+            parent.Content = new MainMenu();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Battleship.View
         public bool donePlaceing = false;
         public Orientation orientation = Orientation.Horizontal;
         private bool[,] isOccupied = new bool[10, 10];
-
+        private ShipControl control = new ShipControl();
         private List<Ship> ships = new List<Ship>();
 
         public BoardView()
@@ -98,6 +98,7 @@ namespace Battleship.View
                 Grid _grid = (Grid)sender;
                 Point pos = e.GetPosition(this);
 
+
                 int column = (int)((pos.X / mainGrid.ActualWidth) * 10);
                 int row = (int)((pos.Y / mainGrid.ActualHeight) * 10);
 
@@ -105,34 +106,40 @@ namespace Battleship.View
                 int size = (int)e.Data.GetData("Size");
 
                 Ship ship = (Ship)_element;
-
-                Grid g = (Grid)VisualTreeHelper.GetParent(_element);
-                g.Children.Remove(_element);
-
-                Grid.SetColumn(ship, column);
-                Grid.SetRow(ship, row);
                 ship.startX = column;
-                ship.startY = row;
-
-                ship.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
-
-                if (orientation.Equals(Orientation.Horizontal))
+                    ship.startY = row;
+                    ship.size = size;
+                if (control.checkValidPlacement(ship.startY, ship.startX, orientation, size))
                 {
-                    Grid.SetColumnSpan(ship, size);
-                    Grid.SetRowSpan(ship, 1);
 
-                }
-                else
-                {
-                    Grid.SetRowSpan(ship, size);
-                    Grid.SetColumnSpan(ship, 1);
-                }
 
-                _grid.Children.Add(ship);
+                    Grid g = (Grid)VisualTreeHelper.GetParent(_element);
+                    g.Children.Remove(_element);
 
-                if (g.Children.Count == 1)
-                {
-                    donePlaceing = true;
+                    Grid.SetColumn(ship, column);
+                    Grid.SetRow(ship, row);
+
+                    ship.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
+
+                    if (orientation.Equals(Orientation.Horizontal))
+                    {
+                        ship.Orientation = Orientation.Horizontal;
+                        Grid.SetColumnSpan(ship, size);
+                        Grid.SetRowSpan(ship, 1);
+
+                    }
+                    else
+                    {
+                        ship.Orientation = Orientation.Vertical;
+                        Grid.SetRowSpan(ship, size);
+                        Grid.SetColumnSpan(ship, 1);
+                    }
+
+                    _grid.Children.Add(ship);
+                    if (g.Children.Count == 1)
+                    {
+                        donePlaceing = true;
+                    }
                 }
             }
         }

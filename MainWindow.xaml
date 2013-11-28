@@ -14,14 +14,14 @@
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
             <Views:MainMenu/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}">
+        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}" x:Name="nfdjs">
             <Views:ShipMenu/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:BoardViewModel}">
             <Views:BoardView/>
         </DataTemplate>
     </Window.Resources>
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" x:Name="Dock">
         <ContentControl DockPanel.Dock="Right" Content="{Binding Menu}" x:Name="menu"></ContentControl>
          <ContentControl x:Name="Content" Content="{Binding Content}" Width="{Binding ElementName=Content, Path=ActualHeight}"></ContentControl> 
     </DockPanel>
