@@ -55,7 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\RelativeWidthConverter.cs" />
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="Model\BoardModel.cs" />
