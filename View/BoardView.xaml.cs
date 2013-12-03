@@ -32,7 +32,7 @@ namespace Battleship.View
 
         public BoardView()
         {
-           
+
 
             InitializeComponent();
 
@@ -59,45 +59,28 @@ namespace Battleship.View
 
         private void boardChanged(object sender, PropertyChangedEventArgs e)
         {
-            
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    UserControl c ;
-                    if (model.Board.Model[i,j] == 0){
-                      c = new Cell();
-                    } else if(model.Board.Model[i,j] == BoardConstants.ship){
+                    UserControl c;
+                    if (model.Board.Model[i, j] == 0)
+                    {
+                        c = new Cell();
+                    }
+                    else if (model.Board.Model[i, j] == BoardConstants.ship)
+                    {
                         c = new Hit();
-                    } else {
+                    }
+                    else
+                    {
                         c = new Miss();
                     }
-                    Grid.SetRow(c,j); 
-                    Grid.SetColumn(c,i);
+                    Grid.SetRow(c, j);
+                    Grid.SetColumn(c, i);
                     mainGrid.Children.Add(c);
                 }
             }
-        }
-
-        private void clickListner(object s, MouseButtonEventArgs a)
-        {
-            Point pos = a.GetPosition(this);
-
-            int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
-            int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
-
-            UserControl u;
-            if (getBoatSize(s) == 0)
-            {
-                u = new Miss();
-            }
-            else
-            {
-                u = new Hit();
-            }
-            Grid.SetColumn(u, x);
-            Grid.SetRow(u, y);
-            mainGrid.Children.Add(u);
         }
 
         private void panel_DragOver(object sender, DragEventArgs e)
@@ -131,12 +114,12 @@ namespace Battleship.View
 
                 Ship ship = (Ship)_element;
                 ship.startX = column;
-                    ship.startY = row;
-                    ship.size = size;
+                ship.startY = row;
+                ship.size = size;
                 if (control.checkValidPlacement(ship.startY, ship.startX, orientation, size))
                 {
-
-
+                    int[] x = new int[size];
+                    int[] y = new int[size];
                     Grid g = (Grid)VisualTreeHelper.GetParent(_element);
                     g.Children.Remove(_element);
 
@@ -148,6 +131,11 @@ namespace Battleship.View
                     if (orientation.Equals(Orientation.Horizontal))
                     {
                         ship.Orientation = Orientation.Horizontal;
+                        for (int i = 0; i < size; i++)
+                        {
+                            x[i] = column + i;
+                            y[i] = row;
+                        }
                         Grid.SetColumnSpan(ship, size);
                         Grid.SetRowSpan(ship, 1);
 
@@ -155,10 +143,16 @@ namespace Battleship.View
                     else
                     {
                         ship.Orientation = Orientation.Vertical;
+                        for (int i = 0; i < size; i++)
+                        {
+                            x[i] = column;
+                            y[i] = row + i;
+                        }
                         Grid.SetRowSpan(ship, size);
                         Grid.SetColumnSpan(ship, 1);
                     }
 
+                    model.addShip(x, y);
                     _grid.Children.Add(ship);
                     if (g.Children.Count == 1)
                     {
@@ -172,45 +166,24 @@ namespace Battleship.View
 
         private void flipBoat(object o, MouseButtonEventArgs a)
         {
-            if (donePlaceing)
+
+            Ship u = (Ship)o;
+            mainGrid.Children.Remove(u);
+
+            if (orientation.Equals(Orientation.Vertical))
             {
-                Point pos = a.GetPosition(this);
-
-                int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
-                int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
-
-                UserControl u;
-                if (getBoatSize(o) == 0)
-                {
-                    u = new Miss();
-                }
-                else
-                {
-                    u = new Hit();
-                }
-                Grid.SetColumn(u, x);
-                Grid.SetRow(u, y);
-                mainGrid.Children.Add(u);
+                Grid.SetColumnSpan(u, getBoatSize(o));
+                Grid.SetRowSpan(u, 1);
+                orientation = Orientation.Horizontal;
             }
             else
             {
-                Ship u = (Ship)o;
-                mainGrid.Children.Remove(u);
-
-                if (orientation.Equals(Orientation.Vertical))
-                {
-                    Grid.SetColumnSpan(u, getBoatSize(o));
-                    Grid.SetRowSpan(u, 1);
-                    orientation = Orientation.Horizontal;
-                }
-                else
-                {
-                    Grid.SetRowSpan(u, getBoatSize(o));
-                    Grid.SetColumnSpan(u, 1);
-                    orientation = Orientation.Vertical;
-                }
-                mainGrid.Children.Add(u);
+                Grid.SetRowSpan(u, getBoatSize(o));
+                Grid.SetColumnSpan(u, 1);
+                orientation = Orientation.Vertical;
             }
+            mainGrid.Children.Add(u);
+
         }
 
         private int getBoatSize(object o)
@@ -240,7 +213,9 @@ namespace Battleship.View
             int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
             int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
 
-            model.coordinateClicked(x,y);
+            model.coordinateClicked(x, y);
         }
+
+
     }
 }

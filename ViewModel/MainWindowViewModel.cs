@@ -35,9 +35,5 @@ namespace Battleship.ViewModel
                 RaisPropertyChangedEvent("Content");
             }
         }
-        public void viewChanged()
-        {
-
-        }
     }
 }

@@ -11,6 +11,8 @@ namespace Battleship.ViewModel
     public class BoardViewModel : BaseViewModel
     {
         private BoardModel _board = new BoardModel();
+        public EventHandler eventHandler;
+        private bool next = false;
         public BoardModel Board
         {
             get { return _board; }
@@ -21,6 +23,15 @@ namespace Battleship.ViewModel
             }
         }
 
+        public bool Next
+        {
+            get { return next; }
+            set
+            {
+                this.Next = value;
+            }
+        }
+
 
         public void coordinateClicked(int x, int y)
         {
@@ -28,16 +39,28 @@ namespace Battleship.ViewModel
             {
                 if (_board.Model[x, y] == BoardConstants.ship)
                 {
-                   _board.modifyCoordinate(x, y, BoardConstants.hit);
-                   Board = _board;
+                    _board.modifyCoordinate(x, y, BoardConstants.hit);
+                    Board = _board;
+                    eventHandler(this, EventArgs.Empty);
                     RaisPropertyChangedEvent("Board");
                 }
                 else
                 {
-                   this._board.modifyCoordinate(x, y, BoardConstants.miss);
-                   Board = _board;
-                   this.RaisPropertyChangedEvent("Board");
+                    this._board.modifyCoordinate(x, y, BoardConstants.miss);
+                    Board = _board;
+                    eventHandler(this, EventArgs.Empty);
+                    this.RaisPropertyChangedEvent("Board");
                 }
+            }
+        }
+
+        public void addShip(int[] x, int[] y)
+        {
+            for (int i = 0; i < x.Length; i++)
+            {
+                _board.modifyCoordinate(x[i], y[i], BoardConstants.ship);
+                Board = _board;
+                RaisPropertyChangedEvent("Board");
             }
         }
     }

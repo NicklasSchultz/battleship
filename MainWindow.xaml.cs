@@ -22,23 +22,28 @@ namespace Battleship
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
-           
+
             InitializeComponent();
 
 
         }
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
-            Button b=e.OriginalSource as Button;
+            Button b = e.OriginalSource as Button;
             MainWindowViewModel m = this.DataContext as MainWindowViewModel;
 
             if (b.Name.Equals("new"))
             {
+                BoardView bv = new BoardView();
+                BoardViewModel bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new ShipMenu();
-                m.Content = new BoardView();
+                m.Content = bv;
+                GameLoop gl = new GameLoop(m);
+                bvm.eventHandler += gl.HandleEvent;
+
             }
             else if (b.Name.Equals("next"))
             {
