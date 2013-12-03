@@ -27,6 +27,8 @@ namespace Battleship.View
         {
             InitializeComponent();
         }
+
+  
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);

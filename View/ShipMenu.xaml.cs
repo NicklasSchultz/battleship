@@ -20,13 +20,63 @@ namespace Battleship.View
     /// </summary>
     public partial class ShipMenu : UserControl
     {
+
+        private List<Ship> ships = new List<Ship>();
+
         public ShipMenu()
         {
             InitializeComponent();
         }
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            ships.Add(new AirCraftCarrier());
+            ships.Add(new Destroyer());
+            ships.Add(new Submarine());
+            ships.Add(new PatrolBoat());
+
+            Button button = new Button();
+            button.Click += new RoutedEventHandler(Button_Click);
+            int row = 0;
+            foreach (Ship s in ships)
+            {
+                Grid.SetRow(s,row);
+                Grid.SetColumn(s,0);
+                Grid.SetColumnSpan(s, getBoatSize(s));
+                grid.Children.Add(s);
+                row++;
+            }
+            Grid.SetColumn(button, 1);
+            Grid.SetRow(button,row);
+            Grid.SetColumnSpan(button,3);
+            grid.Children.Add(button);
+            
+        }
+        private int getBoatSize(object o)
+        {
+            if (o.GetType() == typeof(PatrolBoat))
+            {
+                return PatrolBoat.size;
+            }
+            if (o.GetType() == typeof(Submarine))
+            {
+                return Submarine.size;
+            }
+            if (o.GetType() == typeof(AirCraftCarrier))
+            {
+                return AirCraftCarrier.size;
+            }
+            if (o.GetType() == typeof(Destroyer))
+            {
+                return Destroyer.size;
+            }
+            return 0;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("GEJE");
         }
     }
 }

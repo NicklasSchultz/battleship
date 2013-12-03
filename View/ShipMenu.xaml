@@ -5,24 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d"
              xmlns:ViewModel="clr-namespace:Battleship.ViewModel"
+             xmlns:Converter="clr-namespace:Battleship.Converter"
              xmlns:Board="clr-namespace:Battleship.View">
         <UserControl.DataContext>
         <ViewModel:ShipMenuViewModel/>
     </UserControl.DataContext>
-        <Grid MinHeight="200" MinWidth="200" x:Name="grid">
+    <Grid MinHeight="200" MinWidth="200" x:Name="grid">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <Board:Destroyer Grid.Row="0"/>
-        <Board:AirCraftCarrier Grid.Row="1"/>
-        <Board:Submarine Grid.Row="2"/>
-        <Board:PatrolBoat Grid.Row="3"/>
-        <Button x:Name="next" Grid.Row="4" Click="Button_Click" ></Button>
     </Grid>
 </UserControl>

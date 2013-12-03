@@ -34,6 +34,7 @@ namespace Battleship
         {
             Button b=e.OriginalSource as Button;
             MainWindowViewModel m = this.DataContext as MainWindowViewModel;
+
             if (b.Name.Equals("new"))
             {
                 m.Menu = new ShipMenu();

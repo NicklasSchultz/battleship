@@ -14,7 +14,7 @@
         <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
             <Views:MainMenu/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}" x:Name="nfdjs">
+        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}" >
             <Views:ShipMenu/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModels:BoardViewModel}">
@@ -24,6 +24,6 @@
 
     <DockPanel LastChildFill="True">
         <ContentControl x:Name="menu" DockPanel.Dock="Right" Content="{Binding Menu}" ></ContentControl>
-        <ContentControl x:Name="content" Content="{Binding Content}" Width="{Binding ElementName=Content, Path=ActualHeight}"></ContentControl>
+        <ContentControl x:Name="content" Content="{Binding Content}" ></ContentControl>
     </DockPanel>
 </Window>
