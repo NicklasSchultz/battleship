@@ -1,4 +1,5 @@
 ﻿using Battleship.Model;
+using Battleship.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,20 @@ namespace Battleship.ViewModel
         public void modifyCoordinate(int x, int y, int boardConstant)
         {
             _model[x, y] = boardConstant;
+        }
+
+        public void resetToWater(Ship s)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (_model[i, j] == BoardConstants.getBoatSize(s))
+                    {
+                        _model[i, j] = BoardConstants.water;
+                    }
+                }
+            }
         }
     }
 }

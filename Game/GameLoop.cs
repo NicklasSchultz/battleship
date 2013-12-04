@@ -8,14 +8,15 @@ using Battleship.Model;
 using Battleship.View;
 using System.Windows;
 
-namespace Battleship
+namespace Battleship.Game
 {
-    class GameLoop
+    public class GameLoop
     {
 
         private MainWindowViewModel mwwm;
         private BoardModel player1 = new BoardModel();
         private BoardModel player2 = new BoardModel();
+        public int state = State.PLACE_BOAT_STATE;
         BoardViewModel bm;
         BoardView bv;
 

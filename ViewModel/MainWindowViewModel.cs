@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Battleship.ViewModel
 {
-    class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         UserControl _menu = new MainMenu();
         UserControl _content=new UserControl();
