@@ -76,5 +76,11 @@ namespace Battleship.ViewModel
             }
             return false;
         }
+
+        public override void ModelChanged(BoardModel board)
+        {
+            _board = board;
+            RaisPropertyChangedEvent("Board");
+        }
     }
 }

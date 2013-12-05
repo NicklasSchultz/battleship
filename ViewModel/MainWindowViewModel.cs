@@ -1,4 +1,5 @@
-﻿using Battleship.View;
+﻿using Battleship.Model;
+using Battleship.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,9 @@ namespace Battleship.ViewModel
                 _content = value;
                 RaisPropertyChangedEvent("Content");
             }
+        }
+        public override void ModelChanged(BoardModel board)
+        {
         }
     }
 }

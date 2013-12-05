@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Battleship.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace Battleship.ViewModel
 {
     class MainMenuViewModel:BaseViewModel
     {
+        public override void ModelChanged(BoardModel board)
+        {
+        }
 
     }
 }

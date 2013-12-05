@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Game\GameLoop.cs" />
     <Compile Include="Game\State.cs" />
+    <Compile Include="Game\ViewModelHolder.cs" />
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="ShipView.xaml.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
