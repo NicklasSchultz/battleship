@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Battleship.ViewModel;
 using Battleship.Model;
+using System.Windows.Controls;
+using Battleship.View;
+using System.Windows;
 
 namespace Battleship.ViewModel
 {
@@ -12,7 +15,7 @@ namespace Battleship.ViewModel
     {
         private BoardModel _board = new BoardModel();
         public EventHandler eventHandler;
-        private bool next = false;
+        private ShipControl control = new ShipControl();
         public BoardModel Board
         {
             get { return _board; }
@@ -23,20 +26,33 @@ namespace Battleship.ViewModel
             }
         }
 
-        public bool Next
-        {
-            get { return next; }
-            set
-            {
-                this.Next = value;
-            }
-        }
-
-
         public void coordinateClicked(int x, int y)
         {
-            if (_board.Model[x, y] == BoardConstants.water || _board.Model[x, y] == BoardConstants.ship)
+            /*        if (_board.Model[x, y] == BoardConstants.water || isShip(x, y))
+                    {
+                        if (isShip(x, y))
+                        {
+                            _board.modifyCoordinate(x, y, BoardConstants.hit);
+                            Board = _board;
+                            RaisPropertyChangedEvent("Board");
+                            eventHandler(this, EventArgs.Empty);
+
+                        }
+                        else
+                        {
+                            this._board.modifyCoordinate(x, y, BoardConstants.miss);
+                            Board = _board;
+                            this.RaisPropertyChangedEvent("Board");
+                            eventHandler(this, EventArgs.Empty);
+                        }
+                    }*/
+        }
+
+        private bool isShip(int x, int y)
+        {
+            if (_board.Model[x, y] == BoardConstants.airCraftCarrier || _board.Model[x, y] == BoardConstants.submarine || _board.Model[x, y] == BoardConstants.patrolBoat || _board.Model[x, y] == BoardConstants.destroyer)
             {
+<<<<<<< HEAD
                 if (_board.Model[x, y] == BoardConstants.ship)
                 {
                     _board.modifyCoordinate(x, y, BoardConstants.hit);
@@ -50,21 +66,36 @@ namespace Battleship.ViewModel
                     Board = _board;
                     eventHandler(this, EventArgs.Empty);
                 }
+=======
+                return true;
+>>>>>>> a6c5794217d49cb5996e50472f47f01cce056166
             }
+            return false;
         }
 
-        public void addShip(int[] x, int[] y)
+        public void addShip(int[] x, int[] y, Ship s)
         {
+            _board.resetToWater(s);
             for (int i = 0; i < x.Length; i++)
             {
-                _board.modifyCoordinate(x[i], y[i], BoardConstants.ship);
+                _board.modifyCoordinate(x[i], y[i], BoardConstants.getBoatSize(s));
                 Board = _board;
             }
         }
 
+<<<<<<< HEAD
         public void modelChanged(BoardModel model)
         {
             Board = model;
+=======
+        public bool placementOk(int[] x, int[] y)
+        {
+            if (control.checkValidPlacement(x, y, _board))
+            {
+                return true;
+            }
+            return false;
+>>>>>>> a6c5794217d49cb5996e50472f47f01cce056166
         }
     }
 }

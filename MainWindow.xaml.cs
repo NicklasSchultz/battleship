@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Battleship.ViewModel;
 using Battleship.View;
+using Battleship.Game;
 
 namespace Battleship
 {
@@ -22,6 +23,9 @@ namespace Battleship
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+        private GameLoop gl;
 
         public MainWindow()
         {
@@ -41,13 +45,12 @@ namespace Battleship
                 BoardViewModel bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new ShipMenu();
                 m.Content = bv;
-                GameLoop gl = new GameLoop(m);
+                gl = new GameLoop(m);
                 bvm.eventHandler += gl.HandleEvent;
-
             }
             else if (b.Name.Equals("next"))
             {
-                MessageBox.Show("next");
+                gl.state = State.GAME_STATE;
             }
             else if (b.Name.Equals("load"))
             {

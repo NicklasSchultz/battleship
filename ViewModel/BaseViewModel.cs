@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Battleship.Game;
+using Battleship.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Battleship.ViewModel
 {
-    public class BaseViewModel :INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

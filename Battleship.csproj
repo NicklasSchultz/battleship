@@ -60,6 +60,10 @@
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="Model\ModelHolder.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Game\State.cs" />
+    <Compile Include="ShipView.xaml.cs">
+      <DependentUpon>ShipView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="Model\BoardModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -101,6 +105,10 @@
     <Compile Include="View\Submarine.xaml.cs">
       <DependentUpon>Submarine.xaml</DependentUpon>
     </Compile>
+    <Page Include="ShipView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AirCraftCarrier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

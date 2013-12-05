@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Battleship.Model;
+using Battleship.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Battleship.View
@@ -10,61 +13,51 @@ namespace Battleship.View
     public class ShipControl
     {
         private bool[,] occupied = new bool[10, 10];
-        private int row;
-        private int column;
-        Orientation Orientation;
-        int size;
+        private int[] row;
+        private int[] column;
 
         public ShipControl()
         {
-            initIsOccupied();
         }
 
         public bool shipFits()
         {
-            if (Orientation.Equals(Orientation.Horizontal))
+            for (int i = 0; i < row.Length; i++)
             {
-                return 10 > (column + size - 1);
+                if (row[i] > 9 || column[i] > 9)
+                {
+                    return false ;
+                }
             }
-            else
-            {
-                return 10 > (row + size - 1);
-            }
+            return true;
         }
 
         public bool isOccupied()
         {
             if (shipFits())
             {
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < row.Length; i++)
                 {
-                    if (Orientation.Equals(Orientation.Horizontal))
+                    if (occupied[row[i], column[i]])
                     {
-                        if (occupied[row, column + i])
-                        {
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        if (occupied[row + i, column])
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
                 return false;
             }
-            return true;
+            else
+            {
+                return true;
+            }
+
+            
         }
 
-        public bool checkValidPlacement(int row, int column, Orientation orientation, int size)
+        public bool checkValidPlacement(int[] row, int[] column, BoardModel bm)
         {
             this.row = row;
             this.column = column;
-            this.Orientation = orientation;
-            this.size = size;
-
+            setArray(bm);
             if (!isOccupied())
             {
                 setOccupied();
@@ -76,83 +69,48 @@ namespace Battleship.View
             }
         }
 
+        private void setArray(BoardModel model)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (model.Model[i, j] == BoardConstants.water)
+                    {
+                        occupied[i, j] = false;
+                    }
+                    else
+                    {
+                        occupied[i, j] = true;
+                    }
+                }
+            }
+        }
+
         private void setOccupied()
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < row.Length; i++)
             {
-                if (Orientation.Equals(Orientation.Horizontal))
-                {
-                    occupied[row, column + i] = true;
-                }
-                else
-                {
-                    occupied[row + i, column] = true;
-                }
+                occupied[row[i], column[i]] = true;
             }
             setSurroundingOccupied();
         }
 
         private void setSurroundingOccupied()
         {
-            for (int i = -1; i <= size; i++)
+            for (int i = 0; i < row.Length; i++)
             {
-                if (Orientation.Equals(Orientation.Horizontal))
+                for (int j = row[i] - 1; j <= row[i] + 1; j++)
                 {
                     try
                     {
-                        occupied[row - 1, column + i] = true;
-                        occupied[row + 1, column + i] = true;
+                        occupied[row[j], column[j]] = true;
                     }
                     catch (IndexOutOfRangeException e)
                     {
-                        
                     }
-                    
                 }
-                else
-                {
-                    try
-                    {
-                        occupied[row + i, column - 1] = true;
-                        occupied[row + i, column + 1] = true;
-                    }
-                    catch (IndexOutOfRangeException e)
-                    {
 
-                    }
-                    
-                }
-            }
-            if (Orientation.Equals(Orientation.Horizontal))
-            {
-                try
-                {
-                    occupied[row, column - 1] = true;
-                    occupied[row, column + size] = true;
-                } catch(IndexOutOfRangeException e){
-
-                }
-               
-            }
-            else
-            {
-                try {
-                occupied[row -1, column] = true;
-                occupied[row + size, column] = true;
-                } catch(IndexOutOfRangeException e){
-
-                }
-            }
-        }
-
-        private void initIsOccupied()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    occupied[i, j] = false;
-                }
             }
         }
     }

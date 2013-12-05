@@ -1,4 +1,5 @@
-﻿using Battleship.View;
+﻿using Battleship.Model;
+using Battleship.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Controls;
 
 namespace Battleship.ViewModel
 {
-    class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         UserControl _menu = new MainMenu();
         UserControl _content=new UserControl();
