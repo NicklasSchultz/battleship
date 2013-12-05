@@ -8,7 +8,7 @@ using Battleship.Model;
 
 namespace Battleship.ViewModel
 {
-    public class BoardViewModel : BaseViewModel
+    public class BoardViewModel : BaseViewModel,ModelHolder
     {
         private BoardModel _board = new BoardModel();
         public EventHandler eventHandler;
@@ -49,7 +49,6 @@ namespace Battleship.ViewModel
                     this._board.modifyCoordinate(x, y, BoardConstants.miss);
                     Board = _board;
                     eventHandler(this, EventArgs.Empty);
-                    this.RaisPropertyChangedEvent("Board");
                 }
             }
         }
@@ -60,8 +59,12 @@ namespace Battleship.ViewModel
             {
                 _board.modifyCoordinate(x[i], y[i], BoardConstants.ship);
                 Board = _board;
-                RaisPropertyChangedEvent("Board");
             }
+        }
+
+        public void modelChanged(BoardModel model)
+        {
+            Board = model;
         }
     }
 }

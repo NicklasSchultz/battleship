@@ -14,33 +14,38 @@ namespace Battleship
     {
 
         private MainWindowViewModel mwwm;
-        private BoardModel player1 = new BoardModel();
-        private BoardModel player2 = new BoardModel();
-        BoardViewModel bm;
-        BoardView bv;
+        private Player player1=new Player();
+        private Player player2 = new Player();
+        private Player currentPlayer;
+        private BoardViewModel bm;
+        private BoardView bv;
 
         public GameLoop(MainWindowViewModel mwwm)
         {
+            currentPlayer = player1;
             this.mwwm = mwwm;
             bv = mwwm.Content as BoardView;
             bm = bv.DataContext as BoardViewModel;
-            bm.Board = player1;
+            bm.Board = player1.Board;
 
+        }
+        public void start()
+        {
+            while(true){
+                currentPlayer = nextPlayer();
+                bm.Board = currentPlayer.Board;
+                currentPlayer.makeMove(nextPlayer().Board);
+            }
+        }
+
+        private Player nextPlayer()
+        {
+            return currentPlayer.Equals(player1)?player2:player1;
         }
 
         public void HandleEvent(object sender, EventArgs arg)
         {
-            bm.Board = next();
-
-        }
-
-        private BoardModel next()
-        {
-            if (bm.Board == player2)
-            {
-                return player1;
-            }
-            return player2;
+            
         }
     }
 }
