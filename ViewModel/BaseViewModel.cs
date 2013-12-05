@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Battleship.ViewModel
 {
-    public abstract class BaseViewModel : ViewModelHolder
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -19,7 +19,5 @@ namespace Battleship.ViewModel
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public abstract void ModelChanged(BoardModel board);
     }
 }

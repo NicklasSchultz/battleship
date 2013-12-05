@@ -36,8 +36,5 @@ namespace Battleship.ViewModel
                 RaisPropertyChangedEvent("Content");
             }
         }
-        public override void ModelChanged(BoardModel board)
-        {
-        }
     }
 }

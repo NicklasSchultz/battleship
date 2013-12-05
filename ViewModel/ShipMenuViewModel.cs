@@ -9,8 +9,5 @@ namespace Battleship.ViewModel
 {
     class ShipMenuViewModel:BaseViewModel
     {
-        public override void ModelChanged(BoardModel board)
-        {
-        }
     }
 }
