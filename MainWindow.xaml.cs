@@ -33,25 +33,33 @@ namespace Battleship
 
 
         }
+
+        private BoardViewModel bvm; 
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
             MainWindowViewModel m = this.DataContext as MainWindowViewModel;
 
+            
             if (b.Name.Equals("new"))
             {
                 BoardView bv = new BoardView();
-                BoardViewModel bvm = bv.DataContext as BoardViewModel;
+                bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new ShipMenu();
                 m.Content = bv;
+                BattleshipBuilder builder = new BattleshipBuilder(bvm, new Player(), new Player());
+                bvm.SomethingHappened += builder.startGame;
+
             }
-            else if (b.Name.Equals("next"))
-            {
-                
-            }
+
             else if (b.Name.Equals("load"))
             {
                 menu.Content = new MainMenu();
+            }
+            else if (b.Name.Equals("next"))
+            {
+                bvm.DoSomething();   
+
             }
             e.Handled = true;
         }

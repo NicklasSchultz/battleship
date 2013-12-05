@@ -72,5 +72,15 @@ namespace Battleship.ViewModel
         {
             Board = model;
         }
+        public event EventHandler SomethingHappened;
+
+        public void DoSomething()
+        {
+            EventHandler handler = SomethingHappened;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
     }
 }

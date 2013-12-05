@@ -36,8 +36,6 @@ namespace Battleship.View
             ships.Add(new Submarine());
             ships.Add(new PatrolBoat());
 
-            Button button = new Button();
-            button.Click += new RoutedEventHandler(Button_Click);
             int row = 0;
             foreach (Ship s in ships)
             {
@@ -47,10 +45,6 @@ namespace Battleship.View
                 grid.Children.Add(s);
                 row++;
             }
-            Grid.SetColumn(button, 1);
-            Grid.SetRow(button,row);
-            Grid.SetColumnSpan(button,3);
-            grid.Children.Add(button);
             
         }
         private int getBoatSize(object o)
@@ -76,7 +70,7 @@ namespace Battleship.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("GEJE");
+            //BUBBLE blubb
         }
     }
 }

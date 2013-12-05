@@ -24,5 +24,6 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
+        <Button x:Name="next" Grid.Row="5" Click="Button_Click"/>
     </Grid>
 </UserControl>

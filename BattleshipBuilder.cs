@@ -4,50 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Battleship
 {
     class BattleshipBuilder
     {
-        private BattleshipGame _game = new BattleshipGame();
-        
-        public BattleshipBuilder(ModelHolder modelHolder,Player player1,Player player2)
+        private ModelHolder modelHolder;
+        private Player player2;
+        private Player player1;
+        private BoardModel visibleBoard;
+        private Player currentPlayer;
+
+        public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
         {
             this.modelHolder = modelHolder;
-            this.player1=player1;
+            this.player1 = player1;
             this.player2 = player2;
+            currentPlayer = player1;
+            modelHolder.modelChanged(player1.UserBoard);
         }
-        public BattleshipGame buildGame()
+
+
+        public void startGame(object sender, EventArgs args)
         {
-            return _game;
+                currentPlayer = nextPlayer();
+                visibleBoard = currentPlayer.TargetBoard;
+                modelHolder.modelChanged(visibleBoard);
         }
 
-        public class BattleshipGame
+        private Player nextPlayer()
         {
-            private ModelHolder modelHolder;
-            private BoardModel visibleBoard;
-            private Player currentPlayer;
-            private Player player1;
-            private Player player2;
-            public BattleshipGame()
-            {
-                currentPlayer = player1;
-                startGame();
-            }
-
-            private void startGame()
-            {
-                do{
-                    visibleBoard = currentPlayer.TargetBoard;
-                    currentPlayer = nextPlayer();
-                }while(true);
-            }
-
-            private Player nextPlayer()
-            {
-                return currentPlayer.Equals(player1) ? player2 : player1;
-            }
-
+            return currentPlayer.Equals(player1) ? player2 : player1;
         }
+
     }
+
 }

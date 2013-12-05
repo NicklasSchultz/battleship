@@ -10,18 +10,27 @@ namespace Battleship
     class Player
     {
         private BoardModel _userBoard = new BoardModel();
-        public BoardModel UserBoard { get; set; }
-        private BoardModel _targetdBoard = new BoardModel();
-        public BoardModel TargetBoard { get; set; }
+        private BoardModel _targetBoard = new BoardModel();
 
-        internal void makeMove(BoardModel boardModel)
+        public BoardModel UserBoard
         {
-            
+            get { return _userBoard; }
+            set
+            {
+            }
+        }
+        public BoardModel TargetBoard
+        {
+            get { return _targetBoard; }
+            set
+            {
+            }
         }
 
-        internal void makeMove()
+        public Player()
         {
-            throw new NotImplementedException();
+
         }
+
     }
 }
