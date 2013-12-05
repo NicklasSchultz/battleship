@@ -18,5 +18,10 @@ namespace Battleship
         {
             
         }
+
+        internal void makeMove()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

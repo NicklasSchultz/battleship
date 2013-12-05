@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Battleship.Game
 {
-    static class State
+    abstract class State
     {
         public const int PLACE_BOAT_STATE = 0;
         public const int GAME_STATE = 1;

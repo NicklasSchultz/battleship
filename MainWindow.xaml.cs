@@ -25,7 +25,6 @@ namespace Battleship
     {
 
 
-        private GameLoop gl;
 
         public MainWindow()
         {
@@ -45,12 +44,10 @@ namespace Battleship
                 BoardViewModel bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new ShipMenu();
                 m.Content = bv;
-                gl = new GameLoop(m);
-                bvm.eventHandler += gl.HandleEvent;
             }
             else if (b.Name.Equals("next"))
             {
-                gl.state = State.GAME_STATE;
+                
             }
             else if (b.Name.Equals("load"))
             {

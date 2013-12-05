@@ -56,7 +56,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BattleshipBuilder.cs" />
-    <Compile Include="GameLoop.cs" />
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="Model\ModelHolder.cs" />
     <Compile Include="Player.cs" />

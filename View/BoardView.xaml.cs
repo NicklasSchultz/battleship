@@ -129,10 +129,6 @@ namespace Battleship.View
                         y[i] = row + i;
                     }
                 }
-                if(model.placementOk(x,y)){
-                    model.addShip(x, y, ship);
-                    g.Children.Remove(_element);
-                }
             }
         }
 

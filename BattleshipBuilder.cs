@@ -10,9 +10,7 @@ namespace Battleship
     class BattleshipBuilder
     {
         private BattleshipGame _game = new BattleshipGame();
-        private ModelHolder modelHolder;
-        private Player player1;
-        private Player player2;
+        
         public BattleshipBuilder(ModelHolder modelHolder,Player player1,Player player2)
         {
             this.modelHolder = modelHolder;
@@ -26,6 +24,29 @@ namespace Battleship
 
         public class BattleshipGame
         {
+            private ModelHolder modelHolder;
+            private BoardModel visibleBoard;
+            private Player currentPlayer;
+            private Player player1;
+            private Player player2;
+            public BattleshipGame()
+            {
+                currentPlayer = player1;
+                startGame();
+            }
+
+            private void startGame()
+            {
+                do{
+                    visibleBoard = currentPlayer.TargetBoard;
+                    currentPlayer = nextPlayer();
+                }while(true);
+            }
+
+            private Player nextPlayer()
+            {
+                return currentPlayer.Equals(player1) ? player2 : player1;
+            }
 
         }
     }

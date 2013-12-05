@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Battleship.ViewModel
 {
-    public class BoardViewModel : BaseViewModel,ModelHolder
+    public class BoardViewModel : BaseViewModel, ModelHolder
     {
         private BoardModel _board = new BoardModel();
         public EventHandler eventHandler;
@@ -52,23 +52,8 @@ namespace Battleship.ViewModel
         {
             if (_board.Model[x, y] == BoardConstants.airCraftCarrier || _board.Model[x, y] == BoardConstants.submarine || _board.Model[x, y] == BoardConstants.patrolBoat || _board.Model[x, y] == BoardConstants.destroyer)
             {
-<<<<<<< HEAD
-                if (_board.Model[x, y] == BoardConstants.ship)
-                {
-                    _board.modifyCoordinate(x, y, BoardConstants.hit);
-                    Board = _board;
-                    eventHandler(this, EventArgs.Empty);
-                    RaisPropertyChangedEvent("Board");
-                }
-                else
-                {
-                    this._board.modifyCoordinate(x, y, BoardConstants.miss);
-                    Board = _board;
-                    eventHandler(this, EventArgs.Empty);
-                }
-=======
+
                 return true;
->>>>>>> a6c5794217d49cb5996e50472f47f01cce056166
             }
             return false;
         }
@@ -83,19 +68,9 @@ namespace Battleship.ViewModel
             }
         }
 
-<<<<<<< HEAD
         public void modelChanged(BoardModel model)
         {
             Board = model;
-=======
-        public bool placementOk(int[] x, int[] y)
-        {
-            if (control.checkValidPlacement(x, y, _board))
-            {
-                return true;
-            }
-            return false;
->>>>>>> a6c5794217d49cb5996e50472f47f01cce056166
         }
     }
 }
