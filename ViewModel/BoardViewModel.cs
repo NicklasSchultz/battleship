@@ -28,34 +28,17 @@ namespace Battleship.ViewModel
 
         public void coordinateClicked(int x, int y)
         {
-            /*        if (_board.Model[x, y] == BoardConstants.water || isShip(x, y))
-                    {
-                        if (isShip(x, y))
-                        {
-                            _board.modifyCoordinate(x, y, BoardConstants.hit);
-                            Board = _board;
-                            RaisPropertyChangedEvent("Board");
-                            eventHandler(this, EventArgs.Empty);
-
-                        }
-                        else
-                        {
-                            this._board.modifyCoordinate(x, y, BoardConstants.miss);
-                            Board = _board;
-                            this.RaisPropertyChangedEvent("Board");
-                            eventHandler(this, EventArgs.Empty);
-                        }
-                    }*/
-        }
-
-        private bool isShip(int x, int y)
-        {
-            if (_board.Model[x, y] == BoardConstants.airCraftCarrier || _board.Model[x, y] == BoardConstants.submarine || _board.Model[x, y] == BoardConstants.patrolBoat || _board.Model[x, y] == BoardConstants.destroyer)
+            if (_board.Model[x, y] > 3)
             {
-
-                return true;
+                _board.modifyCoordinate(x, y, BoardConstants.hit);
+                Board = _board;
             }
-            return false;
+            else if (_board.Model[x, y] == BoardConstants.water)
+            {
+                _board.modifyCoordinate(x, y, BoardConstants.miss);
+                Board = _board;
+            }
+            DoSomething();
         }
 
         public void addShip(int[] x, int[] y, Ship s)

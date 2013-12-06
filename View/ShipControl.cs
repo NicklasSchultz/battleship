@@ -20,19 +20,19 @@ namespace Battleship.View
         {
         }
 
-        public bool shipFits()
+        private bool shipFits()
         {
             for (int i = 0; i < row.Length; i++)
             {
                 if (row[i] > 9 || column[i] > 9)
                 {
-                    return false ;
+                    return false;
                 }
             }
             return true;
         }
 
-        public bool isOccupied()
+        private bool isOccupied()
         {
             if (shipFits())
             {
@@ -50,7 +50,7 @@ namespace Battleship.View
                 return true;
             }
 
-            
+
         }
 
         public bool checkValidPlacement(int[] row, int[] column, BoardModel bm)
@@ -87,30 +87,26 @@ namespace Battleship.View
             }
         }
 
+        /*
+         * Marks the cells that the boat is placed on as occupied
+         * also marks the neighbouring cells occuppied so that no 
+         * two boats can be placed next to each other.
+         * 
+         */
         private void setOccupied()
         {
-            for (int i = 0; i < row.Length; i++)
+            for (int i = row[0]-1; i <=row[row.Length - 1]+1; i++)
             {
-                occupied[row[i], column[i]] = true;
-            }
-            setSurroundingOccupied();
-        }
-
-        private void setSurroundingOccupied()
-        {
-            for (int i = 0; i < row.Length; i++)
-            {
-                for (int j = row[i] - 1; j <= row[i] + 1; j++)
+                for (int j = column[0]-1; j <= column[column.Length - 1] +1; j++)
                 {
                     try
                     {
-                        occupied[row[j], column[j]] = true;
+                        occupied[row[i], column[j]] = true;
                     }
                     catch (IndexOutOfRangeException e)
                     {
                     }
                 }
-
             }
         }
     }

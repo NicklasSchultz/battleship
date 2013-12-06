@@ -59,7 +59,6 @@ namespace Battleship
             else if (b.Name.Equals("next"))
             {
                 bvm.DoSomething();   
-
             }
             e.Handled = true;
         }
