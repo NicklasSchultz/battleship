@@ -129,6 +129,7 @@ namespace Battleship.View
                         y[i] = row + i;
                     }
                 }
+                model.addShip(x,y,ship);
             }
         }
 
@@ -148,11 +149,6 @@ namespace Battleship.View
 
         private void gridClicked(object sender, MouseButtonEventArgs e)
         {
-            Point pos = e.GetPosition(this);
-            int x = (int)((pos.X / mainGrid.ActualWidth) * 10);
-            int y = (int)((pos.Y / mainGrid.ActualHeight) * 10);
-
-            model.coordinateClicked(x, y);
         }
     }
 }

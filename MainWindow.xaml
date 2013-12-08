@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Battleship.View"
         Title="MainWindow"
         Button.Click="HandleChildEvent"
+        Grid.MouseLeftButtonUp="gridClicked"
         >
     <Window.DataContext>
         <ViewModels:MainWindowViewModel />

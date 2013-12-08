@@ -34,7 +34,9 @@ namespace Battleship
 
         }
 
-        private BoardViewModel bvm; 
+        private BoardViewModel bvm;
+        private BattleshipBuilder builder;
+        private BoardView bv;
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
@@ -43,11 +45,11 @@ namespace Battleship
             
             if (b.Name.Equals("new"))
             {
-                BoardView bv = new BoardView();
+                bv = new BoardView();
                 bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new ShipMenu();
                 m.Content = bv;
-                BattleshipBuilder builder = new BattleshipBuilder(bvm, new Player(), new Player());
+                builder = new BattleshipBuilder(bvm, new Player(), new Player());
                 bvm.SomethingHappened += builder.startGame;
 
             }
@@ -63,5 +65,13 @@ namespace Battleship
             }
             e.Handled = true;
         }
+        private void gridClicked(object sender, MouseButtonEventArgs e) {
+            Point pos = e.GetPosition(this);
+            int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
+            int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
+           // MessageBox.Show("blubb");
+            builder.Shoot(column,row);
+        }
+
     }
 }

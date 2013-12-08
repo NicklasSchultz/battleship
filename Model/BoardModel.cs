@@ -47,5 +47,37 @@ namespace Battleship.Model
                 }
             }
         }
+
+        public bool allBoatsPlaced()
+        {
+            int b = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (_model[i, j] > 3)
+                    {
+                        b++;
+                    }
+                }
+            }
+            return b > 13;
+        }
+
+        internal bool finished()
+        {
+            int h = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (_model[i, j] == BoardConstants.hit)
+                    {
+                        h++;
+                    }
+                }
+            }
+            return h == 13;
+        }
     }
 }

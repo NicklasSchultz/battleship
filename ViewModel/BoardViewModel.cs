@@ -8,6 +8,7 @@ using Battleship.Model;
 using System.Windows.Controls;
 using Battleship.View;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Battleship.ViewModel
 {
@@ -82,5 +83,7 @@ namespace Battleship.ViewModel
                 handler(this, EventArgs.Empty);
             }
         }
+        private void gridClicked(object sender, MouseButtonEventArgs e)
+        { }
     }
 }
