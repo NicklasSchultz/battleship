@@ -50,7 +50,7 @@ namespace Battleship
                 m.Menu = new ShipMenu();
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
-                bvm.SomethingHappened += builder.startGame;
+                bvm.SomethingHappened += nextClicked;
 
             }
 
@@ -64,12 +64,24 @@ namespace Battleship
             }
             e.Handled = true;
         }
+
+        private void nextClicked(object sender, EventArgs e)
+        {
+            builder.progressGame();
+            if (builder.BoatsPlaced)
+            {
+                menu = new MainMenu();
+            }
+        }
         private void gridClicked(object sender, MouseButtonEventArgs e) {
             Point pos = e.GetPosition(this);
             int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
             int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
            // MessageBox.Show("blubb");
-            builder.Shoot(column,row);
+            if(builder.Shoot(column,row)){
+                //shoot ok
+            }
+           
         }
 
     }

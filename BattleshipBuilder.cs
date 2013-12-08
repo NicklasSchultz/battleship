@@ -16,10 +16,12 @@ namespace Battleship
         private Player player1;
         private BoardModel visibleBoard;
         private Player currentPlayer;
-        private int state = State.PLACE_BOAT_STATE;
-
+        public int CurrentState { get; private set; }
+        public bool BoatsPlaced { get; private set; }
         public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
         {
+            BoatsPlaced = true;
+            CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
             this.player1 = player1;
             this.player2 = player2;
@@ -29,26 +31,33 @@ namespace Battleship
         }
 
 
-        public void startGame(object sender, EventArgs args)
+        public void progressGame()
         {
-            if (state == State.PLACE_BOAT_STATE)
+            if (CurrentState == State.PLACE_BOAT_STATE)
             {
                 if (visibleBoard.allBoatsPlaced())
                 {
                     if (currentPlayer.Equals(player2))
                     {
-                    state = State.GAME_STATE;
+                        CurrentState = State.GAME_STATE;
+                        currentPlayer = nextPlayer();
+                        visibleBoard = currentPlayer.TargetBoard;
+                        modelHolder.modelChanged(visibleBoard);
                     }
-                    currentPlayer = nextPlayer();
-                    visibleBoard = currentPlayer.UserBoard;
-                    modelHolder.modelChanged(visibleBoard);
+                    else
+                    {
+                        currentPlayer = nextPlayer();
+                        visibleBoard = currentPlayer.UserBoard;
+                        modelHolder.modelChanged(visibleBoard);
+                    }
+
                 }
                 else
                 {
                     MessageBox.Show("Placera ut alla skepp");
                 }
             }
-            else if (state == State.GAME_STATE)
+            else if (CurrentState == State.GAME_STATE)
             {
                 if (visibleBoard.finished())
                 {
@@ -68,9 +77,23 @@ namespace Battleship
             return currentPlayer.Equals(player1) ? player2 : player1;
         }
 
-        public void Shoot(int x, int y)
+        public bool Shoot(int x, int y)
         {
-            currentPlayer.TargetBoard.Model[x, y] = BoardConstants.miss;
+            if (validShoot(x,y))
+            {
+                currentPlayer.TargetBoard.Model[x, y] = BoardConstants.miss;
+                return true;
+            }
+            return false;
+        }
+
+        private bool validShoot(int x,int y)
+        {
+            BoardModel model=nextPlayer().UserBoard;
+            if(CurrentState==State.GAME_STATE&&model.Model[x,y]==BoardConstants.water){
+                return true;
+            }
+            return false;
         }
     }
 
