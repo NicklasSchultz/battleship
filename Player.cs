@@ -11,6 +11,10 @@ namespace Battleship
     {
         public BoardModel UserBoard { get; private set; }
         public BoardModel TargetBoard { get; private set; }
-
+        public Player()
+        {
+            UserBoard=new BoardModel();
+            TargetBoard = new BoardModel();
+        }
     }
 }
