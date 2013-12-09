@@ -80,25 +80,36 @@ namespace Battleship
             return currentPlayer.Equals(player1) ? player2 : player1;
         }
 
-        public bool Shoot(int x, int y)
+        public int Shoot(int x, int y)
         {
             if (validShoot(x, y))
             {
-                currentPlayer.TargetBoard.Model[x, y] = BoardConstants.miss;
-                return true;
+                int i=nextPlayer().UserBoard.Model[x, y];
+                if(i==BoardConstants.ship){
+                    currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.hit);
+                    return BoardConstants.hit;
+                }else{
+                    currentPlayer.TargetBoard.modifyCoordinate(x,y,BoardConstants.miss);
+                    return BoardConstants.miss;
+                }
             }
-            return false;
+            return -1;
         }
 
         private bool validShoot(int x, int y)
         {
             BoardModel model = nextPlayer().UserBoard;
-            if (!TookShoot && CurrentState == State.GAME_STATE && model.Model[x, y] == BoardConstants.water)
+            if (!TookShoot && CurrentState == State.GAME_STATE && noShotAtSameCoord(x, y))
             {
                 TookShoot = true;
                 return true;
             }
             return false;
+        }
+        private bool noShotAtSameCoord(int x, int y)
+        {
+            BoardModel model = currentPlayer.TargetBoard;
+            return model.Model[x, y] != BoardConstants.hit && model.Model[x, y] != BoardConstants.miss;
         }
     }
 

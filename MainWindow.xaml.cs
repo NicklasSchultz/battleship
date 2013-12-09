@@ -74,7 +74,7 @@ namespace Battleship
                 Point pos = e.GetPosition(this);
                 int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
                 int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
-                if (builder.Shoot(column, row))
+                if (builder.Shoot(column, row)!=-1)
                 {
                     //shoot ok
                 }

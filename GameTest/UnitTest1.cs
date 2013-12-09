@@ -10,68 +10,53 @@ namespace GameTest
     {
 
         [TestMethod]
-        public void TestDoubleShot()
+        public void TestTwoShotsDuringOneTurn()
         {
-            Player player1 = new Player();
-            Player player2 = new Player();
+            Player player1 = new TestPlayer();
+            Player player2 = new TestPlayer();
             
             BattleshipBuilder game = new BattleshipBuilder(new ModelHolderImpl(), player1, player2);
-            placeBoats(player1);
             game.progressGame();
-            placeBoats(player2);
             game.progressGame();
-            bool didTakeShoot = game.Shoot(1, 1);
-            Assert.AreEqual(true, didTakeShoot);
-            didTakeShoot = game.Shoot(1, 1);
-            Assert.AreEqual(false, didTakeShoot);
+            int didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(BoardConstants.hit, didTakeShoot);
+            didTakeShoot = game.Shoot(1, 0);
+            Assert.AreEqual(-1, didTakeShoot);
         }
         [TestMethod]
         public void TestValidShot()
         {
-            Player player1 = new Player();
-            Player player2 = new Player();
+            Player player1 = new TestPlayer();
+            Player player2 = new TestPlayer();
 
             BattleshipBuilder game = new BattleshipBuilder(new ModelHolderImpl(), player1, player2);
-            placeBoats(player1);
+
             game.progressGame();
-            placeBoats(player2);
-            game.progressGame(); 
-            bool didTakeShoot = game.Shoot(1, 1);
-            Assert.AreEqual(true, didTakeShoot);
+            game.progressGame();
+
+            int didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(BoardConstants.hit, didTakeShoot);
         }
         [TestMethod]
-        public void TestInValidShot()
+        public void TwoShotsOnSameCoord()
         {
-            Player player1 = new Player();
-            Player player2 = new Player();
+            Player player1 = new TestPlayer();
+            Player player2 = new TestPlayer();
 
             BattleshipBuilder game = new BattleshipBuilder(new ModelHolderImpl(), player1, player2);
-            placeBoats(player1);
-            game.progressGame();
-            placeBoats(player2);
-            game.progressGame(); 
-            bool didTakeShoot = game.Shoot(-1, 1);
-            Assert.AreEqual(false, didTakeShoot);
-        }
-        private void placeBoats(Player player)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                player.UserBoard.modifyCoordinate(i, 0, BoardConstants.ship);
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                player.UserBoard.modifyCoordinate(i, 2, BoardConstants.ship);
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                player.UserBoard.modifyCoordinate(i, 4, BoardConstants.ship);
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                player.UserBoard.modifyCoordinate(i, 6, BoardConstants.ship);
-            }
 
+            game.progressGame();
+            game.progressGame();
+
+            int didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(BoardConstants.hit, didTakeShoot);
+            game.progressGame();
+            didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(BoardConstants.hit, didTakeShoot);
+            game.progressGame();
+            didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(-1, didTakeShoot);
+            game.progressGame();
         }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="ShipView.xaml.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestPlayer.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="Model\BoardModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
