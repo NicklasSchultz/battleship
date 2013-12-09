@@ -28,5 +28,7 @@ namespace Battleship
             this.size = size;
             InitializeComponent();
         }
+
+        public ShipView() { }
     }
 }

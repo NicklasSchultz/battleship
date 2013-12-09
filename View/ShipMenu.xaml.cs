@@ -40,8 +40,8 @@ namespace Battleship.View
             int row = 0;
             foreach (ShipView s in ships)
             {
-                Grid.SetRow(s,row);
-                Grid.SetColumn(s,0);
+                Grid.SetRow(s, row);
+                Grid.SetColumn(s, 0);
                 Grid.SetColumnSpan(s, s.size);
                 s.MouseLeftButtonDown += new MouseButtonEventHandler(shipSelected);
                 grid.Children.Add(s);
@@ -59,15 +59,19 @@ namespace Battleship.View
         public ShipView Selected
         {
             get { return shipview; }
-            set {
+            set
+            {
                 if (shipview != null)
                 {
                     shipview.shipRec.Stroke = Brushes.Black;
                     shipview.shipRec.StrokeThickness = 1;
                 }
                 shipview = value;
-                shipview.shipRec.StrokeThickness = 5;
-                shipview.shipRec.Stroke = Brushes.Blue;
+                if (shipview != null)
+                {
+                    shipview.shipRec.StrokeThickness = 5;
+                    shipview.shipRec.Stroke = Brushes.Blue;
+                }
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -80,6 +84,6 @@ namespace Battleship.View
             Selected.Orientation = Selected.Orientation.Equals(Orientation.Horizontal) ? Orientation.Vertical : Orientation.Horizontal;
         }
 
-        
+
     }
 }
