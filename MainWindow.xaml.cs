@@ -41,7 +41,6 @@ namespace Battleship
         {
             Button b = e.OriginalSource as Button;
             MainWindowViewModel m = this.DataContext as MainWindowViewModel;
-
             
             if (b.Name.Equals("new"))
             {
@@ -51,7 +50,6 @@ namespace Battleship
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
                 bvm.SomethingHappened += nextClicked;
-
             }
 
             else if (b.Name.Equals("load"))
