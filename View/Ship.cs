@@ -10,10 +10,10 @@ namespace Battleship.View
     public abstract class Ship : UserControl
     {
 
-        public int startX { get; set; }
-        public int startY { get; set; }
-        public Orientation Orientation{get ;  set;}
-        public int size { get; set; }
+        public abstract int startX { get; set; }
+        public abstract int startY { get; set; }
+        public abstract Orientation Orientation { get; set; }
+        public abstract int Size { get; set; }
 
         public Ship()
         {

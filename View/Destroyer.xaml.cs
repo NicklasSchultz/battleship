@@ -21,10 +21,14 @@ namespace Battleship.View
     public partial class Destroyer : Ship
     {
 
-        public static int size = 4;
+        private int size;
+        private int starty;
+        private int startx;
+        private Orientation orientation;
 
         public Destroyer()
         {
+            size = 4;
             InitializeComponent();
         }
 
@@ -38,10 +42,57 @@ namespace Battleship.View
                 DataObject data = new DataObject();
                 data.SetData(destroyer);
                 data.SetData("Object", this);
-                data.SetData("Size", size);
+                data.SetData("Size", 4);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+        public override int startX
+        {
+            get
+            {
+                return startx;
+            }
+            set
+            {
+                startx = value;
+            }
+        }
+
+        public override int startY
+        {
+            get
+            {
+                return starty;
+            }
+            set
+            {
+                starty = value;
+            }
+        }
+
+        public override Orientation Orientation
+        {
+            get
+            {
+                return orientation;
+            }
+            set
+            {
+                orientation = value;
+            }
+        }
+
+        public override int Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
             }
         }
     }

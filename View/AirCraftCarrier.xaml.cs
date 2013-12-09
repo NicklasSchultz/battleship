@@ -20,11 +20,14 @@ namespace Battleship.View
     /// </summary>
     public partial class AirCraftCarrier : Ship
     {
-
-        public static int size = 5;
+        private int size;
+        private int starty;
+        private int startx;
+        private Orientation orientation;
 
         public AirCraftCarrier()
         {
+            size = 5;
             InitializeComponent();
         }
 
@@ -37,10 +40,57 @@ namespace Battleship.View
                 DataObject data = new DataObject();
                 data.SetData(airCraftCarrier);
                 data.SetData("Object", this);
-                data.SetData("Size", size);
+                data.SetData("Size", 5);
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+        public override int startX
+        {
+            get
+            {
+                return startx;
+            }
+            set
+            {
+                startx = value;
+            }
+        }
+
+        public override int startY
+        {
+            get
+            {
+                return starty;
+            }
+            set
+            {
+                starty = value;
+            }
+        }
+
+        public override Orientation Orientation
+        {
+            get
+            {
+                return orientation;
+            }
+            set
+            {
+                orientation = value;
+            }
+        }
+
+        public override int Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                this.size = value;
             }
         }
     }

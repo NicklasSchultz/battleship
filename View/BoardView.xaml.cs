@@ -27,6 +27,10 @@ namespace Battleship.View
 
         public Orientation orientation = Orientation.Horizontal;
         BoardViewModel model;
+        private Destroyer destroyer;
+        private AirCraftCarrier airCraftCarrier;
+        private Submarine submarine;
+        private PatrolBoat patrolBoat;
 
         public BoardView()
         {
@@ -54,25 +58,75 @@ namespace Battleship.View
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    UserControl c;
-                    if (model.Board.Model[i, j] == BoardConstants.water)
+                    UserControl c = new Cell();
+                    switch (model.Board.Model[i, j])
                     {
-                        c = new Cell();
+                        case BoardConstants.water:
+                            c = new Cell();
+                            Grid.SetRow(c, j);
+                            Grid.SetColumn(c, i);
+                            break;
+                        case BoardConstants.miss:
+                            c = new Miss();
+                            Grid.SetRow(c, j);
+                            Grid.SetColumn(c, i);
+                            break;
+                        case BoardConstants.hit:
+                            c = new Hit();
+                            Grid.SetRow(c, j);
+                            Grid.SetColumn(c, i);
+                            break;
+                        case BoardConstants.airCraftCarrier:
+                            c = airCraftCarrier;
+                            Grid.SetRow(c, airCraftCarrier.startY);
+                            Grid.SetColumn(c, airCraftCarrier.startX);
+                            if (airCraftCarrier.Orientation.Equals(Orientation.Horizontal))
+                            {
+                                Grid.SetColumnSpan(c, airCraftCarrier.Size);
+                            }
+                            else
+                                Grid.SetRowSpan(c, airCraftCarrier.Size);
+                            break;
+                        case BoardConstants.destroyer:
+                            c = destroyer;
+                            Grid.SetRow(c, destroyer.startY);
+                            Grid.SetColumn(c, destroyer.startX);
+                            if (destroyer.Orientation.Equals(Orientation.Horizontal))
+                            {
+                                Grid.SetColumnSpan(c, destroyer.Size);
+                            }
+                            else
+                                Grid.SetRowSpan(c, destroyer.Size);
+                            break;
+                        case BoardConstants.patrolBoat:
+                            c = patrolBoat;
+                            Grid.SetRow(c, patrolBoat.startY);
+                            Grid.SetColumn(c, patrolBoat.startX);
+                            if (patrolBoat.Orientation.Equals(Orientation.Horizontal))
+                            {
+                                Grid.SetColumnSpan(c, patrolBoat.Size);
+                            }
+                            else
+                                Grid.SetRowSpan(c, patrolBoat.Size);
+                            break;
+                        case BoardConstants.submarine:
+                            c = submarine;
+                            Grid.SetRow(c, submarine.startY);
+                            Grid.SetColumn(c, submarine.startX);
+                            if (submarine.Orientation.Equals(Orientation.Horizontal))
+                            {
+                                Grid.SetColumnSpan(c, submarine.Size);
+                            }
+                            else
+                                Grid.SetRowSpan(c, submarine.Size);
+                            break;
+                        default:
+                            break;
                     }
-                    else if (model.Board.Model[i, j] == BoardConstants.miss)
+                    if (VisualTreeHelper.GetParent(c) != null)
                     {
-                        c = new Miss();
+                        ((Grid)VisualTreeHelper.GetParent(c)).Children.Remove(c);
                     }
-                    else if(model.Board.Model[i,j] == BoardConstants.hit)
-                    {
-                        c = new Hit();
-                    }
-                    else
-                    {
-                        c = new ShipView();
-                    }
-                    Grid.SetRow(c, j);
-                    Grid.SetColumn(c, i);
                     mainGrid.Children.Add(c);
                 }
             }
@@ -103,11 +157,11 @@ namespace Battleship.View
                 int size = (int)e.Data.GetData("Size");
                 UIElement _element = (UIElement)e.Data.GetData("Object");
                 Ship ship = (Ship)_element;
-
+                setBoat(ship);
                 int[] x = new int[size];
                 int[] y = new int[size];
                 Grid g = (Grid)VisualTreeHelper.GetParent(_element);
-                
+                g.Children.Remove(ship);
 
                 ship.PreviewMouseLeftButtonUp += new MouseButtonEventHandler(flipBoat);
 
@@ -129,11 +183,33 @@ namespace Battleship.View
                         y[i] = row + i;
                     }
                 }
-                model.addShip(x,y,ship);
+                ship.startX = column;
+                ship.startY = row;
+                ship.Size = size;
+                ship.Orientation = orientation;
+                model.addShip(x, y, ship);
             }
         }
 
-
+        public void setBoat(Ship o)
+        {
+            if (o.GetType() == typeof(PatrolBoat))
+            {
+                patrolBoat = (PatrolBoat)o;
+            }
+            if (o.GetType() == typeof(Submarine))
+            {
+                submarine = (Submarine)o;
+            }
+            if (o.GetType() == typeof(AirCraftCarrier))
+            {
+                airCraftCarrier = (AirCraftCarrier)o;
+            }
+            if (o.GetType() == typeof(Destroyer))
+            {
+                destroyer = (Destroyer)o;
+            }
+        }
 
         private void flipBoat(object o, MouseButtonEventArgs a)
         {

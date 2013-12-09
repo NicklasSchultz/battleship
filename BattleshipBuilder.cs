@@ -90,7 +90,7 @@ namespace Battleship
         private bool validShoot(int x,int y)
         {
             BoardModel model=nextPlayer().UserBoard;
-            if(CurrentState==State.GAME_STATE&&model.Model[x,y]==BoardConstants.water){
+            if(CurrentState==State.GAME_STATE && model.Model[x,y]==BoardConstants.water){
                 return true;
             }
             return false;
