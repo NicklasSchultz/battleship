@@ -23,6 +23,7 @@ namespace Battleship.ViewModel
             set
             {
                 this._board = value;
+                MessageBox.Show("Här e det null " + _board);
                 this.RaisPropertyChangedEvent("Board");
             }
         }

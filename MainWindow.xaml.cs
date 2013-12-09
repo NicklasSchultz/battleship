@@ -53,7 +53,6 @@ namespace Battleship
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
                 bvm.SomethingHappened += nextClicked;
-
             }
 
             else if (b.Name.Equals("load"))

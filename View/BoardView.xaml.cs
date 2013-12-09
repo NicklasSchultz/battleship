@@ -26,13 +26,9 @@ namespace Battleship.View
     {
 
         public Orientation orientation = Orientation.Horizontal;
-        BoardViewModel model;
         private Cell[,] cells= new Cell[10,10];
-        private Destroyer destroyer;
-        private AirCraftCarrier airCraftCarrier;
-        private Submarine submarine;
+        BoardViewModel model;
         private ShipMenu shipmenu;
-        private PatrolBoat patrolBoat;
         private ShipView shipview;
         public BoardView(ShipMenu shipmenu)
         {
@@ -45,7 +41,7 @@ namespace Battleship.View
         {
             base.OnInitialized(e);
             model = this.DataContext as BoardViewModel;
-            model.PropertyChanged += new PropertyChangedEventHandler(boardChange);
+            model.PropertyChanged += new PropertyChangedEventHandler(boardChanged);
 
             for (int i = 0; i < 10; i++)
             {
@@ -90,13 +86,17 @@ namespace Battleship.View
             g.rectangle.Fill = Brushes.LightBlue;
         }
 
-        private void boardChange(object sender, PropertyChangedEventArgs e)
+        private void boardChanged(object sender, PropertyChangedEventArgs e)
         {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
                     UserControl c = new Cell();
+                    MessageBox.Show("model " + model);
+
+                    MessageBox.Show("board " + model.Board);
+
                     switch (model.Board.Model[i, j])
                     {
                         case BoardConstants.water:

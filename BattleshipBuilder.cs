@@ -9,17 +9,19 @@ using Battleship.Game;
 
 namespace Battleship
 {
-    class BattleshipBuilder
+    public class BattleshipBuilder
     {
         private ModelHolder modelHolder;
         private Player player2;
         private Player player1;
         private BoardModel visibleBoard;
         private Player currentPlayer;
+        public bool TookShoot { get; private set; }
         public int CurrentState { get; private set; }
         public bool BoatsPlaced { get; private set; }
         public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
         {
+            TookShoot = false;
             BoatsPlaced = true;
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
@@ -65,6 +67,7 @@ namespace Battleship
                 }
                 else
                 {
+                    TookShoot = false;
                     currentPlayer = nextPlayer();
                     visibleBoard = currentPlayer.TargetBoard;
                     modelHolder.modelChanged(visibleBoard);
@@ -79,7 +82,7 @@ namespace Battleship
 
         public bool Shoot(int x, int y)
         {
-            if (validShoot(x,y))
+            if (validShoot(x, y))
             {
                 currentPlayer.TargetBoard.Model[x, y] = BoardConstants.miss;
                 return true;
@@ -87,10 +90,12 @@ namespace Battleship
             return false;
         }
 
-        private bool validShoot(int x,int y)
+        private bool validShoot(int x, int y)
         {
-            BoardModel model=nextPlayer().UserBoard;
-            if(CurrentState==State.GAME_STATE && model.Model[x,y]==BoardConstants.water){
+            BoardModel model = nextPlayer().UserBoard;
+            if (!TookShoot && CurrentState == State.GAME_STATE && model.Model[x, y] == BoardConstants.water)
+            {
+                TookShoot = true;
                 return true;
             }
             return false;

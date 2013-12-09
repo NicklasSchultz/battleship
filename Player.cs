@@ -7,30 +7,10 @@ using Battleship.ViewModel;
 
 namespace Battleship
 {
-    class Player
+    public class Player
     {
-        private BoardModel _userBoard = new BoardModel();
-        private BoardModel _targetBoard = new BoardModel();
-
-        public BoardModel UserBoard
-        {
-            get { return _userBoard; }
-            set
-            {
-            }
-        }
-        public BoardModel TargetBoard
-        {
-            get { return _targetBoard; }
-            set
-            {
-            }
-        }
-
-        public Player()
-        {
-
-        }
+        public BoardModel UserBoard { get; private set; }
+        public BoardModel TargetBoard { get; private set; }
 
     }
 }
