@@ -26,7 +26,7 @@ namespace Battleship.View
     {
 
         public Orientation orientation = Orientation.Horizontal;
-        private Cell[,] cells= new Cell[10,10];
+        private Cell[,] cells = new Cell[10, 10];
         BoardViewModel model;
         private ShipMenu shipmenu;
         private ShipView shipview;
@@ -53,39 +53,50 @@ namespace Battleship.View
                 for (int j = 0; j < 10; j++)
                 {
                     cells[i, j] = new Cell();
-                    Grid.SetColumn(cells[i,j],i);
+                    Grid.SetColumn(cells[i, j], i);
                     Grid.SetRow(cells[i, j], j);
-                    mainGrid.Children.Add(cells[i,j]);
+                    mainGrid.Children.Add(cells[i, j]);
+                    cells[i, j].X = i;
+                    cells[i, j].Y = j;
                 }
             }
 
         }
-
+        private void setViewToWater()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                }
+            }
+        }
         private void enter(object sender, MouseEventArgs e)
         {
+            setViewToWater();
             shipview = shipmenu.Selected;
             int size = 0;
             if (shipview != null)
             {
-                 size = shipview.size;
+                size = shipview.size;
             }
             Cell g = (Cell)sender;
             g.rectangle.Fill = Brushes.Aqua;
-            int row = size % 10;
-            int col = size / 10;
-            int indez = mainGrid.Children.IndexOf(g);
-            for (int i = indez; i < indez + size; i++)
+            int row = g.Y;
+            int col = g.X;
+            for (int i = 0; i < size; i++)
             {
-                cells[col, row].rectangle.Fill = Brushes.Aqua;
+                int xx = col+i;
+                if(xx<10)
+                    cells[col + i, row].rectangle.Fill = Brushes.Aqua;
+                else{
+                    cells[col - (xx - 9), row].rectangle.Fill = Brushes.Aqua;
+                }
+          
             }
-                
-        }
-        private void leave(object sender, MouseEventArgs e)
-        {
-            Cell g = (Cell)sender;
-            g.rectangle.Fill = Brushes.LightBlue;
-        }
 
+        }
         private void boardChanged(object sender, PropertyChangedEventArgs e)
         {
             for (int i = 0; i < 10; i++)
@@ -93,16 +104,12 @@ namespace Battleship.View
                 for (int j = 0; j < 10; j++)
                 {
                     UserControl c = new Cell();
-                    MessageBox.Show("model " + model);
-
-                    MessageBox.Show("board " + model.Board);
 
                     switch (model.Board.Model[i, j])
                     {
                         case BoardConstants.water:
-                            c = new Cell();
+                            c = cells[i, j];
                             c.MouseEnter += new MouseEventHandler(enter);
-                            c.MouseLeave += new MouseEventHandler(leave);
                             Grid.SetRow(c, j);
                             Grid.SetColumn(c, i);
                             break;
@@ -119,7 +126,15 @@ namespace Battleship.View
                         default:
                             break;
                     }
-                    mainGrid.Children.Add(c);
+                    if (VisualTreeHelper.GetParent(c) == null)
+                    {
+                        mainGrid.Children.Add(c);
+                    }
+                    else
+                    {
+                        ((Grid)VisualTreeHelper.GetParent(c)).Children.Remove(c);
+                        mainGrid.Children.Add(c);
+                    }
                 }
             }
         }

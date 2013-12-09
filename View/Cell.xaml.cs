@@ -20,10 +20,14 @@ namespace Battleship.View
     /// </summary>
     public partial class Cell : UserControl
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public Cell()
         {
             InitializeComponent();
         }
+
 
         private void panel_DragOver(object sender, DragEventArgs e)
         {
