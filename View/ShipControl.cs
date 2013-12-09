@@ -18,72 +18,43 @@ namespace Battleship.View
 
         public ShipControl()
         {
+            initArray();
         }
 
-        private bool shipFits()
-        {
-            for (int i = 0; i < row.Length; i++)
-            {
-                if (row[i] > 9 || column[i] > 9)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool isOccupied()
-        {
-            if (shipFits())
-            {
-                for (int i = 0; i < row.Length; i++)
-                {
-                    if (occupied[row[i], column[i]])
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-
-        }
-
-        public bool checkValidPlacement(int[] row, int[] column, BoardModel bm)
-        {
-            this.row = row;
-            this.column = column;
-            setArray(bm);
-            if (!isOccupied())
-            {
-                setOccupied();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private void setArray(BoardModel model)
+        private void initArray()
         {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (model.Model[i, j] == BoardConstants.water)
-                    {
-                        occupied[i, j] = false;
-                    }
-                    else
-                    {
-                        occupied[i, j] = true;
-                    }
+                    occupied[i, j] = false;
                 }
+            }
+        }
+
+        private bool isOccupied()
+        {
+            for (int i = 0; i < row.Length; i++)
+            {
+                if (occupied[column[i], row[i]])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool checkValidPlacement(int[] column, int[] row)
+        {
+            this.row = row;
+            this.column = column;
+            if (!isOccupied())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -93,15 +64,17 @@ namespace Battleship.View
          * two boats can be placed next to each other.
          * 
          */
-        private void setOccupied()
+        public void setOccupied()
         {
-            for (int i = row[0]-1; i <=row[row.Length - 1]+1; i++)
+            int count = 0;
+            for (int col = column[0] - 1; col <= column[column.Length - 1] + 1; col++)
             {
-                for (int j = column[0]-1; j <= column[column.Length - 1] +1; j++)
+                for (int ro =  row[0] - 1; ro <= row[row.Length - 1] + 1; ro++)
                 {
+                    count++;
                     try
                     {
-                        occupied[i, j] = true;
+                        occupied[col, ro] = true;
                     }
                     catch (IndexOutOfRangeException e)
                     {
