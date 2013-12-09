@@ -16,10 +16,12 @@ namespace Battleship
         private Player player1;
         private BoardModel visibleBoard;
         private Player currentPlayer;
+        public bool TookShoot { get; private set; }
         public int CurrentState { get; private set; }
         public bool BoatsPlaced { get; private set; }
         public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
         {
+            TookShoot = false;
             BoatsPlaced = true;
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
@@ -65,6 +67,7 @@ namespace Battleship
                 }
                 else
                 {
+                    TookShoot = false;
                     currentPlayer = nextPlayer();
                     visibleBoard = currentPlayer.TargetBoard;
                     modelHolder.modelChanged(visibleBoard);
@@ -90,7 +93,8 @@ namespace Battleship
         private bool validShoot(int x,int y)
         {
             BoardModel model=nextPlayer().UserBoard;
-            if(CurrentState==State.GAME_STATE&&model.Model[x,y]==BoardConstants.water){
+            if(!TookShoot&&CurrentState==State.GAME_STATE&&model.Model[x,y]==BoardConstants.water){
+                TookShoot = true;
                 return true;
             }
             return false;
