@@ -9,5 +9,13 @@ namespace Battleship.ViewModel
 {
     class ShipMenuViewModel:BaseViewModel
     {
+
+        private ShipView shipView;
+
+        public ShipView Selected
+        {
+            get { return shipView; }
+            set { shipView = value; }
+        }
     }
 }

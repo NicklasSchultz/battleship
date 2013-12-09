@@ -20,8 +20,10 @@ namespace Battleship
     /// </summary>
     public partial class ShipView : UserControl
     {
-        public ShipView()
+        public int size { get; set; }
+        public ShipView(int size)
         {
+            this.size = size;
             InitializeComponent();
         }
     }

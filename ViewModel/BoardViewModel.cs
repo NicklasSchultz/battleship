@@ -68,5 +68,10 @@ namespace Battleship.ViewModel
         }
         private void gridClicked(object sender, MouseButtonEventArgs e)
         { }
+
+        public void shipSelected()
+        {
+
+        }
     }
 }

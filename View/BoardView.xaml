@@ -10,9 +10,8 @@
     <UserControl.DataContext>
         <ViewModel:BoardViewModel/>
     </UserControl.DataContext>
-    <Grid Name="mainGrid"  AllowDrop="True"
-            DragOver="panel_DragOver"
-            Drop="panel_Drop" MouseLeftButtonUp="gridClicked">
+    <Grid Name="mainGrid"
+          MouseLeftButtonUp="gridClicked">
         <ContentControl Content="{Binding Board, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

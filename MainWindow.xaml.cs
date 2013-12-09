@@ -37,17 +37,19 @@ namespace Battleship
         private BoardViewModel bvm;
         private BattleshipBuilder builder;
         private BoardView bv;
+        private ShipMenu shipmenu;
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
             MainWindowViewModel m = this.DataContext as MainWindowViewModel;
 
-            
+
             if (b.Name.Equals("new"))
             {
-                bv = new BoardView();
+                shipmenu = new ShipMenu();
+                bv = new BoardView(shipmenu);
                 bvm = bv.DataContext as BoardViewModel;
-                m.Menu = new ShipMenu();
+                m.Menu = shipmenu;
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
                 bvm.SomethingHappened += nextClicked;
@@ -60,7 +62,7 @@ namespace Battleship
             }
             else if (b.Name.Equals("next"))
             {
-                bvm.DoSomething();   
+                bvm.DoSomething();
             }
             e.Handled = true;
         }
@@ -70,19 +72,20 @@ namespace Battleship
             builder.progressGame();
             if (builder.BoatsPlaced)
             {
-                menu = new MainMenu();
-            }
-        }
-        private void gridClicked(object sender, MouseButtonEventArgs e) {
-            Point pos = e.GetPosition(this);
-            int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
-            int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
-           // MessageBox.Show("blubb");
-            if(builder.Shoot(column,row)){
-                //shoot ok
-            }
-           
-        }
 
+            }
+        }
+        private void gridClicked(object sender, MouseButtonEventArgs e)
+        {
+            
+                Point pos = e.GetPosition(this);
+                int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
+                int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
+                if (builder.Shoot(column, row))
+                {
+                    //shoot ok
+                }
+            
+        }
     }
 }

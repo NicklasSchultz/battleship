@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid x:Name="cellgrid" >
-        <Rectangle Fill="LightBlue" Stroke="Black" StrokeThickness="0.5" Height="{Binding ElementName=cellgrid, Path=ActualWidth}">
+        <Rectangle x:Name="rectangle" Fill="LightBlue" Stroke="Black" StrokeThickness="0.5" Height="{Binding ElementName=cellgrid, Path=ActualWidth}">
         </Rectangle>
     </Grid>
 </UserControl>

@@ -21,7 +21,8 @@ namespace Battleship.View
     public partial class ShipMenu : UserControl
     {
 
-        private List<Ship> ships = new List<Ship>();
+        private List<ShipView> ships = new List<ShipView>();
+        private ShipView shipview;
 
         public ShipMenu()
         {
@@ -31,46 +32,40 @@ namespace Battleship.View
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            ships.Add(new AirCraftCarrier());
-            ships.Add(new Destroyer());
-            ships.Add(new Submarine());
-            ships.Add(new PatrolBoat());
+            ships.Add(new ShipView(4));
+            ships.Add(new ShipView(3));
+            ships.Add(new ShipView(5));
+            ships.Add(new ShipView(2));
 
             int row = 0;
-            foreach (Ship s in ships)
+            foreach (ShipView s in ships)
             {
                 Grid.SetRow(s,row);
                 Grid.SetColumn(s,0);
-                Grid.SetColumnSpan(s, getBoatSize(s));
+                Grid.SetColumnSpan(s, s.size);
+                s.MouseLeftButtonDown += new MouseButtonEventHandler(gridClicked);
                 grid.Children.Add(s);
                 row++;
             }
-            
-        }
-        private int getBoatSize(object o)
-        {
-            if (o.GetType() == typeof(PatrolBoat))
-            {
-                return ((PatrolBoat)o).Size;
-            }
-            if (o.GetType() == typeof(Submarine))
-            {
-                return ((Submarine)o).Size;
-            }
-            if (o.GetType() == typeof(AirCraftCarrier))
-            {
-                return ((AirCraftCarrier)o).Size;
-            }
-            if (o.GetType() == typeof(Destroyer))
-            {
-                return ((Destroyer)o).Size;
-            }
-            return 0;
         }
 
+        private void gridClicked(object sender, MouseButtonEventArgs e)
+        {
+            ((ShipView)sender).shipRec.StrokeThickness = 5;
+            ((ShipView)sender).shipRec.Stroke = Brushes.Blue;
+            Selected = ((ShipView)sender);
+        }
+
+        public ShipView Selected
+        {
+            get { return shipview; }
+            set { shipview = value; }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //BUBBLE blubb
         }
+
+        
     }
 }
