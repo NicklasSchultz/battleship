@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Battleship.Model
 {
-    static class BoardConstants
+    public static class BoardConstants
     {
         public const int water=0;
         public const int ship=1;

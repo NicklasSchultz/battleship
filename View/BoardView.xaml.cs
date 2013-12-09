@@ -26,7 +26,7 @@ namespace Battleship.View
     {
 
         public Orientation orientation = Orientation.Horizontal;
-        BoardViewModel model;
+        private BoardViewModel model;
         private Destroyer destroyer;
         private AirCraftCarrier airCraftCarrier;
         private Submarine submarine;

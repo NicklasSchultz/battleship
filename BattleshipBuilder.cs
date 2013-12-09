@@ -9,7 +9,7 @@ using Battleship.Game;
 
 namespace Battleship
 {
-    class BattleshipBuilder
+    public class BattleshipBuilder
     {
         private ModelHolder modelHolder;
         private Player player2;

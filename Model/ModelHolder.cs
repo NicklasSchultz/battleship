@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Battleship.Model
 {
-    interface ModelHolder
+    public interface ModelHolder
     {
        void modelChanged(BoardModel model);
     }

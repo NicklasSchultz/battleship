@@ -58,6 +58,7 @@
     <Compile Include="BattleshipBuilder.cs" />
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="Model\ModelHolder.cs" />
+    <Compile Include="Model\ModelHolderImpl.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Game\State.cs" />
     <Compile Include="ShipView.xaml.cs">
