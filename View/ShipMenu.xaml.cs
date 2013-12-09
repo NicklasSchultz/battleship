@@ -51,19 +51,19 @@ namespace Battleship.View
         {
             if (o.GetType() == typeof(PatrolBoat))
             {
-                return PatrolBoat.size;
+                return ((PatrolBoat)o).Size;
             }
             if (o.GetType() == typeof(Submarine))
             {
-                return Submarine.size;
+                return ((Submarine)o).Size;
             }
             if (o.GetType() == typeof(AirCraftCarrier))
             {
-                return AirCraftCarrier.size;
+                return ((AirCraftCarrier)o).Size;
             }
             if (o.GetType() == typeof(Destroyer))
             {
-                return Destroyer.size;
+                return ((Destroyer)o).Size;
             }
             return 0;
         }

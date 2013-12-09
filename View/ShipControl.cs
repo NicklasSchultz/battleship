@@ -101,7 +101,7 @@ namespace Battleship.View
                 {
                     try
                     {
-                        occupied[row[i], column[j]] = true;
+                        occupied[i, j] = true;
                     }
                     catch (IndexOutOfRangeException e)
                     {

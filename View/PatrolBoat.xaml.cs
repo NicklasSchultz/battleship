@@ -21,10 +21,14 @@ namespace Battleship.View
     public partial class PatrolBoat : Ship
     {
 
-        public static int size = 2;
+        private int size;
+        private int starty;
+        private int startx;
+        private Orientation orientation;
 
         public PatrolBoat()
         {
+            size = 2;
             InitializeComponent();
         }
 
@@ -42,6 +46,54 @@ namespace Battleship.View
 
                 // Inititate the drag-and-drop operation.
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Copy | DragDropEffects.Move);
+            }
+        }
+
+        public override int startX
+        {
+            get
+            {
+                return startx;
+            }
+            set
+            {
+                startx = value;
+            }
+        }
+
+        public override int startY
+        {
+            get
+            {
+                return starty;
+            }
+            set
+            {
+                starty = value;
+            }
+        }
+
+        public override Orientation Orientation
+        {
+            get
+            {
+                return orientation;
+            }
+            set
+            {
+                orientation = value;
+            }
+        }
+
+        public override int Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
             }
         }
     }
