@@ -25,5 +25,6 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Button x:Name="next" Grid.Row="5" Click="Button_Click"/>
+        <Button x:Name="Rotate_Ship" Grid.Row="5" Grid.Column="4" Click="Rotate" />
     </Grid>
 </UserControl>

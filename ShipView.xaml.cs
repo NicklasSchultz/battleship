@@ -21,8 +21,10 @@ namespace Battleship
     public partial class ShipView : UserControl
     {
         public int size { get; set; }
+        public Orientation Orientation { get; set; }
         public ShipView(int size)
         {
+            Orientation = Orientation.Horizontal;
             this.size = size;
             InitializeComponent();
         }

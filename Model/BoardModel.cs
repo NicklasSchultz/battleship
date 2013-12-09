@@ -34,20 +34,6 @@ namespace Battleship.Model
             _model[x, y] = boardConstant;
         }
 
-        public void resetToWater(Ship s)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    if (_model[i, j] == BoardConstants.getBoatSize(s))
-                    {
-                        _model[i, j] = BoardConstants.water;
-                    }
-                }
-            }
-        }
-
         public bool allBoatsPlaced()
         {
             int b = 0;
@@ -55,7 +41,7 @@ namespace Battleship.Model
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (_model[i, j] > 3)
+                    if (_model[i, j] == BoardConstants.ship)
                     {
                         b++;
                     }

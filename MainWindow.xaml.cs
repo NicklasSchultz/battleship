@@ -23,15 +23,9 @@ namespace Battleship
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
-
         public MainWindow()
         {
-
             InitializeComponent();
-
-
         }
 
         private BoardViewModel bvm;
@@ -74,7 +68,9 @@ namespace Battleship
         }
         private void gridClicked(object sender, MouseButtonEventArgs e)
         {
-            
+
+            if (builder.CurrentState == State.GAME_STATE)
+            {
                 Point pos = e.GetPosition(this);
                 int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
                 int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
@@ -82,7 +78,12 @@ namespace Battleship
                 {
                     //shoot ok
                 }
-            
+            }
+            else
+            {
+                bv.setMarkedCells();
+            }
+
         }
     }
 }

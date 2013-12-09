@@ -23,7 +23,6 @@ namespace Battleship.ViewModel
             set
             {
                 this._board = value;
-                MessageBox.Show("Här e det null " + _board);
                 this.RaisPropertyChangedEvent("Board");
             }
         }
@@ -43,14 +42,10 @@ namespace Battleship.ViewModel
             DoSomething();
         }
 
-        public void addShip(int[] x, int[] y, Ship s)
+        public void addShip(int x, int y)
         {
-            _board.resetToWater(s);
-            for (int i = 0; i < x.Length; i++)
-            {
-                _board.modifyCoordinate(x[i], y[i], BoardConstants.getBoatSize(s));
-                Board = _board;
-            }
+            _board.modifyCoordinate(x, y, BoardConstants.ship);
+            Board = _board;
         }
 
         public void modelChanged(BoardModel model)

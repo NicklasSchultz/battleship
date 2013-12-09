@@ -43,13 +43,13 @@ namespace Battleship.View
                 Grid.SetRow(s,row);
                 Grid.SetColumn(s,0);
                 Grid.SetColumnSpan(s, s.size);
-                s.MouseLeftButtonDown += new MouseButtonEventHandler(gridClicked);
+                s.MouseLeftButtonDown += new MouseButtonEventHandler(shipSelected);
                 grid.Children.Add(s);
                 row++;
             }
         }
 
-        private void gridClicked(object sender, MouseButtonEventArgs e)
+        private void shipSelected(object sender, MouseButtonEventArgs e)
         {
             ((ShipView)sender).shipRec.StrokeThickness = 5;
             ((ShipView)sender).shipRec.Stroke = Brushes.Blue;
@@ -59,11 +59,25 @@ namespace Battleship.View
         public ShipView Selected
         {
             get { return shipview; }
-            set { shipview = value; }
+            set {
+                if (shipview != null)
+                {
+                    shipview.shipRec.Stroke = Brushes.Black;
+                    shipview.shipRec.StrokeThickness = 1;
+                }
+                shipview = value;
+                shipview.shipRec.StrokeThickness = 5;
+                shipview.shipRec.Stroke = Brushes.Blue;
+            }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //BUBBLE blubb
+        }
+
+        private void Rotate(object sender, RoutedEventArgs e)
+        {
+            Selected.Orientation = Selected.Orientation.Equals(Orientation.Horizontal) ? Orientation.Vertical : Orientation.Horizontal;
         }
 
         

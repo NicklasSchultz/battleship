@@ -25,7 +25,6 @@ namespace Battleship.View
     public partial class BoardView : UserControl
     {
 
-        public Orientation orientation = Orientation.Horizontal;
         private Cell[,] cells = new Cell[10, 10];
         BoardViewModel model;
         private ShipMenu shipmenu;
@@ -35,7 +34,6 @@ namespace Battleship.View
 
             this.shipmenu = shipmenu;
             InitializeComponent();
-
         }
         protected override void OnInitialized(EventArgs e)
         {
@@ -68,7 +66,10 @@ namespace Battleship.View
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                    if (cells[i, j].rectangle.Fill != Brushes.CadetBlue)
+                    {
+                        cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                    }
                 }
             }
         }
@@ -87,16 +88,29 @@ namespace Battleship.View
             int col = g.X;
             for (int i = 0; i < size; i++)
             {
-                int xx = col+i;
-                if(xx<10)
-                    cells[col + i, row].rectangle.Fill = Brushes.Aqua;
-                else{
-                    cells[col - (xx - 9), row].rectangle.Fill = Brushes.Aqua;
+                if (shipview.Orientation.Equals(Orientation.Horizontal))
+                {
+                    int xPos = col + i;
+                    if (xPos < 10)
+                        cells[col + i, row].rectangle.Fill = Brushes.Aqua;
+                    else
+                    {
+                        cells[col - (xPos - 9), row].rectangle.Fill = Brushes.Aqua;
+                    }
                 }
-          
+                else
+                {
+                    int yPos = row + i;
+                    if (yPos < 10)
+                        cells[col, row + i].rectangle.Fill = Brushes.Aqua;
+                    else
+                    {
+                        cells[col, row - (yPos - 9)].rectangle.Fill = Brushes.Aqua;
+                    }
+                }
             }
-
         }
+
         private void boardChanged(object sender, PropertyChangedEventArgs e)
         {
             for (int i = 0; i < 10; i++)
@@ -139,15 +153,23 @@ namespace Battleship.View
             }
         }
 
-        private void flipBoat(object o, MouseButtonEventArgs a)
-        {
-            Ship s = (Ship)o;
-            orientation = orientation.Equals(Orientation.Vertical) ? Orientation.Horizontal : Orientation.Vertical;
-            s.Orientation = orientation;
-        }
-
         private void gridClicked(object sender, MouseButtonEventArgs e)
         {
+        }
+
+        public void setMarkedCells()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (cells[i, j].rectangle.Fill == Brushes.Aqua)
+                    {
+                        cells[i, j].rectangle.Fill = Brushes.CadetBlue;
+                        model.addShip(i, j);
+                    }
+                }
+            }
         }
     }
 }
