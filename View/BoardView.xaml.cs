@@ -86,28 +86,37 @@ namespace Battleship.View
                 int row = g.Y;
                 int col = g.X;
 
-                if (cells[col, row].GetType() == typeof(Cell))
+
+                for (int i = 0; i < size; i++)
                 {
-                    for (int i = 0; i < size; i++)
+                    if (cells[col, row].GetType() == typeof(Cell))
                     {
                         if (shipview.Orientation.Equals(Orientation.Horizontal))
                         {
                             int xPos = col + i;
                             if (xPos < 10)
-                                ((Cell)cells[col + i, row]).rectangle.Fill = Brushes.Aqua;
+                            {
+                                if (cells[col + i, row].GetType() == typeof(Cell))
+                                    ((Cell)cells[col + i, row]).rectangle.Fill = Brushes.Aqua;
+                            }
                             else
                             {
-                                ((Cell)cells[col - (xPos - 9), row]).rectangle.Fill = Brushes.Aqua;
+                                if (cells[col - (xPos - 9), row].GetType() == typeof(Cell))
+                                    ((Cell)cells[col - (xPos - 9), row]).rectangle.Fill = Brushes.Aqua;
                             }
                         }
                         else
                         {
                             int yPos = row + i;
                             if (yPos < 10)
-                                ((Cell)cells[col, row + i]).rectangle.Fill = Brushes.Aqua;
+                            {
+                                if (cells[col, row + i].GetType() == typeof(Cell))
+                                    ((Cell)cells[col, row + i]).rectangle.Fill = Brushes.Aqua;
+                            }
                             else
                             {
-                                ((Cell)cells[col, row - (yPos - 9)]).rectangle.Fill = Brushes.Aqua;
+                                if (cells[col, row - (yPos - 9)].GetType() == typeof(Cell))
+                                    ((Cell)cells[col, row - (yPos - 9)]).rectangle.Fill = Brushes.Aqua;
                             }
                         }
                     }
