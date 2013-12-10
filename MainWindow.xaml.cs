@@ -54,7 +54,7 @@ namespace Battleship
             else if (b.Name.Equals("next"))
             {
                 builder.progressGame();
-                if (!builder.BoatsPlaced)
+                if (builder.BoatsPlaced)
                 {
                     shipmenu = new ShipMenu();
                     bv.resetShips(shipmenu);

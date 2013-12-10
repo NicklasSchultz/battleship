@@ -45,7 +45,6 @@ namespace Battleship
                 {
                     if (currentPlayer.Equals(player2))
                     {
-                        BoatsPlaced = true;
                         CurrentState = State.GAME_STATE;
                         currentPlayer = nextPlayer();
                         resetBoard = true;
@@ -54,6 +53,7 @@ namespace Battleship
                     }
                     else
                     {
+                        BoatsPlaced = true;
                         currentPlayer = nextPlayer();
                         visibleBoard = currentPlayer.UserBoard;
                         modelHolder.modelChanged(visibleBoard);
