@@ -18,11 +18,13 @@ namespace Battleship
         private Player currentPlayer;
         public bool TookShoot { get; private set; }
         public int CurrentState { get; private set; }
+        public bool resetBoard { get; private set; }
         public bool BoatsPlaced { get; private set; }
         public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
         {
             TookShoot = false;
-            BoatsPlaced = true;
+            BoatsPlaced = false;
+            resetBoard = true;
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
             this.player1 = player1;
@@ -41,8 +43,10 @@ namespace Battleship
                 {
                     if (currentPlayer.Equals(player2))
                     {
+                        BoatsPlaced = true;
                         CurrentState = State.GAME_STATE;
                         currentPlayer = nextPlayer();
+                        resetBoard = true;
                         visibleBoard = currentPlayer.TargetBoard;
                         modelHolder.modelChanged(visibleBoard);
                     }
@@ -61,6 +65,7 @@ namespace Battleship
             }
             else if (CurrentState == State.GAME_STATE)
             {
+                resetBoard = false;
                 if (visibleBoard.finished())
                 {
                     MessageBox.Show("vinnare" + currentPlayer);
@@ -99,6 +104,7 @@ namespace Battleship
         private bool validShoot(int x, int y)
         {
             BoardModel model = nextPlayer().UserBoard;
+
             if (!TookShoot && CurrentState == State.GAME_STATE && noShotAtSameCoord(x, y))
             {
                 TookShoot = true;

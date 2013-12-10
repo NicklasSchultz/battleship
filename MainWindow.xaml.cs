@@ -32,10 +32,11 @@ namespace Battleship
         private BattleshipBuilder builder;
         private BoardView bv;
         private ShipMenu shipmenu;
+        private MainWindowViewModel m;
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
-            MainWindowViewModel m = this.DataContext as MainWindowViewModel;
+            m = this.DataContext as MainWindowViewModel;
             if (b.Name.Equals("new"))
             {
                 shipmenu = new ShipMenu();
@@ -44,7 +45,6 @@ namespace Battleship
                 m.Menu = shipmenu;
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
-                bvm.SomethingHappened += nextClicked;
             }
 
             else if (b.Name.Equals("load"))
@@ -53,37 +53,42 @@ namespace Battleship
             }
             else if (b.Name.Equals("next"))
             {
-                bvm.DoSomething();
+                builder.progressGame();
+                if (!builder.BoatsPlaced)
+                {
+                    shipmenu = new ShipMenu();
+                    bv.resetShips(shipmenu);
+                    m.Menu = shipmenu;
+                } else if (builder.resetBoard){
+                    bv.resetBoard();
+                }
             }
             e.Handled = true;
         }
 
-        private void nextClicked(object sender, EventArgs e)
-        {
-            builder.progressGame();
-            if (builder.BoatsPlaced)
-            {
-
-            }
-        }
         private void gridClicked(object sender, MouseButtonEventArgs e)
         {
-
-            if (builder.CurrentState == State.GAME_STATE)
+            Rectangle r = e.OriginalSource as Rectangle;
+            if (r != null && r.Name.Equals("rectangle") && r.Fill != Brushes.CadetBlue)
             {
-                Point pos = e.GetPosition(this);
-                int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
-                int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
-                if (builder.Shoot(column, row)!=-1)
+                if (builder.CurrentState == State.GAME_STATE)
                 {
-                    //shoot ok
+                    Point pos = e.GetPosition(this);
+                    int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
+                    int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
+                    if (builder.Shoot(column, row)!=-1)
+                    {
+                        //shoot ok
+                    }
+                }
+                else
+                {
+                    if (builder.CurrentState == State.PLACE_BOAT_STATE)
+                    {
+                        bv.setMarkedCells();
+                    }
                 }
             }
-            else
-            {
-                bv.setMarkedCells();
-            }
-
         }
     }
 }

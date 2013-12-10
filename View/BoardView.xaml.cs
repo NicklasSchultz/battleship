@@ -25,9 +25,12 @@ namespace Battleship.View
     public partial class BoardView : UserControl
     {
 
-        private UserControl[,] cells = new UserControl[10, 10];
+        private Cell[,] cells = new Cell[10, 10];
         BoardViewModel model;
         private ShipMenu shipmenu;
+        private ShipControl control = new ShipControl();
+        List<int> x;
+        List<int> y;
         private ShipView shipview;
         public BoardView(ShipMenu shipmenu)
         {
@@ -46,6 +49,12 @@ namespace Battleship.View
                 mainGrid.RowDefinitions.Add(new RowDefinition());
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+
+            initArray();
+        }
+
+        private void initArray()
+        {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -54,11 +63,34 @@ namespace Battleship.View
                     Grid.SetColumn(cells[i, j], i);
                     Grid.SetRow(cells[i, j], j);
                     mainGrid.Children.Add(cells[i, j]);
-                    ((Cell)cells[i, j]).X = i;
-                    ((Cell)cells[i, j]).Y = j;
+                    cells[i, j].X = i;
+                    cells[i, j].Y = j;
                 }
             }
+        }
 
+        public void resetShips(ShipMenu shipMenu)
+        {
+            control.initArray();
+            this.shipmenu = shipMenu;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                }
+            }
+        }
+
+        public void resetBoard()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                }
+            }
         }
         private void setViewToWater()
         {
@@ -66,10 +98,8 @@ namespace Battleship.View
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (cells[i, j].GetType() == typeof(Cell))
-                    {
-                        ((Cell)cells[i, j]).rectangle.Fill = Brushes.LightBlue;
-                    }
+                    if (cells[i, j].rectangle.Fill != Brushes.CadetBlue)
+                        cells[i, j].rectangle.Fill = Brushes.LightBlue;
                 }
             }
         }
@@ -86,40 +116,66 @@ namespace Battleship.View
                 int row = g.Y;
                 int col = g.X;
 
+                x = new List<int>();
+                y = new List<int>();
 
                 for (int i = 0; i < size; i++)
                 {
-                    if (cells[col, row].GetType() == typeof(Cell))
+                    if (shipview.Orientation.Equals(Orientation.Horizontal))
                     {
-                        if (shipview.Orientation.Equals(Orientation.Horizontal))
+                        int xPos = col + i;
+                        if (xPos < 10)
                         {
-                            int xPos = col + i;
-                            if (xPos < 10)
+                            if (cells[col + i, row].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                if (cells[col + i, row].GetType() == typeof(Cell))
-                                    ((Cell)cells[col + i, row]).rectangle.Fill = Brushes.Aqua;
-                            }
-                            else
-                            {
-                                if (cells[col - (xPos - 9), row].GetType() == typeof(Cell))
-                                    ((Cell)cells[col - (xPos - 9), row]).rectangle.Fill = Brushes.Aqua;
+                                x.Add(col + i);
+                                y.Add(row);
                             }
                         }
                         else
                         {
-                            int yPos = row + i;
-                            if (yPos < 10)
+                            if (cells[col - (xPos - 9), row].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                if (cells[col, row + i].GetType() == typeof(Cell))
-                                    ((Cell)cells[col, row + i]).rectangle.Fill = Brushes.Aqua;
-                            }
-                            else
-                            {
-                                if (cells[col, row - (yPos - 9)].GetType() == typeof(Cell))
-                                    ((Cell)cells[col, row - (yPos - 9)]).rectangle.Fill = Brushes.Aqua;
+                                x.Add(col - (xPos - 9));
+                                y.Add(row);
                             }
                         }
                     }
+                    else
+                    {
+                        int yPos = row + i;
+                        if (yPos < 10)
+                        {
+
+                            if (cells[col, row + i].rectangle.Fill != Brushes.CadetBlue)
+                            {
+                                x.Add(col);
+                                y.Add(row + i);
+                            }
+                        }
+                        else
+                        {
+                            if (cells[col, row - (yPos - 9)].rectangle.Fill != Brushes.CadetBlue)
+                            {
+                                x.Add(col);
+                                y.Add(row - (yPos - 9));
+                            }
+                        }
+                    }
+                }
+                Brush brush;
+                if (control.checkValidPlacement(x.ToArray(), y.ToArray()))
+                {
+                    brush = Brushes.Aqua;
+                }
+                else
+                {
+                    brush = Brushes.Red;
+                }
+                for (int i = 0; i < x.Count; i++)
+                {
+
+                    cells[x.ElementAt(i), y.ElementAt(i)].rectangle.Fill = brush;
                 }
             }
         }
@@ -151,7 +207,7 @@ namespace Battleship.View
                             Grid.SetColumn(c, i);
                             break;
                         case BoardConstants.ship:
-                            c = new ShipView();
+                            c = cells[i, j];
                             Grid.SetRow(c, j);
                             Grid.SetColumn(c, i);
                             break;
@@ -178,29 +234,30 @@ namespace Battleship.View
         public void setMarkedCells()
         {
             int size = shipmenu.Selected.size;
-            for (int i = 0; i < 10; i++)
+            int count = 0;
+            for (int i = 0; i < x.Count; i++)
             {
-                for (int j = 0; j < 10; j++)
+                int column = x.ElementAt(i);
+                int j = y.ElementAt(i);
+                if (cells[column, j].rectangle.Fill == Brushes.Aqua)
                 {
-
-                    if (cells[i, j].GetType() == typeof(Cell))
+                    control.setOccupied();
+                    Grid parent = ((Grid)VisualTreeHelper.GetParent(shipmenu.Selected));
+                    if (parent != null)
                     {
-                        if (((Cell)cells[i, j]).rectangle.Fill == Brushes.Aqua)
-                        {
-                            ((Cell)cells[i, j]).rectangle.Fill = Brushes.CadetBlue;
-                            cells[i, j] = shipmenu.Selected;
-                            size--;
-                            shipmenu.grid.Children.Remove(shipmenu.Selected);
-                            model.addShip(i, j);
-                        }
-                        if (size == 0)
-                        {
-                            shipmenu.Selected = null;
-                        }
+                        parent.Children.Remove(shipmenu.Selected);
                     }
+                    cells[column, j].rectangle.Fill = Brushes.CadetBlue;
+                    
+                    count++;
+                }
+                if (count == size)
+                {
+                    shipmenu.Selected = null;
                 }
             }
-
+            if(cells[x.ElementAt(0), y.ElementAt(0)].rectangle.Fill == Brushes.CadetBlue)
+                model.addShip(x.ToArray(), y.ToArray());
         }
     }
 }

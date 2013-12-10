@@ -16,7 +16,6 @@ namespace Battleship.ViewModel
     {
         private BoardModel _board = new BoardModel();
         public EventHandler eventHandler;
-        private ShipControl control = new ShipControl();
         public BoardModel Board
         {
             get { return _board; }
@@ -42,9 +41,12 @@ namespace Battleship.ViewModel
             DoSomething();
         }
 
-        public void addShip(int x, int y)
+        public void addShip(int[] x, int[] y)
         {
-            _board.modifyCoordinate(x, y, BoardConstants.ship);
+            for (int i = 0; i < x.Length; i++)
+            {
+                _board.modifyCoordinate(x[i], y[i], BoardConstants.ship);
+            }
             Board = _board;
         }
 
