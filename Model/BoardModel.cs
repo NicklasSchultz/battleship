@@ -63,7 +63,7 @@ namespace Battleship.Model
                     }
                 }
             }
-            return h == 13;
+            return h == 14;
         }
     }
 }

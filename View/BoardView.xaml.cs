@@ -202,6 +202,7 @@ namespace Battleship.View
                             Grid.SetColumn(c, i);
                             break;
                         case BoardConstants.hit:
+                            cells[i, j].rectangle.Fill = Brushes.LightBlue;
                             c = new Hit();
                             Grid.SetRow(c, j);
                             Grid.SetColumn(c, i);

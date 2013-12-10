@@ -61,7 +61,15 @@ namespace Battleship
                     m.Menu = shipmenu;
                 } else if (builder.resetBoard){
                     bv.resetBoard();
+                    m.Menu = new GameMenu();
                 }
+                this.Title = builder.getPlayer();
+
+            }
+            else if (b.Name.Equals("nextPlayer"))
+            {
+                builder.progressGame();
+                this.Title = builder.getPlayer();
             }
             e.Handled = true;
         }

@@ -28,7 +28,9 @@ namespace Battleship
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
             this.player1 = player1;
+            this.player1.Name = "Player1";
             this.player2 = player2;
+            this.player2.Name = "Player2";
             currentPlayer = player1;
             visibleBoard = player1.UserBoard;
             modelHolder.modelChanged(player1.UserBoard);
@@ -68,7 +70,7 @@ namespace Battleship
                 resetBoard = false;
                 if (visibleBoard.finished())
                 {
-                    MessageBox.Show("vinnare" + currentPlayer);
+                    MessageBox.Show("Vinnare " + currentPlayer.Name);
                 }
                 else
                 {
@@ -101,6 +103,11 @@ namespace Battleship
                 }
             }
             return -1;
+        }
+
+        public String getPlayer()
+        {
+            return currentPlayer.Name;
         }
 
         private bool validShoot(int x, int y)
