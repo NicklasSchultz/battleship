@@ -32,10 +32,11 @@ namespace Battleship
         private BattleshipBuilder builder;
         private BoardView bv;
         private ShipMenu shipmenu;
+        private MainWindowViewModel m;
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
-            MainWindowViewModel m = this.DataContext as MainWindowViewModel;
+            m = this.DataContext as MainWindowViewModel;
             if (b.Name.Equals("new"))
             {
                 shipmenu = new ShipMenu();
@@ -44,7 +45,6 @@ namespace Battleship
                 m.Menu = shipmenu;
                 m.Content = bv;
                 builder = new BattleshipBuilder(bvm, new Player(), new Player());
-                bvm.SomethingHappened += nextClicked;
             }
 
             else if (b.Name.Equals("load"))
@@ -53,23 +53,23 @@ namespace Battleship
             }
             else if (b.Name.Equals("next"))
             {
-                bvm.DoSomething();
+                builder.progressGame();
+                if (!builder.BoatsPlaced)
+                {
+                    shipmenu = new ShipMenu();
+                    bv.resetShips(shipmenu);
+                    m.Menu = shipmenu;
+                } else if (builder.resetBoard){
+                    bv.resetBoard();
+                }
             }
             e.Handled = true;
         }
 
-        private void nextClicked(object sender, EventArgs e)
-        {
-            builder.progressGame();
-            if (builder.BoatsPlaced)
-            {
-
-            }
-        }
         private void gridClicked(object sender, MouseButtonEventArgs e)
         {
             Rectangle r = e.OriginalSource as Rectangle;
-            if (r.Name.Equals("rectangle"))
+            if (r != null && r.Name.Equals("rectangle") && r.Fill != Brushes.CadetBlue)
             {
                 if (builder.CurrentState == State.GAME_STATE)
                 {
@@ -83,7 +83,10 @@ namespace Battleship
                 }
                 else
                 {
-                    bv.setMarkedCells();
+                    if (builder.CurrentState == State.PLACE_BOAT_STATE)
+                    {
+                        bv.setMarkedCells();
+                    }
                 }
             }
         }

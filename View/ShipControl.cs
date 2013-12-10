@@ -21,7 +21,7 @@ namespace Battleship.View
             initArray();
         }
 
-        private void initArray()
+        public void initArray()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -72,13 +72,8 @@ namespace Battleship.View
                 for (int ro =  row[0] - 1; ro <= row[row.Length - 1] + 1; ro++)
                 {
                     count++;
-                    try
-                    {
+                    if(col <10 && ro <10 && col>=0 && ro>=0)
                         occupied[col, ro] = true;
-                    }
-                    catch (IndexOutOfRangeException e)
-                    {
-                    }
                 }
             }
         }

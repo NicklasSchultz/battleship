@@ -29,6 +29,8 @@ namespace Battleship.View
         BoardViewModel model;
         private ShipMenu shipmenu;
         private ShipControl control = new ShipControl();
+        List<int> x;
+        List<int> y;
         private ShipView shipview;
         public BoardView(ShipMenu shipmenu)
         {
@@ -47,6 +49,12 @@ namespace Battleship.View
                 mainGrid.RowDefinitions.Add(new RowDefinition());
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+
+            initArray();
+        }
+
+        private void initArray()
+        {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -59,7 +67,30 @@ namespace Battleship.View
                     cells[i, j].Y = j;
                 }
             }
+        }
 
+        public void resetShips(ShipMenu shipMenu)
+        {
+            control.initArray();
+            this.shipmenu = shipMenu;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                }
+            }
+        }
+
+        public void resetBoard()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    cells[i, j].rectangle.Fill = Brushes.LightBlue;
+                }
+            }
         }
         private void setViewToWater()
         {
@@ -85,8 +116,8 @@ namespace Battleship.View
                 int row = g.Y;
                 int col = g.X;
 
-                List<int> x = new List<int>();
-                List<int> y = new List<int>();
+                x = new List<int>();
+                y = new List<int>();
 
                 for (int i = 0; i < size; i++)
                 {
@@ -203,28 +234,29 @@ namespace Battleship.View
         {
             int size = shipmenu.Selected.size;
             int count = 0;
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < x.Count; i++)
             {
-                for (int j = 0; j < 10; j++)
+                int column = x.ElementAt(i);
+                int j = y.ElementAt(i);
+                if (cells[column, j].rectangle.Fill == Brushes.Aqua)
                 {
-                    if (cells[i, j].rectangle.Fill == Brushes.Aqua)
+                    control.setOccupied();
+                    Grid parent = ((Grid)VisualTreeHelper.GetParent(shipmenu.Selected));
+                    if (parent != null)
                     {
-                        control.setOccupied();
-                        Grid parent = ((Grid)VisualTreeHelper.GetParent(shipmenu.Selected));
-                        if (parent != null)
-                        {
-                            parent.Children.Remove(shipmenu.Selected);
-                        }
-                        cells[i, j].rectangle.Fill = Brushes.CadetBlue;
-                        model.addShip(i, j);
-                        count++;
+                        parent.Children.Remove(shipmenu.Selected);
                     }
-                    if (count == size)
-                    {
-                        shipmenu.Selected = null;
-                    }
+                    cells[column, j].rectangle.Fill = Brushes.CadetBlue;
+                    
+                    count++;
+                }
+                if (count == size)
+                {
+                    shipmenu.Selected = null;
                 }
             }
+            if(cells[x.ElementAt(0), y.ElementAt(0)].rectangle.Fill == Brushes.CadetBlue)
+                model.addShip(x.ToArray(), y.ToArray());
         }
     }
 }

@@ -41,10 +41,12 @@ namespace Battleship.ViewModel
             DoSomething();
         }
 
-        public void addShip(int x, int y)
+        public void addShip(int[] x, int[] y)
         {
-
-            _board.modifyCoordinate(x, y, BoardConstants.ship);
+            for (int i = 0; i < x.Length; i++)
+            {
+                _board.modifyCoordinate(x[i], y[i], BoardConstants.ship);
+            }
             Board = _board;
         }
 

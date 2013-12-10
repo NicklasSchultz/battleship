@@ -32,6 +32,12 @@ namespace Battleship.View
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+            createShips();
+            
+        }
+
+        private void createShips()
+        {
             ships.Add(new ShipView(4));
             ships.Add(new ShipView(3));
             ships.Add(new ShipView(5));
