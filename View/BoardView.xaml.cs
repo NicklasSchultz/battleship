@@ -85,9 +85,8 @@ namespace Battleship.View
                 int row = g.Y;
                 int col = g.X;
 
-
-                int[] x = new int[size];
-                int[] y = new int[size];
+                List<int> x = new List<int>();
+                List<int> y = new List<int>();
 
                 for (int i = 0; i < size; i++)
                 {
@@ -98,16 +97,16 @@ namespace Battleship.View
                         {
                             if (cells[col + i, row].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                x[i] = col + i;
-                                y[i] = row;
+                                x.Add(col + i);
+                                y.Add(row);
                             }
                         }
                         else
                         {
                             if (cells[col - (xPos - 9), row].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                x[i] = col - (xPos - 9);
-                                y[i] = row;
+                                x.Add(col - (xPos - 9));
+                                y.Add(row);
                             }
                         }
                     }
@@ -118,33 +117,33 @@ namespace Battleship.View
                         {
                             if (cells[col, row + i].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                x[i] = col;
-                                y[i] = row + i;
+                                x.Add(col);
+                                y.Add(row + i);
                             }
                         }
                         else
                         {
                             if (cells[col, row - (yPos - 9)].rectangle.Fill != Brushes.CadetBlue)
                             {
-                                x[i] = col;
-                                y[i] = row - (yPos - 9);
+                                x.Add(col);
+                                y.Add(row - (yPos - 9));
                             }
                         }
                     }
                 }
-                if (control.checkValidPlacement(x, y))
+                Brush brush;
+                if (control.checkValidPlacement(x.ToArray(), y.ToArray()))
                 {
-                    for (int i = 0; i < size; i++)
-                    {
-                        cells[x[i], y[i]].rectangle.Fill = Brushes.Aqua;
-                    }
+                    brush = Brushes.Aqua;
                 }
                 else
                 {
-                    for (int i = 0; i < size; i++)
-                    {
-                        cells[x[i], y[i]].rectangle.Fill = Brushes.Red;
-                    }
+                    brush = Brushes.Red;
+                }
+                for (int i = 0; i < x.Count; i++)
+                {
+
+                    cells[x.ElementAt(i), y.ElementAt(i)].rectangle.Fill = brush;
                 }
             }
         }
@@ -217,6 +216,7 @@ namespace Battleship.View
                             parent.Children.Remove(shipmenu.Selected);
                         }
                         cells[i, j].rectangle.Fill = Brushes.CadetBlue;
+                        model.addShip(i, j);
                         count++;
                     }
                     if (count == size)
