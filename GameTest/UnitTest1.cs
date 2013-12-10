@@ -10,6 +10,31 @@ namespace GameTest
     {
 
         [TestMethod]
+        public void TestMiss()
+        {
+            Player player1 = new TestPlayer();
+            Player player2 = new TestPlayer();
+
+            BattleshipBuilder game = new BattleshipBuilder(new ModelHolderImpl(), player1, player2);
+            game.progressGame();
+            game.progressGame();
+
+            int didTakeShoot = game.Shoot(0, 1);
+            Assert.AreEqual(BoardConstants.miss, didTakeShoot);
+        }
+        [TestMethod]
+        public void TestShootInPlaceBoatsState()
+        {
+            Player player1 = new TestPlayer();
+            Player player2 = new TestPlayer();
+
+            BattleshipBuilder game = new BattleshipBuilder(new ModelHolderImpl(), player1, player2);
+            game.progressGame();
+
+            int didTakeShoot = game.Shoot(0, 0);
+            Assert.AreEqual(-1, didTakeShoot);
+        }
+        [TestMethod]
         public void TestTwoShotsDuringOneTurn()
         {
             Player player1 = new TestPlayer();

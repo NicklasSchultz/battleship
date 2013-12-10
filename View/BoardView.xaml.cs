@@ -26,11 +26,11 @@ namespace Battleship.View
     {
 
         private Cell[,] cells = new Cell[10, 10];
-        BoardViewModel model;
+        private BoardViewModel model;
         private ShipMenu shipmenu;
         private ShipControl control = new ShipControl();
-        List<int> x;
-        List<int> y;
+        private List<int> x;
+        private List<int> y;
         private ShipView shipview;
         public BoardView(ShipMenu shipmenu)
         {
