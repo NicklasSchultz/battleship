@@ -28,7 +28,9 @@ namespace Battleship
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
             this.player1 = player1;
+            this.player1.Name = "Player1";
             this.player2 = player2;
+            this.player2.Name = "Player2";
             currentPlayer = player1;
             visibleBoard = player1.UserBoard;
             modelHolder.modelChanged(player1.UserBoard);
@@ -43,7 +45,6 @@ namespace Battleship
                 {
                     if (currentPlayer.Equals(player2))
                     {
-                        BoatsPlaced = true;
                         CurrentState = State.GAME_STATE;
                         currentPlayer = nextPlayer();
                         resetBoard = true;
@@ -52,6 +53,7 @@ namespace Battleship
                     }
                     else
                     {
+                        BoatsPlaced = true;
                         currentPlayer = nextPlayer();
                         visibleBoard = currentPlayer.UserBoard;
                         modelHolder.modelChanged(visibleBoard);
@@ -68,7 +70,7 @@ namespace Battleship
                 resetBoard = false;
                 if (visibleBoard.finished())
                 {
-                    MessageBox.Show("vinnare" + currentPlayer);
+                    MessageBox.Show("Vinnare " + currentPlayer.Name);
                 }
                 else
                 {
@@ -92,13 +94,20 @@ namespace Battleship
                 int i=nextPlayer().UserBoard.Model[x, y];
                 if(i==BoardConstants.ship){
                     currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.hit);
+                    modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.hit;
                 }else{
                     currentPlayer.TargetBoard.modifyCoordinate(x,y,BoardConstants.miss);
+                    modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.miss;
                 }
             }
             return -1;
+        }
+
+        public String getPlayer()
+        {
+            return currentPlayer.Name;
         }
 
         private bool validShoot(int x, int y)
