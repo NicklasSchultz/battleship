@@ -92,9 +92,11 @@ namespace Battleship
                 int i=nextPlayer().UserBoard.Model[x, y];
                 if(i==BoardConstants.ship){
                     currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.hit);
+                    modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.hit;
                 }else{
                     currentPlayer.TargetBoard.modifyCoordinate(x,y,BoardConstants.miss);
+                    modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.miss;
                 }
             }

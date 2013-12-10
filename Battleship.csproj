@@ -79,11 +79,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BattleshipBuilder.cs" />
-    <Compile Include="DatabaseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Model\BoardConstants.cs" />
     <Compile Include="Model\ModelHolder.cs" />
     <Compile Include="Model\ModelHolderImpl.cs" />
@@ -214,17 +209,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DatabaseDataSet.xsc">
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DatabaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DatabaseDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DatabaseDataSet.xss">
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -259,11 +243,6 @@
       <ProductName>SQL Server Compact 4.0 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Database.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
