@@ -12,8 +12,8 @@ namespace Battleship
     public class BattleshipBuilder
     {
         private ModelHolder modelHolder;
-        private Player player2;
-        private Player player1;
+        public Player Player1 { get; private set; }
+        public Player Player2 { get; private set; }
         private BoardModel visibleBoard;
         private Player currentPlayer;
         public bool TookShoot { get; private set; }
@@ -24,13 +24,13 @@ namespace Battleship
         {
             TookShoot = false;
             BoatsPlaced = false;
-            resetBoard = true;
+            resetBoard = false;
             CurrentState = State.PLACE_BOAT_STATE;
             this.modelHolder = modelHolder;
-            this.player1 = player1;
-            this.player1.Name = "Player1";
-            this.player2 = player2;
-            this.player2.Name = "Player2";
+            this.Player1 = player1;
+            this.Player1.Name = "Player1";
+            this.Player2 = player2;
+            this.Player2.Name = "Player2";
             currentPlayer = player1;
             visibleBoard = player1.UserBoard;
             modelHolder.modelChanged(player1.UserBoard);
@@ -43,11 +43,12 @@ namespace Battleship
             {
                 if (visibleBoard.allBoatsPlaced())
                 {
-                    if (currentPlayer.Equals(player2))
+                    if (currentPlayer.Equals(Player2))
                     {
                         CurrentState = State.GAME_STATE;
                         currentPlayer = nextPlayer();
                         resetBoard = true;
+
                         visibleBoard = currentPlayer.TargetBoard;
                         modelHolder.modelChanged(visibleBoard);
                     }
@@ -63,6 +64,7 @@ namespace Battleship
                 else
                 {
                     MessageBox.Show("Placera ut alla skepp");
+                    BoatsPlaced = false;
                 }
             }
             else if (CurrentState == State.GAME_STATE)
@@ -84,7 +86,7 @@ namespace Battleship
 
         private Player nextPlayer()
         {
-            return currentPlayer.Equals(player1) ? player2 : player1;
+            return currentPlayer.Equals(Player1) ? Player2 : Player1;
         }
 
         public int Shoot(int x, int y)

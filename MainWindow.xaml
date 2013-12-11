@@ -11,17 +11,6 @@
     <Window.DataContext>
         <ViewModels:MainWindowViewModel />
     </Window.DataContext>
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:MainMenuViewModel}">
-            <Views:MainMenu/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:ShipMenuViewModel}" >
-            <Views:ShipMenu/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:BoardViewModel}">
-            <Views:BoardView/>
-        </DataTemplate>
-    </Window.Resources>
 
     <DockPanel LastChildFill="True">
         <ContentControl x:Name="menu" DockPanel.Dock="Right" Content="{Binding Menu}" ></ContentControl>

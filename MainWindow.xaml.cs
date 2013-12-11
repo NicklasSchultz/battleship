@@ -71,6 +71,10 @@ namespace Battleship
                 builder.progressGame();
                 this.Title = builder.getPlayer();
             }
+            else if (b.Name.Equals("saveGame"))
+            {
+                SavedGame save = new SavedGame();
+            }
             e.Handled = true;
         }
 
@@ -91,7 +95,7 @@ namespace Battleship
                 }
                 else
                 {
-                    if (builder.CurrentState == State.PLACE_BOAT_STATE)
+                    if (builder.CurrentState == State.PLACE_BOAT_STATE && shipmenu.Selected != null)
                     {
                         bv.setMarkedCells();
                     }

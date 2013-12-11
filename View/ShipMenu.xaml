@@ -25,7 +25,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="4" Grid.ColumnSpan="5" LastChildFill="True">
-            <Rectangle Fill="Transparent" DockPanel.Dock="Bottom" Height="300" />
+            <Rectangle Fill="Transparent" DockPanel.Dock="Bottom" />
             <Button x:Name="next" DockPanel.Dock="Bottom" Content="Next Player" Grid.Row="5" Click="Button_Click" Width="100" Height="50"/>
             <Button x:Name="Rotate_Ship" DockPanel.Dock="Bottom" Content="Rotate ship" Grid.Row="5" Grid.Column="4" Click="Rotate" Width="100" Height="50"/>
             <Rectangle Fill="Transparent" DockPanel.Dock="Top"/>
