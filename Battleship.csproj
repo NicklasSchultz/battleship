@@ -110,6 +110,7 @@
     <Compile Include="Model\ModelHolder.cs" />
     <Compile Include="Model\ModelHolderImpl.cs" />
     <Compile Include="Game\State.cs" />
+    <Compile Include="SavedGame.cs" />
     <Compile Include="ShipView.xaml.cs">
       <DependentUpon>ShipView.xaml</DependentUpon>
     </Compile>

@@ -15,8 +15,8 @@ namespace Battleship
     public partial class DBBoardConstant
     {
         public int Id { get; set; }
-        public string X { get; set; }
-        public string Y { get; set; }
-        public string Constant { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Constant { get; set; }
     }
 }

@@ -48,7 +48,6 @@ namespace Battleship
                         CurrentState = State.GAME_STATE;
                         currentPlayer = nextPlayer();
                         resetBoard = true;
-
                         visibleBoard = currentPlayer.TargetBoard;
                         modelHolder.modelChanged(visibleBoard);
                     }

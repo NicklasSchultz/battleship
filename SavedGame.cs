@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Battleship.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,6 +20,34 @@ namespace Battleship
             this.Name = name;
             this.Player1 = player1;
             this.Player2 = player2;
+        }
+
+        internal void Save()
+        {
+            DBGame game = new DBGame();
+            DBPlayer dbPlayer1 = new DBPlayer();
+            DBPlayer dbPlayer2 = new DBPlayer();
+            dbPlayer1.UserBoard = boardToDBBoard(Player1.UserBoard);
+            Model1Container model = new Model1Container();
+            model.DBGameSet.Add(game);
+
+        }
+
+        private DBBoard boardToDBBoard(BoardModel board)
+        {
+            DBBoard dbBoard = new DBBoard();
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    DBBoardConstant constant = new DBBoardConstant();
+                    constant.X = i;
+                    constant.Y = j;
+                    constant.Constant = board.Model[i, j];
+                    dbBoard.DBBoardConstant.Add(constant);
+                }
+            }
+            return dbBoard;
         }
     }
 }

@@ -57,9 +57,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="X" Nullable="false" />
-          <Property Type="String" Name="Y" Nullable="false" />
-          <Property Type="String" Name="Constant" Nullable="false" />
+          <Property Type="Int32" Name="X" Nullable="false" />
+          <Property Type="Int32" Name="Y" Nullable="false" />
+          <Property Type="Int32" Name="Constant" Nullable="false" />
         </EntityType>
         <Association Name="PlayerGame">
           <End Type="Model1.DBPlayer" Role="Player" Multiplicity="1" />
