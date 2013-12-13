@@ -1,0 +1,180 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 12/12/2013 14:16:02
+-- Generated from EDMX file: C:\Users\Eric\documents\visual studio 2012\Projects\Battleship\Model2.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    ALTER TABLE [DBGameSet] DROP CONSTRAINT [FK_DBGameDBPlayer];
+GO
+    ALTER TABLE [DBGameSet] DROP CONSTRAINT [FK_DBGameDBPlayer1];
+GO
+    ALTER TABLE [DBPlayerSet] DROP CONSTRAINT [FK_DBPlayerDBBoard];
+GO
+    ALTER TABLE [DBPlayerSet] DROP CONSTRAINT [FK_DBPlayerDBBoard1];
+GO
+    ALTER TABLE [DBBoardValueSet] DROP CONSTRAINT [FK_DBBoardDBBoardValue];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [DBBoardSet];
+GO
+    DROP TABLE [DBPlayerSet];
+GO
+    DROP TABLE [DBBoardValueSet];
+GO
+    DROP TABLE [DBGameSet];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'DBBoardSet'
+CREATE TABLE [DBBoardSet] (
+    [Id] int IDENTITY(1,1) NOT NULL
+);
+GO
+
+-- Creating table 'DBPlayerSet'
+CREATE TABLE [DBPlayerSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserBoard_Id] int  NOT NULL,
+    [TargetBoard_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'DBBoardValueSet'
+CREATE TABLE [DBBoardValueSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [DBBoardId] int  NOT NULL,
+    [x] int  NOT NULL,
+    [y] int  NOT NULL,
+    [value] int  NOT NULL
+);
+GO
+
+-- Creating table 'DBGameSet'
+CREATE TABLE [DBGameSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Player2_Id] int  NOT NULL,
+    [Player1_Id] int  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'DBBoardSet'
+ALTER TABLE [DBBoardSet]
+ADD CONSTRAINT [PK_DBBoardSet]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'DBPlayerSet'
+ALTER TABLE [DBPlayerSet]
+ADD CONSTRAINT [PK_DBPlayerSet]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'DBBoardValueSet'
+ALTER TABLE [DBBoardValueSet]
+ADD CONSTRAINT [PK_DBBoardValueSet]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'DBGameSet'
+ALTER TABLE [DBGameSet]
+ADD CONSTRAINT [PK_DBGameSet]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [Player2_Id] in table 'DBGameSet'
+ALTER TABLE [DBGameSet]
+ADD CONSTRAINT [FK_DBGameDBPlayer]
+    FOREIGN KEY ([Player2_Id])
+    REFERENCES [DBPlayerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DBGameDBPlayer'
+CREATE INDEX [IX_FK_DBGameDBPlayer]
+ON [DBGameSet]
+    ([Player2_Id]);
+GO
+
+-- Creating foreign key on [Player1_Id] in table 'DBGameSet'
+ALTER TABLE [DBGameSet]
+ADD CONSTRAINT [FK_DBGameDBPlayer1]
+    FOREIGN KEY ([Player1_Id])
+    REFERENCES [DBPlayerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DBGameDBPlayer1'
+CREATE INDEX [IX_FK_DBGameDBPlayer1]
+ON [DBGameSet]
+    ([Player1_Id]);
+GO
+
+-- Creating foreign key on [UserBoard_Id] in table 'DBPlayerSet'
+ALTER TABLE [DBPlayerSet]
+ADD CONSTRAINT [FK_DBPlayerDBBoard]
+    FOREIGN KEY ([UserBoard_Id])
+    REFERENCES [DBBoardSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DBPlayerDBBoard'
+CREATE INDEX [IX_FK_DBPlayerDBBoard]
+ON [DBPlayerSet]
+    ([UserBoard_Id]);
+GO
+
+-- Creating foreign key on [TargetBoard_Id] in table 'DBPlayerSet'
+ALTER TABLE [DBPlayerSet]
+ADD CONSTRAINT [FK_DBPlayerDBBoard1]
+    FOREIGN KEY ([TargetBoard_Id])
+    REFERENCES [DBBoardSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DBPlayerDBBoard1'
+CREATE INDEX [IX_FK_DBPlayerDBBoard1]
+ON [DBPlayerSet]
+    ([TargetBoard_Id]);
+GO
+
+-- Creating foreign key on [DBBoardId] in table 'DBBoardValueSet'
+ALTER TABLE [DBBoardValueSet]
+ADD CONSTRAINT [FK_DBBoardDBBoardValue]
+    FOREIGN KEY ([DBBoardId])
+    REFERENCES [DBBoardSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DBBoardDBBoardValue'
+CREATE INDEX [IX_FK_DBBoardDBBoardValue]
+ON [DBBoardValueSet]
+    ([DBBoardId]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

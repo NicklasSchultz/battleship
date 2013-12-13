@@ -16,7 +16,7 @@ namespace Battleship
     {
         public int Id { get; set; }
     
-        public virtual DBPlayer Player1 { get; set; }
         public virtual DBPlayer Player2 { get; set; }
+        public virtual DBPlayer Player1 { get; set; }
     }
 }

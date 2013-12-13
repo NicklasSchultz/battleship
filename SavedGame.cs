@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Battleship
 {
@@ -24,13 +25,21 @@ namespace Battleship
 
         internal void Save()
         {
-            DBGame game = new DBGame();
-            DBPlayer dbPlayer1 = new DBPlayer();
-            DBPlayer dbPlayer2 = new DBPlayer();
-            dbPlayer1.UserBoard = boardToDBBoard(Player1.UserBoard);
-            Model1Container model = new Model1Container();
-            model.DBGameSet.Add(game);
+            String cs = "Data Source = localhost;";
+            using (var db = new Model2Container())
+            {
+                if (db.Database.Exists())
+                    MessageBox.Show("tjänare");
+                DBGame game = new DBGame();
+                DBPlayer dbPlayer1 = new DBPlayer();
+                DBPlayer dbPlayer2 = new DBPlayer();
+                dbPlayer1.UserBoard = boardToDBBoard(Player1.UserBoard);
 
+                db.DBGameSet.Add(game);
+                int i=db.DBGameSet.Count();
+                MessageBox.Show("herrrråå" + i);
+            }
+            
         }
 
         private DBBoard boardToDBBoard(BoardModel board)
@@ -40,11 +49,11 @@ namespace Battleship
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    DBBoardConstant constant = new DBBoardConstant();
-                    constant.X = i;
-                    constant.Y = j;
-                    constant.Constant = board.Model[i, j];
-                    dbBoard.DBBoardConstant.Add(constant);
+                    DBBoardValue constant = new DBBoardValue();
+                    constant.x = i;
+                    constant.y = j;
+                    constant.value = board.Model[i, j];
+                    dbBoard.BoardValues.Add(constant);
                 }
             }
             return dbBoard;

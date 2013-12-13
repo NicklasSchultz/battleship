@@ -12,11 +12,12 @@ namespace Battleship
     using System;
     using System.Collections.Generic;
     
-    public partial class DBBoardConstant
+    public partial class DBBoardValue
     {
         public int Id { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Constant { get; set; }
+        public int DBBoardId { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
+        public int value { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Battleship
     {
         public int Id { get; set; }
     
-        public virtual DBBoard TargetBoard { get; set; }
         public virtual DBBoard UserBoard { get; set; }
+        public virtual DBBoard TargetBoard { get; set; }
     }
 }

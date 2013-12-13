@@ -13,10 +13,10 @@ namespace Battleship
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class Model2Container : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public Model2Container()
+            : base("name=Model2Container")
         {
         }
     
@@ -25,9 +25,9 @@ namespace Battleship
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<DBGame> DBGameSet { get; set; }
-        public DbSet<DBPlayer> DBPlayerSet { get; set; }
-        public DbSet<DBBoardConstant> DBBoardConstantSet { get; set; }
         public DbSet<DBBoard> DBBoardSet { get; set; }
+        public DbSet<DBPlayer> DBPlayerSet { get; set; }
+        public DbSet<DBBoardValue> DBBoardValueSet { get; set; }
+        public DbSet<DBGame> DBGameSet { get; set; }
     }
 }

@@ -16,11 +16,11 @@ namespace Battleship
     {
         public DBBoard()
         {
-            this.DBBoardConstant = new HashSet<DBBoardConstant>();
+            this.BoardValues = new HashSet<DBBoardValue>();
         }
     
         public int Id { get; set; }
     
-        public virtual ICollection<DBBoardConstant> DBBoardConstant { get; set; }
+        public virtual ICollection<DBBoardValue> BoardValues { get; set; }
     }
 }
