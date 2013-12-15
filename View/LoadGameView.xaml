@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <ViewModel:LoadGameViewModel/>
     </UserControl.DataContext>
-    <DataGrid ItemsSource="{Binding Names}">
+    <DataGrid SelectionMode="Single" SelectionUnit="FullRow" ItemsSource="{Binding Names}">
             
     </DataGrid>
 </UserControl>
