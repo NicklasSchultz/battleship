@@ -49,7 +49,7 @@ namespace Battleship
 
             else if (b.Name.Equals("load"))
             {
-                menu.Content = new MainMenu();
+                content.Content = new LoadGameView();
             }
             else if (b.Name.Equals("next"))
             {

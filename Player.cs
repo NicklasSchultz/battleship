@@ -9,6 +9,7 @@ namespace Battleship
 {
     public class Player
     {
+        public int Id { get; set; }
         public BoardModel UserBoard { get; private set; }
         public String Name { get; set; }
         public BoardModel TargetBoard { get; private set; }

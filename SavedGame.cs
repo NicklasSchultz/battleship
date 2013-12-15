@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,45 +19,23 @@ namespace Battleship
 
         public SavedGame(String name, Player player1, Player player2)
         {
-            this.Name = name;
+            this.Name = "name";
             this.Player1 = player1;
             this.Player2 = player2;
+        }
+        public SavedGame()
+        {
+
         }
 
         internal void Save()
         {
-            String cs = "Data Source = localhost;";
-            using (var db = new Model2Container())
+            using (var db = new GameContext())
             {
-                if (db.Database.Exists())
-                    MessageBox.Show("tjänare");
-                DBGame game = new DBGame();
-                DBPlayer dbPlayer1 = new DBPlayer();
-                DBPlayer dbPlayer2 = new DBPlayer();
-                dbPlayer1.UserBoard = boardToDBBoard(Player1.UserBoard);
-
-                db.DBGameSet.Add(game);
-                int i=db.DBGameSet.Count();
-                MessageBox.Show("herrrråå" + i);
+                db.SavedGames.Add(this);
+                db.SaveChanges();
             }
-            
-        }
 
-        private DBBoard boardToDBBoard(BoardModel board)
-        {
-            DBBoard dbBoard = new DBBoard();
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    DBBoardValue constant = new DBBoardValue();
-                    constant.x = i;
-                    constant.y = j;
-                    constant.value = board.Model[i, j];
-                    dbBoard.BoardValues.Add(constant);
-                }
-            }
-            return dbBoard;
         }
     }
 }

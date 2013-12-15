@@ -2,6 +2,7 @@
 using Battleship.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -9,6 +10,7 @@ namespace Battleship.Model
 {
     public class BoardModel
     {
+        public int Id { get; set; }
         private int[,] _model = new int[10, 10];
         public int[,] Model
         {
