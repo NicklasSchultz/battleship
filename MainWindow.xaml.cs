@@ -50,16 +50,19 @@ namespace Battleship
             else if (b.Name.Equals("load"))
             {
                 content.Content = new LoadGameView();
+                menu.Content = new LoadGameMenuView();
             }
             else if (b.Name.Equals("next"))
             {
                 builder.progressGame();
-                if (builder.CurrentState==State.PLACE_BOAT_STATE)
+                if (builder.CurrentState == State.PLACE_BOAT_STATE)
                 {
                     shipmenu = new ShipMenu();
                     bv.resetShips(shipmenu);
                     m.Menu = shipmenu;
-                } else if (builder.CurrentState==State.GAME_STATE){
+                }
+                else if (builder.CurrentState == State.GAME_STATE)
+                {
                     bv.resetBoard();
                     m.Menu = new GameMenu();
                 }
@@ -73,9 +76,23 @@ namespace Battleship
             }
             else if (b.Name.Equals("saveGame"))
             {
-                SavedGame save = new SavedGame("title",builder.Player1,builder.Player2);
+                SavedGame save = new SavedGame("title", builder.Player1, builder.Player2);
                 save.Save();
             }
+            else if (b.Name.Equals("startLoadedGame"))
+            {
+                LoadGameViewModel loadViewModel = m.Content.DataContext as LoadGameViewModel;
+                System.Windows.Forms.MessageBox.Show("Test" + loadViewModel);
+                SavedGame game = loadViewModel.getSelectedGame();
+
+                shipmenu = new ShipMenu();
+                bv = new BoardView(shipmenu);
+                bvm = bv.DataContext as BoardViewModel;
+                m.Menu = shipmenu;
+                m.Content = bv;
+                builder = new BattleshipBuilder(bvm, game.Player1, game.Player2);
+            }
+            else if (b.Name.Equals("goBack")) { }
             e.Handled = true;
         }
 
@@ -89,7 +106,7 @@ namespace Battleship
                     Point pos = e.GetPosition(this);
                     int column = (int)((pos.X / bv.mainGrid.ActualWidth) * 10);
                     int row = (int)((pos.Y / bv.mainGrid.ActualHeight) * 10);
-                    if (builder.Shoot(column, row)!=-1)
+                    if (builder.Shoot(column, row) != -1)
                     {
                         //shoot ok
                     }

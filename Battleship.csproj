@@ -114,6 +114,9 @@
     <Compile Include="View\Hit.xaml.cs">
       <DependentUpon>Hit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LoadGameMenuView.xaml.cs">
+      <DependentUpon>LoadGameMenuView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoadGameView.xaml.cs">
       <DependentUpon>LoadGameView.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Hit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoadGameMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

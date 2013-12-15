@@ -19,7 +19,7 @@ namespace Battleship.ViewModel
                 this.RaisPropertyChangedEvent("Names");
             }
         }
-
+        public int SelectedIndex { get; set; }
         public void loadGames()
         {
             using (var db = new GameContext())
@@ -31,6 +31,11 @@ namespace Battleship.ViewModel
                     Names.Add(game);
                 }
             }
+        }
+        public SavedGame getSelectedGame()
+        {
+            System.Windows.Forms.MessageBox.Show("Test " + SelectedIndex);
+            return Names.ElementAt(SelectedIndex);
         }
     }
 }
