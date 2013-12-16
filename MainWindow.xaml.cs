@@ -103,7 +103,10 @@ namespace Battleship
                 m.Content = null;
                 m.Menu = new MainMenu();
             }
-            else if (b.Name.Equals("goBack")) { }
+            else if (b.Name.Equals("goBack")) {
+                m.Content = null;
+                m.Menu = new MainMenu();
+            }
             e.Handled = true;
         }
 
