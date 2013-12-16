@@ -164,6 +164,8 @@ namespace Battleship.View
                     }
                 }
                 Brush brush;
+                x.Sort();
+                y.Sort();
                 if (control.checkValidPlacement(x.ToArray(), y.ToArray()))
                 {
                     brush = Brushes.Aqua;
@@ -182,13 +184,14 @@ namespace Battleship.View
 
         private void boardChanged(object sender, PropertyChangedEventArgs e)
         {
+            int count = 0;
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
                     UserControl c = new Cell();
 
-                    switch (model.Board.Model[i, j])
+                    switch (model.Board.Model.ElementAt(count).Value)
                     {
                         case BoardConstants.water:
                             c = cells[i, j];
@@ -224,6 +227,7 @@ namespace Battleship.View
                         ((Grid)VisualTreeHelper.GetParent(c)).Children.Remove(c);
                         mainGrid.Children.Add(c);
                     }
+                    count++;
                 }
             }
         }

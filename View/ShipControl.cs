@@ -58,20 +58,12 @@ namespace Battleship.View
             }
         }
 
-        /*
-         * Marks the cells that the boat is placed on as occupied
-         * also marks the neighbouring cells occuppied so that no 
-         * two boats can be placed next to each other.
-         * 
-         */
         public void setOccupied()
         {
-            int count = 0;
             for (int col = column[0] - 1; col <= column[column.Length - 1] + 1; col++)
             {
                 for (int ro =  row[0] - 1; ro <= row[row.Length - 1] + 1; ro++)
                 {
-                    count++;
                     if(col <10 && ro <10 && col>=0 && ro>=0)
                         occupied[col, ro] = true;
                 }

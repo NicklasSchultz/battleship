@@ -33,6 +33,8 @@ namespace Battleship
         private BoardView bv;
         private ShipMenu shipmenu;
         private MainWindowViewModel m;
+        private LoadGameView loadGameView;
+
         private void HandleChildEvent(object sender, RoutedEventArgs e)
         {
             Button b = e.OriginalSource as Button;
@@ -44,13 +46,14 @@ namespace Battleship
                 bvm = bv.DataContext as BoardViewModel;
                 m.Menu = shipmenu;
                 m.Content = bv;
-                builder = new BattleshipBuilder(bvm, new Player(), new Player());
+                builder = new BattleshipBuilder(bvm, new Player(), new Player(), State.PLACE_BOAT_STATE);
             }
 
             else if (b.Name.Equals("load"))
             {
-                content.Content = new LoadGameView();
-                menu.Content = new LoadGameMenuView();
+                loadGameView = new LoadGameView();
+                m.Content = loadGameView;
+                m.Menu = new LoadGameMenuView();
             }
             else if (b.Name.Equals("next"))
             {
@@ -81,16 +84,20 @@ namespace Battleship
             }
             else if (b.Name.Equals("startLoadedGame"))
             {
-                LoadGameViewModel loadViewModel = m.Content.DataContext as LoadGameViewModel;
-                System.Windows.Forms.MessageBox.Show("Test" + loadViewModel);
+                LoadGameViewModel loadViewModel = loadGameView.DataContext as LoadGameViewModel;
                 SavedGame game = loadViewModel.getSelectedGame();
 
                 shipmenu = new ShipMenu();
                 bv = new BoardView(shipmenu);
                 bvm = bv.DataContext as BoardViewModel;
-                m.Menu = shipmenu;
+                m.Menu = new GameMenu();
                 m.Content = bv;
-                builder = new BattleshipBuilder(bvm, game.Player1, game.Player2);
+                builder = new BattleshipBuilder(bvm, game.Player1, game.Player2, State.GAME_STATE);
+            }
+            else if (b.Name.Equals("exitGame"))
+            {
+                m.Content = null;
+                m.Menu = new MainMenu();
             }
             else if (b.Name.Equals("goBack")) { }
             e.Handled = true;

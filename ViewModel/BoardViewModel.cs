@@ -28,17 +28,24 @@ namespace Battleship.ViewModel
 
         public void coordinateClicked(int x, int y)
         {
-            if (_board.Model[x, y] > 3)
+            foreach (CellValue c in _board.Model)
             {
-                _board.modifyCoordinate(x, y, BoardConstants.hit);
-                Board = _board;
+                if (c.X == x && c.Y == y)
+                {
+                    if (c.Value > 3)
+                    {
+                        _board.modifyCoordinate(x, y, BoardConstants.hit);
+                        Board = _board;
+                    }
+                    else if (c.Value == BoardConstants.water)
+                    {
+                        _board.modifyCoordinate(x, y, BoardConstants.miss);
+                        Board = _board;
+                    }
+                    DoSomething();
+                }
             }
-            else if (_board.Model[x, y] == BoardConstants.water)
-            {
-                _board.modifyCoordinate(x, y, BoardConstants.miss);
-                Board = _board;
-            }
-            DoSomething();
+            
         }
 
         public void addShip(int[] x, int[] y)

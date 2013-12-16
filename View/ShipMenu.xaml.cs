@@ -87,7 +87,8 @@ namespace Battleship.View
 
         private void Rotate(object sender, RoutedEventArgs e)
         {
-            Selected.Orientation = Selected.Orientation.Equals(Orientation.Horizontal) ? Orientation.Vertical : Orientation.Horizontal;
+            if(Selected != null)
+                Selected.Orientation = Selected.Orientation.Equals(Orientation.Horizontal) ? Orientation.Vertical : Orientation.Horizontal;
         }
 
 

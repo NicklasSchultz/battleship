@@ -20,12 +20,12 @@ namespace Battleship
         public int CurrentState { get; private set; }
         public bool resetBoard { get; private set; }
         public bool BoatsPlaced { get; private set; }
-        public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2)
+        public BattleshipBuilder(ModelHolder modelHolder, Player player1, Player player2, int state)
         {
             TookShoot = false;
             BoatsPlaced = false;
             resetBoard = false;
-            CurrentState = State.PLACE_BOAT_STATE;
+            CurrentState = state;
             this.modelHolder = modelHolder;
             this.Player1 = player1;
             this.Player1.Name = "Player1";
@@ -33,7 +33,7 @@ namespace Battleship
             this.Player2.Name = "Player2";
             currentPlayer = player1;
             visibleBoard = player1.UserBoard;
-            modelHolder.modelChanged(player1.UserBoard);
+            modelHolder.modelChanged(visibleBoard);
         }
 
 
@@ -92,7 +92,13 @@ namespace Battleship
         {
             if (validShoot(x, y))
             {
-                int i=nextPlayer().UserBoard.Model[x, y];
+                nextPlayer();
+                int i = 0;
+                foreach (CellValue c in currentPlayer.UserBoard.Model)
+                {
+                    if (c.X == x && c.Y == y)
+                        i = c.Value;
+                }
                 if(i==BoardConstants.ship){
                     currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.hit);
                     modelHolder.modelChanged(currentPlayer.TargetBoard);
@@ -124,8 +130,13 @@ namespace Battleship
         }
         private bool noShotAtSameCoord(int x, int y)
         {
-            BoardModel model = currentPlayer.TargetBoard;
-            return model.Model[x, y] != BoardConstants.hit && model.Model[x, y] != BoardConstants.miss;
+            int val = 0;
+            foreach (CellValue c in currentPlayer.TargetBoard.Model)
+            {
+                if (c.X == x && c.Y == y)
+                    val = c.Value;
+            }
+            return val != BoardConstants.hit && val != BoardConstants.miss;
         }
     }
 

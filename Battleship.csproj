@@ -102,6 +102,7 @@
     <Compile Include="View\Cell.xaml.cs">
       <DependentUpon>Cell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\CellValue.cs" />
     <Compile Include="View\Destroyer.xaml.cs">
       <DependentUpon>Destroyer.xaml</DependentUpon>
     </Compile>

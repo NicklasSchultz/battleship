@@ -11,13 +11,10 @@ namespace Battleship.Model
     public class BoardModel
     {
         public int Id { get; set; }
-        private int[,] _model = new int[10, 10];
-        public int[,] Model
-        {
-            get { return _model; }
-        }
+        public List<CellValue> Model { get; set; }
         public BoardModel()
         {
+            Model = new List<CellValue>();
             initBoard();
         }
 
@@ -27,27 +24,31 @@ namespace Battleship.Model
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    _model[i, j] = BoardConstants.water;
+                    CellValue c = new CellValue(i, j, BoardConstants.water);
+                    c.bm = this;
+                    Model.Add(c);
+
                 }
             }
         }
         public void modifyCoordinate(int x, int y, int boardConstant)
         {
-            _model[x, y] = boardConstant;
+            foreach (CellValue c in Model)
+            {
+                if (c.X == x && c.Y == y)
+                {
+                    c.Value = boardConstant;
+                }
+            }
         }
 
         public bool allBoatsPlaced()
         {
             int b = 0;
-            for (int i = 0; i < 10; i++)
+            foreach (CellValue c in Model)
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    if (_model[i, j] == BoardConstants.ship)
-                    {
-                        b++;
-                    }
-                }
+                if (c.Value == BoardConstants.ship)
+                    b++;
             }
             return b > 13;
         }
@@ -55,15 +56,10 @@ namespace Battleship.Model
         internal bool finished()
         {
             int h = 0;
-            for (int i = 0; i < 10; i++)
+            foreach (CellValue c in Model)
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    if (_model[i, j] == BoardConstants.hit)
-                    {
-                        h++;
-                    }
-                }
+                if (c.Value == BoardConstants.hit)
+                    h++;
             }
             return h == 14;
         }
