@@ -87,11 +87,15 @@ namespace Battleship
                 LoadGameViewModel loadViewModel = loadGameView.DataContext as LoadGameViewModel;
                 SavedGame game = loadViewModel.getSelectedGame();
 
-                shipmenu = new ShipMenu();
-                bv = new BoardView(shipmenu);
+                if (shipmenu == null)
+                {
+                    shipmenu = new ShipMenu();
+                    bv = new BoardView(shipmenu);
+                }
                 bvm = bv.DataContext as BoardViewModel;
                 m.Menu = new GameMenu();
                 m.Content = bv;
+               // bvm.modelChanged(game.Player1.TargetBoard);
                 builder = new BattleshipBuilder(bvm, game.Player1, game.Player2, State.GAME_STATE);
             }
             else if (b.Name.Equals("exitGame"))

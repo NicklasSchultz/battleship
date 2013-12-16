@@ -32,7 +32,14 @@ namespace Battleship
             this.Player2 = player2;
             this.Player2.Name = "Player2";
             currentPlayer = player1;
-            visibleBoard = player1.UserBoard;
+            if (state == State.PLACE_BOAT_STATE)
+            {
+                visibleBoard = currentPlayer.UserBoard;
+            }
+            else
+            {
+                visibleBoard = currentPlayer.TargetBoard;
+            }
             modelHolder.modelChanged(visibleBoard);
         }
 
@@ -99,12 +106,15 @@ namespace Battleship
                     if (c.X == x && c.Y == y)
                         i = c.Value;
                 }
-                if(i==BoardConstants.ship){
+                if (i == BoardConstants.ship)
+                {
                     currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.hit);
                     modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.hit;
-                }else{
-                    currentPlayer.TargetBoard.modifyCoordinate(x,y,BoardConstants.miss);
+                }
+                else
+                {
+                    currentPlayer.TargetBoard.modifyCoordinate(x, y, BoardConstants.miss);
                     modelHolder.modelChanged(currentPlayer.TargetBoard);
                     return BoardConstants.miss;
                 }
